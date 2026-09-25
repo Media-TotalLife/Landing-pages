@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>It's not just getting older. A 2-minute self-check | Total Life</title>
+<meta name="description" content="Anxiety and sadness at 70 deserve the same care they did at 30. Take a gentle two-minute check, in your own words. Then we'll tell you what your Medicare covers.">
+<link rel="icon" href="../assets/img/flower.png">
+<link rel="preload" href="../assets/fonts/InterTight-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/tl.css">
+<style>
+/* ---- Page-scoped layout: /check/ ---------------------------------------- */
+.hero { padding-block: clamp(3rem, 6vw, 5.5rem) clamp(3.5rem, 7vw, 6rem); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.hero h1 { max-width: 12ch; }
+.hero .lede { margin-top: 1.5rem; }
+.hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.25rem; }
+.hero .reassure, .final .reassure { align-items: flex-start; }
+.hero .reassure svg, .final .reassure svg { margin-top: .2em; }
+a[href^="tel:"] { white-space: nowrap; }
+.hero .reassure a { color: var(--teal); font-weight: 700; white-space: nowrap; }
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .hero .portrait { max-width: 560px; }
+}
+@media (max-width: 640px) {
+  .hero-actions .btn { width: 100%; }
+  .hero .eyebrow { letter-spacing: .12em; font-size: .8125rem; }
+}
+
+/* "Sound familiar?" cards — a thought, then a gentle reframe */
+.familiar .card { position: relative; padding-top: clamp(2.75rem, 4vw, 3.5rem); display: grid; grid-template-rows: 1fr auto; gap: 1rem; }
+.familiar .card::before {
+  content: "\201C"; position: absolute; left: clamp(1.25rem, 2.2vw, 2rem); top: .35rem;
+  font-family: var(--font-display); font-weight: 700; font-size: 4.5rem; line-height: 1; color: var(--coral);
+}
+.familiar .said { font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: clamp(1.375rem, 2vw, 1.625rem); line-height: 1.2; letter-spacing: -.015em; text-wrap: balance; }
+.familiar .reframe { color: var(--navy); font-size: var(--text); margin: 0; padding-top: 1rem; border-top: 1px solid var(--line-strong); }
+.section-head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.section-head h2 { max-width: 16ch; }
+.section-head .lede { margin-top: 1rem; }
+
+/* The self-check — copy on the left, the quiet room on the right */
+.check-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.check-grid .checks { margin-top: 1.75rem; max-width: 26em; }
+.check-grid .checks li { color: var(--navy); }
+.check-grid .form-card { padding: clamp(1.75rem, 3.2vw, 3rem); }
+.tl-step .q { margin-bottom: 1.25rem; text-wrap: balance; }
+fieldset.tl-step { border: 0; padding: 0; margin: 0; min-width: 0; }
+fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
+.check-grid .choice { min-height: 64px; }
+.check-grid .form-actions { justify-content: flex-start; }
+.form-card .crisis-note { color: var(--muted); font-size: var(--text-sm); margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.form-card .crisis-note a { color: var(--teal); font-weight: 700; }
+.form-card .step-note { color: var(--muted); font-size: var(--text-sm); margin: 0 0 1.25rem; }
+@media (max-width: 900px) {
+  .check-grid { grid-template-columns: 1fr; }
+  .check-grid .checks { margin-bottom: .5rem; }
+}
+@media (max-width: 640px) {
+  .form-actions .btn--primary { width: 100%; }
+  .form-actions .btn--back { width: 100%; }
+}
+
+/* Stat band spacing */
+.stats .stat-band { margin-top: 0; }
+.stats .source { text-align: center; }
+
+/* Steps */
+.steps-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.25rem, 2.5vw, 2rem); }
+.steps-grid .step { background: var(--bg); border-radius: var(--radius); padding: clamp(1.5rem, 2.2vw, 2rem); }
+@media (max-width: 900px) { .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
+
+/* Proof */
+.proof-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.proof-grid .quote { background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.5rem, 2.5vw, 2.25rem); }
+.therapists { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 1.5vw, 1.25rem); }
+.therapists .portrait .chip { left: .9rem; top: .9rem; font-size: .8125rem; padding: .4rem .8rem; }
+.therapists .portrait[data-placeholder]::after { font-size: .6875rem; left: .75rem; right: .75rem; bottom: .75rem; padding: .45rem .6rem; }
+.therapists figcaption { margin-top: .75rem; font-size: var(--text-sm); color: var(--muted); }
+.therapists figcaption b { display: block; color: var(--navy); font-size: var(--text); }
+.therapists figure { margin: 0; }
+.carriers-wrap { margin-top: clamp(3rem, 5vw, 4.5rem); padding-top: clamp(2rem, 3vw, 2.5rem); border-top: 1px solid var(--line); }
+.carriers-wrap p { text-align: center; color: var(--muted); font-size: .875rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; margin-bottom: 1.25rem; }
+@media (max-width: 900px) {
+  .proof-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .therapists { grid-template-columns: 1fr 1fr; }
+  .therapists figure:last-child { grid-column: 1 / -1; max-width: calc(50% - .5rem); }
+  .therapists .portrait .chip { font-size: .75rem; padding: .35rem .65rem; white-space: nowrap; left: .6rem; top: .6rem; }
+}
+
+/* FAQ */
+.faq-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+@media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+
+/* Final CTA */
+.final .wrap { max-width: 44rem; }
+.final .hero-actions { justify-content: center; }
+.final .reassure { justify-content: center; }
+
+/* Dividers between major sections */
+.divider { margin-block: 0; }
+</style>
+</head>
+<body data-page="check">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="../" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#check">The check</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="phone" href="tel:+18005675433" data-track="header_phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
+      <span><small>Call us today</small><b>1-800-567-LIFE</b></span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="section hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">For anyone who's said "it's probably nothing"</p>
+        <h1 id="hero-title">It's not just <span class="accent">getting older.</span></h1>
+        <p class="lede">Anxiety and sadness at 70 deserve the same care they did at 30. Take a two-minute check, in your own words. Then we'll tell you what your Medicare covers.</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-hero-cta data-track="hero_cta">Start the 2-minute check</a>
+          <div class="stamp" role="img" aria-label="Covered by Medicare">Covered<br>by<br>Medicare</div>
+        </div>
+        <p class="reassure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Not a test. No wrong answers. Or call <a href="tel:+18005675433" data-track="hero_phone">1-800-567-LIFE</a></span>
+        </p>
+      </div>
+      <div class="portrait portrait--wide" data-placeholder="[PORTRAIT: real Total Life member, 70s, on a porch or by a window, thoughtful, documentary light]">
+        <span class="chip"><i></i>Real members, real therapists</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sound familiar? -->
+  <section class="section section--tight familiar" aria-labelledby="familiar-title">
+    <div class="stamp-bg" aria-hidden="true"><img src="../assets/img/flower.png" alt=""></div>
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Sound familiar?</p>
+        <h2 id="familiar-title">Things people tell <span class="accent">themselves.</span></h2>
+      </div>
+      <div class="grid grid--3">
+        <div class="card" data-reveal data-delay="1">
+          <p class="said">I'm fine. Everyone slows down.</p>
+          <p class="reframe">Slowing down is normal. Losing interest in what you love isn't.</p>
+        </div>
+        <div class="card" data-reveal data-delay="2">
+          <p class="said">I don't want to be a burden.</p>
+          <p class="reframe">Getting help is what keeps you present for the people you love.</p>
+        </div>
+        <div class="card" data-reveal data-delay="3">
+          <p class="said">Who would I even talk to?</p>
+          <p class="reframe">Someone who has spent years listening to people your age.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The self-check -->
+  <section class="section" id="check" aria-labelledby="check-title">
+    <div class="wrap check-grid">
+      <div>
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">The self-check</p>
+          <h2 id="check-title">A few questions. Take your <span class="accent">time.</span></h2>
+          <p class="lede">Answer in whatever way feels true. There's no right answer, and no one is grading you.</p>
+        </div>
+        <ul class="checks">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+            <span>Two minutes, four questions</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+            <span>Nothing is stored until you choose to share your number</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+            <span>Not a medical test — a way to start a conversation</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-card" aria-live="polite">
+        <form class="tl-form" id="coverage-form" data-endpoint="[FORM ENDPOINT]" data-track="check_form" novalidate>
+          <div class="progress" aria-hidden="true"><span>Step 1 of 5</span><div class="bar"><i></i></div></div>
+
+          <!-- Step 1 -->
+          <fieldset class="tl-step">
+            <legend class="q">In the last two weeks, how often have you felt down, low, or without much hope?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="q1" value="rarely"><span class="dot"></span><span>Rarely</span></label>
+              <label class="choice"><input type="radio" name="q1" value="some_days"><span class="dot"></span><span>Some days</span></label>
+              <label class="choice"><input type="radio" name="q1" value="most_days"><span class="dot"></span><span>Most days</span></label>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="check_step1_next">Continue</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 2 -->
+          <fieldset class="tl-step">
+            <legend class="q">How often have you lost interest in things you used to enjoy?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="q2" value="rarely"><span class="dot"></span><span>Rarely</span></label>
+              <label class="choice"><input type="radio" name="q2" value="some_days"><span class="dot"></span><span>Some days</span></label>
+              <label class="choice"><input type="radio" name="q2" value="most_days"><span class="dot"></span><span>Most days</span></label>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="check_step2_next">Continue</button>
+              <button type="button" class="btn btn--back" data-back>Back</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 3 -->
+          <fieldset class="tl-step">
+            <legend class="q">How often have you felt worried, tense, or on edge?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="q3" value="rarely"><span class="dot"></span><span>Rarely</span></label>
+              <label class="choice"><input type="radio" name="q3" value="some_days"><span class="dot"></span><span>Some days</span></label>
+              <label class="choice"><input type="radio" name="q3" value="most_days"><span class="dot"></span><span>Most days</span></label>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="check_step3_next">Continue</button>
+              <button type="button" class="btn btn--back" data-back>Back</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 4 -->
+          <fieldset class="tl-step">
+            <legend class="q">How often have you felt lonely, even with people around?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="q4" value="rarely"><span class="dot"></span><span>Rarely</span></label>
+              <label class="choice"><input type="radio" name="q4" value="some_days"><span class="dot"></span><span>Some days</span></label>
+              <label class="choice"><input type="radio" name="q4" value="most_days"><span class="dot"></span><span>Most days</span></label>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="check_step4_next">Continue</button>
+              <button type="button" class="btn btn--back" data-back>Back</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 5: contact -->
+          <div class="tl-step">
+            <h3 class="q">Last thing. What's your first name, and the best number to call you?</h3>
+            <p class="hint">A real person will call to talk through what your Medicare covers. No pressure.</p>
+            <div class="field">
+              <label for="first_name">First name</label>
+              <input class="input" id="first_name" name="first_name" type="text" required autocomplete="given-name" data-empty-message="Let's try that again — what should we call you?">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            </div>
+            <div class="field">
+              <label for="phone">Best number to call</label>
+              <input class="input" id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(555) 123-4567" data-empty-message="Let's try that again — we need a number to call you.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="check_form_submit">Check my coverage</button>
+              <button type="button" class="btn btn--back" data-back>Back</button>
+            </div>
+            <p class="privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>We only use this to call you about your coverage. We never sell your information.</span>
+            </p>
+          </div>
+
+          <!-- Success -->
+          <div class="tl-step tl-step--success">
+            <div class="success">
+              <div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <h3>Thank you, <span data-fill="first_name" data-fallback="friend">friend</span>.</h3>
+              <p>Feelings like these are common — and they are worth talking about. Many members who answered the way you did found talk therapy helped. This check isn't a diagnosis, and only a clinician can tell you more.</p>
+              <p>A real person will call you within one business day to check your Medicare coverage and answer questions. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
+              <p>Rather talk now? Call <span style="white-space:nowrap">1-800-567-LIFE</span>.</p>
+              <a class="phone-big" href="tel:+18005675433" data-track="success_phone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
+                1-800-567-LIFE
+              </a>
+              <p class="crisis-note">If you're in crisis, call or text <a href="tel:988">988</a> any time.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stat band -->
+  <section class="section section--tight stats" aria-label="Member outcomes">
+    <div class="wrap">
+      <div class="stat-band">
+        <div class="stat"><b>68<small>%</small></b><span>of members report meaningful improvement after 3 sessions</span></div>
+        <div class="stat"><b>3</b><span>sessions to feel hope, on average</span></div>
+        <div class="stat"><b>92<small>%</small></b><span>stay with their assigned therapist</span></div>
+      </div>
+      <p class="source">Source: Internal outcomes data · Q3 2024 · N=2,847</p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section section--sand" id="coverage" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title">From a few questions to a <span class="accent">real conversation.</span></h2>
+      </div>
+      <ol class="steps steps-grid">
+        <li class="step"><span class="num">01</span><h3>Take the check</h3><p>Four questions, two minutes. Answer in your own words.</p></li>
+        <li class="step"><span class="num">02</span><h3>We check your coverage</h3><p>Most members are covered up to 100% with Medicare + supplemental insurance.</p></li>
+        <li class="step"><span class="num">03</span><h3>Match with a therapist</h3><p>Someone trained for older adults. Someone who listens.</p></li>
+        <li class="step"><span class="num">04</span><h3>Meet from home</h3><p>Phone or video. Whatever's easier for you.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section class="section" aria-labelledby="proof-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Real people</p>
+        <h2 id="proof-title">Therapists who work with <span class="accent">older adults.</span></h2>
+      </div>
+      <div class="proof-grid">
+        <figure class="quote">
+          <blockquote>"As a senior, it was difficult to find resources that cater to my experience. Total Life does. I feel like I am in good hands and can trust that my therapist will help me work through any challenges I may be facing."</blockquote>
+          <figcaption><span><b>Total Life Member</b> · joined March 2024</span></figcaption>
+        </figure>
+        <div class="therapists">
+          <figure>
+            <div class="portrait" data-placeholder="[PORTRAIT: therapist, warm, seated, natural window light]"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
+            <figcaption><b>[THERAPIST NAME]</b>[LCSW · 14 yrs with older adults]</figcaption>
+          </figure>
+          <figure>
+            <div class="portrait" data-placeholder="[PORTRAIT: therapist, smiling, home office, documentary light]"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
+            <figcaption><b>[THERAPIST NAME]</b>[CREDENTIAL · yrs with older adults]</figcaption>
+          </figure>
+          <figure>
+            <div class="portrait" data-placeholder="[PORTRAIT: therapist, listening, calm, soft daylight]"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
+            <figcaption><b>[THERAPIST NAME]</b>[CREDENTIAL · yrs with older adults]</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="carriers-wrap">
+        <p>We accept Medicare and most supplemental plans</p>
+        <div class="carriers">
+          <span>Medicare</span><span>Mutual of Omaha</span><span>Humana</span><span>HCSC</span><span>BCBS</span><span>AARP</span><span>UHC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider" aria-hidden="true"><i></i></div></div>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Questions</p>
+        <h2 id="faq-title">Good questions. <span class="accent">Honest answers.</span></h2>
+        <p class="lede">Anything else? Call <a href="tel:+18005675433" data-track="faq_phone">1-800-567-LIFE</a>. A real person picks up.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Is this a medical test?<span class="plus" aria-hidden="true">+</span></summary>
+          <div class="answer">
+            <p>No. The four questions are a way to start a conversation. They are not a diagnosis.</p>
+            <p>Only a clinician can tell you more. If your answers worry you, a good next step is to talk to someone.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Is therapy covered by Medicare?<span class="plus" aria-hidden="true">+</span></summary>
+          <div class="answer">
+            <p>Yes. Medicare covers talk therapy for mental and emotional health. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
+            <p>When we call, we check your plan and tell you exactly what it covers. Total Life is an enrolled Medicare provider.</p>
+          </div>
+        </details>
+        <details>
+          <summary>I've never talked to anyone about this.<span class="plus" aria-hidden="true">+</span></summary>
+          <div class="answer">
+            <p>Most of our members hadn't either. That's very normal at any age.</p>
+            <p>Your therapist works with older adults every day. You set the pace. You choose what to share.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Can I do it by phone?<span class="plus" aria-hidden="true">+</span></summary>
+          <div class="answer">
+            <p>Yes. You can meet by phone or by video call. Whatever is easier for you.</p>
+            <p>No apps to download. No driving. You talk from your own home.</p>
+          </div>
+        </details>
+        <details>
+          <summary>What happens after I answer?<span class="plus" aria-hidden="true">+</span></summary>
+          <div class="answer">
+            <p>A real person calls you within one business day. They check your Medicare coverage and answer your questions.</p>
+            <p>If you'd like to go ahead, we match you with a therapist. There's no pressure at any step.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section final center" aria-labelledby="final-title">
+    <div class="wrap">
+      <p class="eyebrow">Ready when you are</p>
+      <h2 id="final-title">Talk to someone who <span class="accent">gets it.</span></h2>
+      <p class="lede" style="margin:1.25rem auto 0">Four questions. Two minutes. Then a real conversation about what your Medicare covers.</p>
+      <div class="hero-actions">
+        <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-track="final_cta">Start the 2-minute check</a>
+      </div>
+      <p class="reassure">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
+        <span>Or call <a href="tel:+18005675433" data-track="final_phone">1-800-567-LIFE</a>. A real person picks up.</span>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<div class="sticky-cta">
+  <a class="btn btn--primary" href="#coverage-form" data-focus-form data-track="sticky_cta">Start the 2-minute check</a>
+  <a class="call" href="tel:+18005675433" aria-label="Call 1-800-567-LIFE" data-track="sticky_phone">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
+  </a>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <a class="logo" href="../" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
+      <p style="margin-top:1rem;max-width:28em">Talk therapy for older adults, covered by Medicare. From home, by phone or video.</p>
+      <p style="margin-top:1rem"><a href="tel:+18005675433" data-track="footer_phone"><b>1-800-567-LIFE</b></a></p>
+    </div>
+    <div>
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#check">The check</a></li>
+        <li><a href="#coverage">How it works</a></li>
+        <li><a href="#faq">Questions</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Total Life</h4>
+      <ul>
+        <li><a href="#">[ABOUT]</a></li>
+        <li><a href="#">[FOR CLINICIANS]</a></li>
+        <li><a href="#">[CONTACT]</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance. Coverage depends on your plan; we confirm it with you by phone before your first session.</p>
+      <p>The self-check on this page is not a medical test or a diagnosis. Only a clinician can assess your health. Outcome figures: internal outcomes data, Q3 2024, N=2,847.</p>
+      <p class="crisis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>If you or someone you love is in crisis, call or text 988.</p>
+      <p>© 2026 Total Life · <a href="#">[PRIVACY POLICY]</a> · <a href="#">[TERMS]</a> · <a href="#">[HIPAA NOTICE]</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/tl.js" defer></script>
+</body>
+</html>
