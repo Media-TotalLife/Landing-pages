@@ -1,180 +1,162 @@
-# Agent prompt — generate Total Life portrait assets with Higgsfield
+# Agent prompt — generate Total Life portrait assets with Higgsfield (low-credit edition)
 
-Copy everything below the line into the agent that holds the Higgsfield key.
+Copy everything below the line into the agent that holds the Higgsfield login. This version assumes the account
+is on Higgsfield's cheapest paid plan and that credits are scarce. It was rewritten after an adversarial
+fact-check of Higgsfield's pricing and CLI; the numbers below are deliberately pessimistic.
 
 ---
 
-You are producing photographic and motion assets for three landing pages for **Total Life**, a Medicare-covered
-talk-therapy practice for adults 65+. The pages are already built; every image slot has an exact size and aspect
-ratio, and your files will be dropped straight into them. Precision on ratios and filenames matters more than
-creativity. Read this entire brief before generating anything, then work through the checklist at the end.
+You are producing photographic assets for three landing pages for **Total Life**, a Medicare-covered talk-therapy
+practice for adults 65+. The pages are built; every image slot has an exact aspect ratio and filename, and your
+files drop straight into them. **Credits are the scarce resource.** Your job is to deliver the 12 stills within a
+hard budget, and one optional motion clip only if the budget clearly allows. Read everything before generating.
 
-## 0. Tooling and constraints (verified against the Higgsfield CLI model reference)
+## 0. Budget rules (non-negotiable)
 
-Use the **Higgsfield CLI** (`higgsfield`), or the Higgsfield MCP if that is what you have. Install and authenticate:
+- **Hard cap: 80 credits total** for this whole job. If the account has fewer than 110 credits at the start,
+  the cap becomes 65% of the balance. Stop and report the moment the cap is reached, even mid-task.
+- **Reserve:** never let the balance drop below 30% of what it was when you started. Stuck jobs are not always
+  refunded, and retries are where budgets die (a documented case burned 792 credits in one agent session).
+- **Never retry automatically.** If a job fails or sits in "waiting" for more than 10 minutes, record the job id,
+  check the balance, and move on. One manual retry per slot at most, and only after confirming the balance.
+- **Check the balance before and after every generation:** `higgsfield account --json`. Log each charge in the
+  manifest. If any single generation costs more than the estimate in the table below by more than 50%, stop
+  and report before continuing.
+- **Pass every cost-affecting flag explicitly.** Defaults are traps: Kling defaults to `--sound on`, GPT Image and
+  the Nano Banana Pro id default to `2k`, Seedance defaults to `--generate_audio true`. Duration is an unclamped
+  integer, so a typo can multiply the cost.
+- **Do not upgrade the plan or buy a credit pack.** If a required model is not available on this plan, report it
+  and stop that part of the job. The decision to spend more money is the owner's, not yours.
+
+## 1. Preflight (do this first, spend nothing)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/higgsfield-ai/cli/main/install.sh | sh   # or: npm i -g @higgsfield/cli
 higgsfield auth login
-higgsfield account        # confirm credits before starting
+higgsfield workspace                 # confirm which workspace will be billed
+higgsfield account --json            # record starting balance and plan
+higgsfield model list                # record which models THIS account can use
+higgsfield generate --help           # look for a `cost` subcommand
 ```
 
-Model choices are fixed by what supports our ratios. Do not substitute without checking `MODELS.md` in the CLI repo.
+Record in the manifest: plan name, starting credits, and whether each of these models is listed for this account:
+`nano_banana_flash`, `nano_banana_2_lite`, `nano_banana_2`, `gpt_image_2_5`, `text2image_soul_v2`, `kling3_0`.
 
-| Job | Model | Why |
-|---|---|---|
-| All 12 still images | `gpt_image_2_5` (first choice) or `nano_banana_2` (fallback) | Both support the exact `4:5`, `5:4`, and `1:1` ratios we need, at `2k` resolution. **Do not use `text2image_soul_v2` or `soul_cinematic` for finals**: Soul supports 3:4 and 4:3 but not 4:5 or 5:4, so its output would be cropped by the site. |
-| Founder motion (1:1) | `kling3_0` with `--start-image` and `--end-image`, `--mode pro`, `--sound off` | Kling 3.0 supports 1:1 and start/end frames. |
-| Senior hero motion (portrait) | `seedance_2_0` or `cinematic_studio_video_3_5` at `--aspect_ratio 3:4` with start/end image | Kling 3.0 does **not** support 3:4 or 4:5. Seedance and Cinematic Studio do. |
-| Check hero motion (landscape) | `seedance_2_0` or `cinematic_studio_video_3_5` at `--aspect_ratio 4:3` with start/end image | Same reason. 4:3 is the closest supported ratio to our 5:4 frame. |
+Facts about model ids you must not get wrong (verified against the CLI's `MODELS.md`):
+- `nano_banana_2` is **Nano Banana Pro**, default resolution `2k`. It is not the cheap model.
+- `nano_banana_flash` is **Nano Banana 2** (default `1k`). `nano_banana_2_lite` is Nano Banana 2 Lite (`1k` only). These are the cheap path.
+- `text2image_soul_v2` (Soul 2) does **not** support 4:5 or 5:4. Do not use it for finals.
+- `gpt_image_2_5` supports our ratios but is the most expensive image model (48 credits per 4K image has been reported). Do not use it.
+- `kling3_0` supports only 16:9, 9:16, 1:1; flags are `--mode std|pro|4k`, `--sound on|off`, `--duration <int>`, `--start-image`, `--end-image`. There is no seed and no negative prompt on any image or video model.
+- `MODELS.md` has no price column. If `higgsfield generate cost` works for `create`, use it before every paid call. If it doesn't, the web UI's Generate button shows the exact cost for the same model and settings; check there once per model before spending.
 
-Known limits to plan around:
-- **No seed parameter** on the image or video models, so runs are not reproducible. Generate 3 to 4 candidates per slot and pick the best; keep the runner-up.
-- **No negative-prompt field.** Put exclusions into the positive prompt as "no …" clauses (they are already in the prompt template below).
-- **Video aspect ratios are limited.** Our frames are 4:5, 1:1, and 5:4. Video will be delivered at 3:4, 1:1, and 4:3. The site's frames use `object-fit: cover`, so a 3:4 clip in a 4:5 frame loses about 6% at top and bottom, and a 4:3 clip in a 5:4 frame loses about 6% at left and right. Keep faces centred and away from edges so this crop is harmless.
-- **Identical start and end frames often produce almost no motion.** See the loop technique in section 4.
-- Always pass `--wait`. Outputs come back as URLs; download each with `curl -L -o <filename> <url>` immediately, since URLs may expire.
+## 2. Brand and photographic direction
 
-## 1. Brand and photographic direction
+Total Life feels like "quiet sunlight, warm air, generous space." Photography is documentary, not stock.
 
-Total Life feels like "quiet sunlight, warm air, generous space." Photography is **documentary, not stock**.
+- **Subjects:** real-looking older adults (65–80) for members; therapists aged 40–65. Vary ethnicity across the set. Grey hair, reading glasses, natural skin texture and wrinkles are wanted. Expressions thoughtful, calm, gently warm, listening. At most one soft closed-mouth smile per group of three; never teeth-forward grins.
+- **Light:** soft directional daylight from a window, gentle falloff, slight film warmth. No studio flash, no HDR, no teal-orange grade, no baked-in vignette.
+- **Palette:** cream, oatmeal, sand, soft rust, muted sage, warm grey. No pure white walls, black clothing, or saturated blue, red, purple.
+- **Setting:** lived-in homes: reading chair by a window, kitchen table with tea, porch, sunlit hallway, home office with books and a plant. Never a hospital, exam room, clinic, or corporate office.
+- **Framing:** subject fills roughly the middle 60% of the frame, head in the upper third. Keep the **top 22%** and **bottom 18%** visually simple; the site overlays caption chips there.
+- **Never include:** text, logos, watermarks, lab coats, stethoscopes, medication, wheelchairs, hospital beds, anyone crying, hands gesturing at camera.
 
-- **Subjects:** real-looking older adults (65–80) for members; therapists aged 40–65. Diverse ethnicities across the set. Grey hair, reading glasses, natural skin texture and wrinkles are wanted. Expressions are thoughtful, calm, gently warm, listening. At most one soft closed-mouth smile per group of three; never teeth-forward grins.
-- **Light:** soft directional daylight from a window, gentle shadow falloff, slight film warmth. No studio flash, no HDR, no cinematic teal-orange grade, no baked-in vignette (the site adds its own soft radial light overlay).
-- **Palette:** cream, oatmeal, sand, soft rust, muted sage, warm grey in walls, furnishings and clothing. No pure white walls, no black clothing, no saturated blue, red, or purple.
-- **Setting:** lived-in homes. A reading chair by a window, a kitchen table with tea, a porch, a sunlit hallway, a home office with books and a plant. Tidy but real. **Never** a hospital, exam room, clinic, or corporate office.
-- **Framing:** subject occupies roughly the middle 60% of the frame, head in the upper third, room around them. Keep the **top 22%** and **bottom 18%** of every frame visually simple (wall, soft bokeh), because the site overlays a caption chip top-left and, on some frames, a caption at the bottom.
-- **Never include:** text, logos, watermarks, brand marks, lab coats, stethoscopes, medication or pill bottles, wheelchairs, hospital beds, anyone crying, hands gesturing at camera.
-- **Lens feel:** 50mm, shallow but not extreme depth of field, eye-level camera.
+## 3. Prompt template
 
-## 2. Prompt template
+> Documentary portrait photograph of [subject: age, gender presentation, ethnicity], [setting], [light], [pose, expression and gaze]. Wearing [wardrobe in cream, oatmeal, soft rust, or sage]. Natural film warmth, soft window light, shallow depth of field, 50mm lens, eye-level camera, warm neutral palette of cream, sand and soft brown, lived-in home interior, unposed and candid. Subject centred with head in the upper third and simple uncluttered space at the top and bottom of the frame. Photorealistic, natural skin texture, no retouching. No text, no logos, no watermark, no studio lighting, no white background, no hospital or clinic, no lab coat, no medication, no blue color grade, no HDR, no teeth-showing smile.
 
-Use this structure for every still. Fill the bracketed parts from the table in section 3. Keep the closing clauses verbatim.
+## 4. The 12 stills, in priority order
 
-> Documentary portrait photograph of [subject: age, gender presentation, ethnicity varied across set], [setting], [light], [pose, expression and gaze]. Wearing [wardrobe in cream, oatmeal, soft rust, or sage]. Natural film warmth, soft window light, shallow depth of field, 50mm lens, eye-level camera, warm neutral palette of cream, sand and soft brown, lived-in home interior, unposed and candid. Subject centred with head in the upper third and simple uncluttered space at the top and bottom of the frame. Photorealistic, natural skin texture, no retouching. No text, no logos, no watermark, no studio lighting, no white background, no hospital or clinic, no lab coat, no medication, no blue color grade, no HDR, no teeth-showing smile.
+Two tiers. Tier A is the three images that carry the pages; generate 2 candidates each at higher resolution.
+Tier B is the nine therapist portraits; one candidate each at `1k`. Work strictly in this order so that if the
+budget runs out, the most important images exist.
 
-CLI pattern for a still:
+**Commands**
 
 ```bash
-higgsfield generate create gpt_image_2_5 \
-  --prompt "<filled template>" \
-  --aspect_ratio 4:5 --resolution 2k --quality high --wait
+# Tier A (heroes + founder): Nano Banana Pro at 2k. Estimated 2 credits each.
+higgsfield generate create nano_banana_2 --prompt "<filled template>" --aspect_ratio 4:5 --resolution 2k --wait
+
+# Tier B (therapists): Nano Banana 2 at 1k. Estimated 1–2 credits each.
+higgsfield generate create nano_banana_flash --prompt "<filled template>" --aspect_ratio 4:5 --resolution 1k --wait
+# If nano_banana_flash is not listed for this account, use nano_banana_2_lite with the same flags.
+# If neither is listed, use nano_banana_2 --resolution 1k.
 ```
 
-## 3. The 12 stills
+Download each result immediately: `curl -L -o <filename> <url>`. URLs may expire.
 
-Deliver as JPEG quality 90 (or PNG), sRGB. Minimum sizes are listed; `2k` output exceeds them, which is fine. Do **not** crop to a different ratio afterward.
+| Order | Filename | Ratio | Model / res | Candidates | Est. credits | Direction |
+|---|---|---|---|---|---|---|
+| 1 | `senior-hero.jpg` | 4:5 | nano_banana_2 / 2k | 2 | 4 | Total Life member, 68–75, seated at home in natural window light, three-quarter view, looking slightly off camera as if listening to someone kind. Oatmeal or soft-rust cardigan, a cup of tea or a book nearby, window light on the face. Candid, quietly hopeful. |
+| 2 | `check-hero.jpg` | 5:4 | nano_banana_2 / 2k | 2 | 4 | Member in their 70s on a porch or beside a large window, seated, thoughtful, gaze into the middle distance, morning light. Person on the left or right third, soft simple space on the other side. A porch chair, a mug, garden softly out of focus. Pensive, deciding something. Not sad. |
+| 3 | `founder.jpg` | 1:1 | nano_banana_2 / 2k | 2 | 4 | **Placeholder for Neelam Brar, founder and CEO. Do not attempt her likeness.** A South Asian woman in her 40s, intimate square portrait, warm side light from a window, direct steady kind gaze, cream or sand wall. Mark as placeholder in the manifest; a real photograph replaces it before launch. |
+| 4 | `senior-therapist-1.jpg` | 4:5 | nano_banana_flash / 1k | 1 | 2 | Therapist, 50s, seated in a warm living-room-style home office, looking at camera, calm and attentive, soft knit top. |
+| 5 | `senior-therapist-2.jpg` | 4:5 | same | 1 | 2 | Therapist, 40s, home office with books and a plant, soft daylight, gentle closed-mouth smile, at camera. |
+| 6 | `senior-therapist-3.jpg` | 4:5 | same | 1 | 2 | Therapist, 60s, by a window, relaxed, head slightly tilted, listening, gaze just off camera. |
+| 7 | `caregiver-therapist-1.jpg` | 4:5 | same | 1 | 2 | Therapist, 50s, seated in a home office, soft expression, at camera. |
+| 8 | `caregiver-therapist-2.jpg` | 4:5 | same | 1 | 2 | Therapist, 40s–50s, natural window light, thoughtful, looking off-frame left. |
+| 9 | `caregiver-therapist-3.jpg` | 4:5 | same | 1 | 2 | Therapist, 60s, warm room, candid soft smile, at camera. |
+| 10 | `check-therapist-1.jpg` | 4:5 | same | 1 | 2 | Therapist, 50s, warm, seated, natural window light, at camera. |
+| 11 | `check-therapist-2.jpg` | 4:5 | same | 1 | 2 | Therapist, 40s, soft smile, home office, documentary light. |
+| 12 | `check-therapist-3.jpg` | 4:5 | same | 1 | 2 | Therapist, 60s, listening, calm, soft daylight, gaze just off camera. |
 
-### Senior page — warm, empowering, hopeful
+**Estimated total for stills: about 30 credits** (pessimistic: 40). Within each page the three therapists must be
+visibly different people. A `1k` 4:5 image is about 820×1024; that is enough for the therapist frames, which
+display at under 400px wide. Do not upscale.
 
-| # | Filename | Ratio | Min px | Direction |
-|---|---|---|---|---|
-| 1 | `senior-hero.jpg` | 4:5 | 1200×1500 | Total Life member, 68–75, seated at home in natural window light, three-quarter view, looking slightly off camera as if listening to someone kind. Oatmeal or soft-rust cardigan. A cup of tea or a book nearby. Window light on the face. Candid, quietly hopeful. **Most important image in the set; generate at least 4 candidates.** |
-| 2 | `senior-therapist-1.jpg` | 4:5 | 900×1125 | Therapist, 50s, seated in a warm living-room-style home office, looking directly at camera, calm and attentive. Soft knit top. |
-| 3 | `senior-therapist-2.jpg` | 4:5 | 900×1125 | Therapist, 40s, home office with books and a plant, soft daylight, gentle closed-mouth smile, looking at camera. |
-| 4 | `senior-therapist-3.jpg` | 4:5 | 900×1125 | Therapist, 60s, seated by a window, relaxed, head slightly tilted, listening, gaze just off camera. |
+If a Tier B image comes back clearly off-brief (clinic, white wall, grin, text), you may regenerate it once.
+Never regenerate for taste alone.
 
-### Caregiver page — founder-led, daughter to daughter
+## 5. Optional motion: one clip, only if the budget allows
 
-| # | Filename | Ratio | Min px | Direction |
-|---|---|---|---|---|
-| 5 | `founder.jpg` | 1:1 | 1200×1200 | **Placeholder for Neelam Brar, founder and CEO. Do not attempt her likeness.** A South Asian woman in her 40s, intimate square portrait, warm side light from a window, looking directly at camera with a steady, kind expression. Cream or sand wall behind. Label this file as a placeholder in the manifest; a real photograph must replace it before launch. |
-| 6 | `caregiver-therapist-1.jpg` | 4:5 | 900×1125 | Therapist, 50s, seated in a home office, soft expression, looking at camera. |
-| 7 | `caregiver-therapist-2.jpg` | 4:5 | 900×1125 | Therapist, 40s–50s, natural window light, thoughtful, looking off-frame to the left. |
-| 8 | `caregiver-therapist-3.jpg` | 4:5 | 900×1125 | Therapist, 60s, warm room, a candid soft smile, looking at camera. |
+Motion is a nice-to-have. Do it only when **all** of these are true after the stills are done:
+- `kling3_0` appears in `higgsfield model list` for this account;
+- the remaining balance is at least 45 credits above the reserve;
+- a cost check (CLI `cost` or the web UI) shows the clip at 15 credits or less.
 
-### Self-check page — reflective, gentle reframe
-
-| # | Filename | Ratio | Min px | Direction |
-|---|---|---|---|---|
-| 9 | `check-hero.jpg` | 5:4 | 1500×1200 | Total Life member in their 70s on a porch or beside a large window, seated, thoughtful, gaze into the middle distance, morning light. Person on the left or right third, soft simple space on the other side. A porch chair, a mug, a garden or street softly out of focus. Pensive, on the edge of deciding something. Not sad. **Generate at least 4 candidates.** |
-| 10 | `check-therapist-1.jpg` | 4:5 | 900×1125 | Therapist, 50s, warm, seated, natural window light, looking at camera. |
-| 11 | `check-therapist-2.jpg` | 4:5 | 900×1125 | Therapist, 40s, soft smile, home office, documentary light. |
-| 12 | `check-therapist-3.jpg` | 4:5 | 900×1125 | Therapist, 60s, listening, calm, soft daylight, gaze just off camera. |
-
-Within any one page the three therapists must be visibly different people (age, ethnicity, hair, setting). Across pages they may repeat or differ.
-
-## 4. Motion (three clips only)
-
-Produce subtle cinemagraph-style motion for images **1, 5, and 9** only. The site plays these muted, respects
-`prefers-reduced-motion`, and falls back to the still, so the still and the clip must match.
-
-**Motion direction (same for all three):** the subject breathes slowly, blinks once or twice, and shifts weight or
-gaze by a few degrees at most. A curtain or plant leaf may move in a light breeze. Light may shift very slightly as
-if a cloud passes. **No** head turns, no speech, no hand movement toward camera, no camera movement larger than a
-2% slow push, no zoom, no pan, no cuts, no added objects. The subject never leaves the frame.
-
-Prompt for the clip (adapt the subject clause to the still):
-
-> Subtle cinemagraph. The [woman/man] sits almost still, breathing slowly, blinks gently once, gaze drifts a few degrees and returns. Soft window light shifts very slightly. A curtain edge moves in a light breeze. Camera locked off with an extremely slow, barely perceptible push in. Photorealistic, calm, warm, documentary. No talking, no head turn, no hand movement, no camera pan, no cuts, no text.
-
-### Prepare start frames
-
-Video ratios differ from the stills, so make a video-ratio crop of each chosen still first (centre crop, keep the face centred):
-
-- `senior-hero.jpg` (4:5) → centre-crop to **3:4** → `senior-hero-3x4.jpg`
-- `founder.jpg` (1:1) → use as is
-- `check-hero.jpg` (5:4) → centre-crop to **4:3** → `check-hero-4x3.jpg`
-
-### Generate
+Generate exactly one clip, the founder (1:1 is the only one of our frames Kling supports):
 
 ```bash
-# Founder, 1:1, Kling 3.0
 higgsfield generate create kling3_0 \
-  --prompt "<clip prompt>" \
+  --prompt "Subtle cinemagraph. The woman sits almost still, breathing slowly, blinks gently once, gaze drifts a few degrees and returns. Soft window light shifts very slightly. Camera locked off. Photorealistic, calm, warm, documentary. No talking, no head turn, no hand movement, no camera pan, no cuts, no text." \
   --start-image ./founder.jpg --end-image ./founder.jpg \
-  --aspect_ratio 1:1 --duration 5 --mode pro --sound off --wait
-
-# Senior hero, 3:4, Seedance 2.0 (or cinematic_studio_video_3_5 with the same flags)
-higgsfield generate create seedance_2_0 \
-  --prompt "<clip prompt>" \
-  --start-image ./senior-hero-3x4.jpg --end-image ./senior-hero-3x4.jpg \
-  --aspect_ratio 3:4 --wait
-
-# Check hero, 4:3
-higgsfield generate create seedance_2_0 \
-  --prompt "<clip prompt>" \
-  --start-image ./check-hero-4x3.jpg --end-image ./check-hero-4x3.jpg \
-  --aspect_ratio 4:3 --wait
+  --aspect_ratio 1:1 --duration 5 --mode std --sound off --wait
 ```
 
-Check `MODELS.md` for each model's exact `--duration` and `--resolution` enums before running; use the longest
-duration the model allows up to 10 seconds, and 1080p or the highest available.
+Estimated 12.5 credits (optimistic 7). Same start and end frame is Kling's documented loop technique; the motion
+prompt is what keeps it from being static. Deliver as `founder.mp4` (H.264, strip audio) plus `founder-poster.jpg`
+(first frame). **Do not** generate hero motion: our hero frames are 4:5 and 5:4, Kling cannot produce those, and
+the models that can (Seedance 2.0, Cinema Studio) cost 17–45 credits per clip and are often locked below the mid
+plan. **Do not** use Seedance or Cinema Studio at all on this job.
 
-### Loop strategy (deliver A; attempt B)
-
-- **A, required:** one clip of 5–10 seconds with the start image as `--start-image` and the same image as `--end-image`. If the model returns near-zero motion (a common failure when start and end are identical), rerun with only `--start-image` and accept a clip that ends slightly away from the still. The site will play it once and hold the last frame, which is acceptable.
-- **B, if credits allow:** a true seamless loop using the two-half method. Generate clip 1 from the still with only `--start-image`. Extract its last frame. Generate clip 2 with `--start-image` = that last frame and `--end-image` = the original still. Concatenate 1 then 2. The seam lands exactly on the still, so the loop is invisible. Deliver as `*-loop.mp4`.
-
-Export every clip as **MP4, H.264, no audio track**, at the generated resolution. Filenames: `senior-hero.mp4`, `founder.mp4`, `check-hero.mp4` (and `-loop.mp4` variants if B succeeds). Also save the first frame of each delivered clip as `*-poster.jpg` so the site can show it before playback.
-
-## 5. Delivery
-
-Put everything in one folder named `total-life-assets/`:
+## 6. Delivery
 
 ```
 total-life-assets/
-  stills/            the 12 final JPEGs, exact filenames above
-  alternates/        runner-up candidates, named <slot>-alt1.jpg, -alt2.jpg …
-  motion/            senior-hero.mp4, founder.mp4, check-hero.mp4, optional *-loop.mp4, *-poster.jpg
-  manifest.json      one entry per delivered file
+  stills/            the 12 finals, exact filenames above
+  alternates/        the runner-up Tier A candidates, named <slot>-alt1.jpg
+  motion/            founder.mp4 and founder-poster.jpg, if produced
+  manifest.json
 ```
 
-`manifest.json` entries must include: `file`, `slot` (the # from the tables), `model`, `prompt` (the exact text sent),
-`aspect_ratio`, `resolution_or_duration`, `job_id`, `generated_at`, and `notes` (e.g. "founder placeholder, replace with real photo",
-"loop attempt produced no motion, delivered start-only clip").
+`manifest.json` must contain: plan name, starting balance, ending balance, and one entry per generation (including
+failures) with `file`, `slot`, `model`, `prompt`, `aspect_ratio`, `resolution_or_duration`, `job_id`,
+`credits_charged`, `refunded` (true/false/unknown), `generated_at`, `notes`. Mark the founder image as a placeholder.
 
-## 6. Acceptance checklist (run before you hand off)
+## 7. Stop conditions and reporting
 
-- [ ] 12 stills present with exact filenames; ratios are exactly 4:5, 1:1, or 5:4 as specified, verified with an image tool, not by eye
-- [ ] Every still: warm neutral palette, window light, real home, no clinic or studio look, no blue grade
-- [ ] Top 22% and bottom 18% of each frame are visually simple; faces are centred and not near edges
-- [ ] No text, logos, medical props, teeth-forward smiles, or anyone distressed
-- [ ] Three visibly different therapists within each page
-- [ ] Founder image flagged as placeholder in the manifest
-- [ ] Three clips: MP4, H.264, no audio, subtle motion only, subject stays in frame, poster frames saved
-- [ ] Video ratios are 3:4, 1:1, 4:3 respectively; faces centred so the site's 6% crop is harmless
-- [ ] `manifest.json` complete, including the exact prompts used
-- [ ] `higgsfield account` run at the end and remaining credits noted in the manifest
+Stop immediately and report if: the cap is hit; a single charge exceeds its estimate by more than 50%; a job is
+stuck for 10 minutes and no refund appears; a required model is not listed for the account; or `higgsfield
+workspace` shows a workspace you did not expect. In the report, state what was delivered, what was skipped and
+why, credits used, and credits remaining. Do not spend to "finish" a tier once a stop condition has fired.
 
-When done, hand the `total-life-assets/` folder back. Nothing in the site needs to change to receive it; the developer will wire the files into the existing frames.
+## 8. Acceptance checklist
+
+- [ ] Preflight recorded: plan, starting credits, model availability, workspace
+- [ ] Tier A first, Tier B second, motion last and only if the conditions in section 5 held
+- [ ] 12 stills present, ratios exactly 4:5 / 5:4 / 1:1 (verify with an image tool)
+- [ ] Warm neutral palette, window light, real home; top and bottom bands simple; no text, medical props, or grins
+- [ ] Three visibly different therapists per page
+- [ ] Founder image marked as placeholder
+- [ ] Every charge logged; total within the cap; reserve intact
+- [ ] No automatic retries occurred
