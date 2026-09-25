@@ -1,0 +1,1888 @@
+
+===== PAGE 1 =====
+B R A N D & M A R K E T I N G S Y S T E M
+E D I T I O N 0 1 · 2 0 2 6
+A brand built
+around hope.
+The complete operating system for how Total Life looks, sounds,
+and shows up — across clinical and wellness, B2B and B2C,
+from a daughter searching for her mom to a medical director
+signing a partnership.
+C O V E R E D
+B Y
+M E D I C A R E
+A brand for the brand. Built around the families and
+clinicians who carry Medicare-covered behavioral
+health forward.
+F O R
+Marketing · Clinical · Tech · Partnerships
+V E R S I O N 1 . 0
+M AY 2 0 2 6
+
+===== PAGE 2 =====
+C O N T E N T S
+H O W T O U S E T H I S
+One brand. Many voices.
+One source of truth.
+Total Life serves seniors, their families, and the providers who care for them. Different audiences
+need different things from us — but the brand has to feel like the same company every time. This
+document is how we keep that consistency without flattening into one tone.
+I
+Foundation
+04
+·
+From the founder — a note from Neelam
+05
+01
+Who we are. Why we exist.
+06
+02
+Service architecture
+07
+03
+Audience architecture
+08
+II
+Brand system
+09
+·
+Manifesto — the brand in one line
+10
+04
+Voice & tone — three registers
+11
+05
+Voice in action
+12
+06
+Color system
+13
+07
+Color application
+14
+08
+Color do's & don'ts
+15
+09
+Gradients & design elements
+16
+10
+Typography
+17
+11
+Logo & wordmark
+18
+12
+Components & CTAs
+19
+III
+Inclusive design
+20
+13
+Designing for older adults
+21
+14
+Plain language & glossary
+22
+15
+Trust signals & moments of care
+23
+16
+Accessibility & compliance
+24
+IV
+Marketing playbook
+25
+17
+Voice for marketing
+26
+18
+Social: portrait + overlay
+27
+19
+Social: stats, founder, CTA
+28
+20
+Stories & carousels
+29
+21
+Landing: senior B2C
+30
+22
+Landing: caregiver funnel
+31
+23
+Email templates
+32
+24
+Display & banners
+33
+25
+Headline & copy bank
+34
+26
+Campaign calendar
+35
+V
+Medicare compliance
+36
+27
+Rules of the road
+37
+28
+3-Prompt compliance check
+38
+29
+Common copy rewrites
+39
+TO TA L L I F E · B R A N D & M A R K E T I N G S Y S T E M
+0 2
+
+===== PAGE 3 =====
+PA RT O N E · F O U N D AT I O N
+I
+Foundation.
+I N S I D E T H I S PA R T
+01 Who we are
+02 Service architecture
+03 Audience architecture
+"You're not just providing therapy. You're
+providing permission to age with help — and
+an answer to the daughter who's been
+carrying it alone."
+
+===== PAGE 4 =====
+F R O M T H E F O U N D E R
+A N O T E F R O M N E E L A M
+Why this exists
+at all.
+I
+built Total Life because I couldn't find what my own
+family needed. A mental health practice that took
+Medicare. Clinicians who actually understood older
+adults. Someone who would just pick up the phone when a
+daughter called.
+That practice didn't exist. Or — it existed in fragments,
+behind eight-week waitlists, in clinics that didn't bill the
+right way, with intake forms designed for somebody half
+her age. The system wasn't broken. It had simply never
+been built for her.
+So this is what we're building. A national behavioral health
+practice for older adults on Medicare. Therapy that's
+covered. Psychiatry that's covered. Care navigation that's
+free. Real people, not bots. A daughter who calls us and
+gets a daughter back.
+This brand book is the operating manual. Every page in it
+answers to the same standard: would this have helped my
+mom? If yes, it ships. If it makes my mom's life harder —
+confusing copy, hidden phone numbers, sales-y urgency
+on a senior — it doesn't. That's the filter. That's the brand.
+Neelam Brar
+FOUNDER & CEO · TOTAL LIFE
+Total Life · Brand & Marketing System
+0 4
+F O U N D E R P O R T R A I T
+
+===== PAGE 5 =====
+0 1 · F O U N D AT I O N
+F O U N D AT I O N
+Who we are.
+Why we exist.
+Total Life supports aging adults and caregivers as they navigate the emotional
+challenges of aging. Through Total Life, members get matched with a compassionate
+therapist and meet virtually — helping them find joy, purpose, and improvement in their
+wellbeing.
+O R I G I N
+Built by a daughter, for every daughter.
+Total Life started because the founder
+couldn't find adequate behavioral health
+support for a family member inside the
+Medicare system. That's not a marketing
+story. It's the operating philosophy.
+M I S S I O N
+Mental health care for every older adult.
+Make real behavioral health care accessible
+to every older adult in America — covered by
+Medicare, delivered at home, in language
+that respects them.
+The feeling we're building
+Total Life feels like quiet sunlight. Warm air. Generous space. A room that doesn't demand anything
+from you. That's not metaphor — it's the operating principle. Every layout, color choice, and word should
+feel like that moment of being able to exhale. We're not a hospital. We're not a startup. We're the feeling
+of finally being met where you are.
+What Total Life values
+VA L U E 0 1
+Affordability
+Lightening the financial
+burden of finding a
+therapist by offering up to
+100% insurance coverage
+for Medicare plans.
+VA L U E 0 2
+Convenience
+Offering a network of
+compassionate virtual
+therapists who specialize
+in helping older adults age
+with dignity and fulfillment.
+VA L U E 0 3
+Personalization
+Providing a holistic,
+empathetic approach
+customized to the unique
+needs of older adults and
+their caregivers.
+Brand keywords
+
+===== PAGE 6 =====
+0 2 · S E RV I C E A R C H I T E C T U R E
+S E R V I C E A R C H I T E C T U R E
+Two service pillars.
+One ecosystem.
+Everything Total Life delivers sits inside one of two pillars. They share a brand, but they
+don't share a voice. Clinical is anchored, evidence-led, calm. Wellness is warmer, more
+inviting, more personal.
+P I L L A R 1
+Clinical
+Medicare-billed behavioral health care
+delivered by licensed clinicians. The
+foundation of our credibility.
+W H AT ' S I N I T
+Individual psychotherapy (LCSW, PsyD,
+LPC)
+Psychiatric evaluation & medication
+management
+Group, family, and couples therapy
+Collaborative Care Model with PCP partners
+Remote Therapeutic Monitoring
+Care coordination & clinical navigation
+B R A N D T O N E
+Calm. Precise. Evidence-led. Respectful of
+clinical readers.
+P I L L A R 2
+Wellness (non-clinical)
+The warmer entry point. Programs and
+content that build a relationship with
+members before — or alongside — clinical
+care.
+W H AT ' S I N I T
+Wellness programs (Meaning in Life, Mind on
+the Move)
+Live and on-demand classes
+Wellness Journal & monthly habit tracking
+Social wellness community
+Lifestyle medicine & nutrition content
+Educational resources & guides
+B R A N D T O N E
+Warm. Aspirational. Habit-forming.
+Invitational.
+How the two pillars relate
+Wellness is the front door. Clinical is the engine. Many members enter via wellness content and move
+into clinical care when they need it. Many enter directly via clinical referral and benefit from wellness
+afterward. The brand always makes it clear that both belong to Total Life — but never blurs clinical
+credibility with wellness warmth, or vice versa.
+Total Life · Brand & Marketing System
+0 6
+
+===== PAGE 7 =====
+0 3 · A U D I E N C E A R C H I T E C T U R E
+A U D I E N C E A R C H I T E C T U R E
+Three audiences.
+Three doors into the brand.
+Total Life talks to three distinct audiences. Each has different needs, different emotional
+state, different decision criteria. The brand flexes to meet them — but the core never
+moves.
+AUDIENCE
+SUB-CHANNELS
+WHAT THEY NEED
+WHAT WE LEAD WITH
+B2C
+Senior
+Age 65+
+Organic & paid search ·
+direct response · patient
+referrals · senior-living co-
+marketing
+Reassurance that therapy is
+for them, covered, and
+works. A concrete next step.
+"Therapy covered by
+Medicare, designed for
+seniors." Friendly clinical
+authority.
+B2C
+Caregiver
+Adult daughter,
+45–65
+Meta · TikTok · Mother's
+Day campaigns · founder
+content · caregiver
+communities
+Relief from caregiver guilt.
+Someone who picks up.
+Permission to ask for help.
+Founder origin story. "We
+make the first call so she
+doesn't have to."
+B2B
+Clinical
+PCPs · ACOs · MA
+plans
+PCP partnerships · ACO
+contracting · CoCM
+programs · medical
+director outreach
+Proof we're a credible clinical
+partner who won't create
+work for them.
+Outcomes data, CPT/HCC
+fluency, retention metrics,
+peer-reviewed evidence.
+B2B
+Operator
+Home health ·
+Senior living ·
+Medigap
+Home health referrals ·
+senior-living onsite ·
+Medigap co-marketing ·
+Honor / Papa partnerships
+A behavioral health solution
+that fits their workflow and
+improves their metrics.
+Operational benefits:
+HHCAHPS, readmissions,
+resident satisfaction,
+retention.
+One job per piece of work. A landing page does not try to speak to all four audiences. A partner
+brochure does not try to convert a senior. Every Total Life asset names its primary audience in the brief
+and matches voice register, palette, and CTA to that audience.
+A quick orientation
+W H E N I N D O U B T
+Senior-facing
+Larger type Higher
+W H E N I N D O U B T
+Caregiver-facing
+Founder voice Emotional
+W H E N I N D O U B T
+Clinical-facing
+Cream surfaces teal
+
+===== PAGE 8 =====
+PA RT T W O · B R A N D S Y S T E M
+II
+Brand system.
+I N S I D E T H I S PA R T
+04 Voice & tone
+05 In action
+06 Color
+07 Application
+08 Rules
+09 Elements
+10 Typography
+11 Logo
+12 Components
+"A brand is the feeling that lingers after the
+visit ends. Cream, coral, calm. That's what
+we're building — every page, every word."
+
+===== PAGE 9 =====
+Total Life · Brand & Marketing System
+0 9
+T H E B R A N D , I N O N E L I N E
+We are the
+answer to one
+question — "where
+do I take Mom?"
+Everything else — voice, color, components, campaigns — is
+execution against that question. When in doubt, return to it. If a piece
+of work helps a daughter answer it for her mother, it's on-brand. If it
+doesn't, it isn't.
+From the founder. Total Life · 2026
+
+===== PAGE 10 =====
+0 4 · V O I C E & TO N E
+V O I C E & T O N E
+One voice.
+Three registers.
+Total Life sounds like one company — but how that voice expresses itself shifts with
+audience. These three registers cover every piece of work we produce.
+R E G I S T E R 1
+Warm &
+empowering
+For: Senior B2C. Clear,
+direct, respectful, hopeful.
+Never patronizing.
+S O U N D S L I K E
+"Therapy can help
+with the things
+you're carrying —
+grief, anxiety,
+loneliness,
+change. Most
+members feel
+hope after three
+sessions. And it's
+covered by your
+Medicare."
+Use: short sentences,
+concrete benefits, names of
+feelings, "you" not "the
+patient."
+Avoid: "elderly," "senior
+moments," over-cheerful,
+sales-y urgency.
+R E G I S T E R 2
+Daughter to
+daughter
+For: Caregiver B2C.
+Emotional, honest, founder-
+led. The "I get it" voice.
+S O U N D S L I K E
+"I built Total Life
+because I couldn't
+find help for my
+own mom. If you're
+worried about
+yours — and
+exhausted from
+doing it alone —
+we'll make the first
+call so you don't
+have to."
+Use: first person, specific
+feelings (guilt, exhaustion),
+founder origin, "Mom" and
+"Dad."
+Avoid: manipulative emotion,
+fake urgency, guilt-tripping.
+R E G I S T E R 3
+Clinical & credible
+For: B2B Clinical &
+Operator. Precise,
+evidence-led, peer-to-peer.
+S O U N D S L I K E
+"Total Life provides
+the BHCM and
+psychiatric
+consultant for your
+CoCM program.
+PHQ-9 / GAD-7
+measurement-
+based care. 92%
+therapist retention.
+Your practice bills
+99492 / 99493
+directly."
+Use: specific codes, named
+tools, real numbers, source-
+able claims.
+Avoid: motivational
+language, marketing
+adjectives, founder story
+unless asked.
+Words we use — and don't
+CONTEXT
+USE
+AVOID
+
+===== PAGE 11 =====
+0 5 · V O I C E I N A C T I O N
+T H E S A M E M E S S A G E , T H R E E WAY S
+One brand,
+three real voices.
+The same underlying truth — that we deliver Medicare-covered therapy with strong
+outcomes — sounds different in each register. Each is correct for its audience. None
+would be correct for another.
+R E G I S T E R 1 — S E N I O R
+B 2 C
+Homepage hero, paid
+search
+"Therapy that takes
+Medicare, made for
+older adults. Most
+members feel hope
+after three
+sessions. Check
+your coverage in
+90 seconds."
+Direct · benefit-forward ·
+concrete next step.
+R E G I S T E R 2 —
+C A R E G I V E R B 2 C
+Meta ad, founder
+landing
+"I built Total Life
+because I couldn't
+find a therapist for
+my own mom. If
+you're worried
+about yours — we'll
+make the first call
+for you. Medicare
+covers it."
+First-person · emotional ·
+specific to the daughter.
+R E G I S T E R 3 — B 2 B
+C L I N I C A L
+PCP partnership pitch
+"Total Life provides
+Medicare-billed
+psychotherapy and
+psychiatry for your
+senior patients.
+CoCM-compatible.
+PHQ-9 / GAD-7
+measurement. 92%
+therapist retention."
+Data-led · peer language ·
+zero marketing copy.
+Worked example: explaining the founder story
+I N S E N I O R R E G I S T E R
+"Total Life was started by
+a daughter who couldn't
+find good mental health
+care for her own mom on
+Medicare. We're built
+around that experience —
+for you, and for the people
+who love you."
+I N C A R E G I V E R
+R E G I S T E R
+"I'm Neelam. I'm a
+daughter who watched her
+own family struggle to find
+behavioral health support
+inside Medicare. I built
+Total Life because nobody
+else had. I get what you're
+carrying."
+I N C L I N I C A L R E G I S T E R
+"Total Life was founded
+specifically to close the
+access gap for older
+adults with depression
+and anxiety in fee-for-
+service Medicare — the
+population most
+underserved by existing
+behavioral health
+infrastructure."
+
+===== PAGE 12 =====
+0 6 · C O L O R S Y S T E M
+C O L O R S Y S T E M
+A palette built
+to feel grounding.
+Ten solid colors, used like a high-end brand — selectively, with restraint. Cream
+dominates every surface. Teal and rose are the brand's signature colors but appear in
+small, deliberate doses. Dark navy is reserved for body type only — never as a large
+block or background.
+Brand colors
+Aa
+Coral
+#FA7268
+MAIN BRAND · HEADINGS ·
+CTAS · KEY EMPHASIS
+Aa
+Teal
+#17484E
+MAIN BRAND · HEADINGS ·
+ACCENT MARKS
+Aa
+Background
+#FFFAF6
+PRIMARY BACKGROUND · 70%+
+OF EVERY LAYOUT · NEVER
+PURE WHITE
+Text colors
+Aa
+Dark Blue
+#15202C · --navy
+BODY TEXT ONLY — NEVER A
+HEADING, NEVER A BLOCK
+SURFACE
+Aa
+Muted
+#4A5560 · --muted
+SECONDARY BODY TEXT ·
+CAPTIONS
+Aa
+Coral Deep
+#FA7268 · --coral
+ERRORS · URGENCY · NEVER
+BRIGHT RED
+Design accents
+Aa
+Cream
+#F7F3F0
+CARD & CALLOUT SURFACES ·
+Aa
+Sand
+#F6E8D4
+WARM CALLOUTS · TABLE
+Aa
+Sea foam
+#8CA4A0
+SPARINGLY · CALM WELLNESS
+
+===== PAGE 13 =====
+0 7 · C O L O R A P P L I C AT I O N
+T H E R AT I O
+Cream-dominant.
+Restrained accents.
+Every Total Life layout follows the same ratio. Cream carries the weight. Teal and rose
+carry headings, small marks, single CTAs, and accent rules. Dark navy lives in body text
+only — never in a heading, never on a block.
+75% — Background #FFFaf6
+10% cream
+8% sand 7%
+brand
+75% background — #FFFaf6, the workhorse surface. · 10% cream — #F7F3F0 for cards and content surfaces. · 8% sand —
+#F6E8D4 for callouts and table heads. · 7% brand — coral and teal for headings, single CTAs, accent marks. Sea foam used
+sparingly.
+Audience-specific palettes
+S E N I O R B 2 C
+Warm, accessible, hopeful
+Cream surfaces, teal section heads in text only,
+coral on the single CTA, sand for soft callouts.
+High contrast on body text.
+C A R E G I V E R B 2 C
+Emotional, founder-led, warm
+Cream with subtle sand warmth in callouts, coral
+as the emotional accent word and CTA, teal as
+small attribution marks. Founder photography
+leads.
+B 2 B C L I N I C A L
+Authoritative, peer-credible
+Cream surfaces, teal accent for clinical credibility
+and section heads, coral reserved for CTAs and
+key data figures. The peer-reviewed paper
+palette.
+W E L L N E S S ( N O N - C L I N I C A L )
+Calm, habit-forming, inviting
+Cream and sand surfaces with sea foam doing
+the calm lifting through accents and small marks.
+Coral reserved for CTAs only. The "morning class,
+journal in hand" expression.
+Total Life · Brand & Marketing System
+1 2
+
+===== PAGE 14 =====
+0 8 · C O L O R D O ' S & D O N ' T S
+H A R D R U L E S
+What the brand always does.
+What never happens.
+These rules don't bend. The Total Life brand operates with restraint — high-end,
+professional, never visually loud. Cross-check every design before it ships.
+✓ Always
+✗ Never
+Pairings — what works, what fails
+Navy text on cream
+✓ Default body — the workhorse
+pairing.
+Cream on coral CTA
+✓ The brand CTA — single
+instance per screen.
+Navy on sand callout
+✓ Soft emphasis — for callouts
+and table heads.
+Use cream (#F7F3F0) as the primary
+surface of every layout — 70% or more.
+✓
+Reserve dark navy strictly for body text.
+Never as a block, fill, surface, or heading.
+✓
+Set all headings in teal or coral — never
+in dark navy. Teal is the default; coral
+reserved for emotional emphasis and accent
+words.
+✓
+Use teal selectively — section headings,
+eyebrow labels, small marks, single accent
+rules, key clinical text.
+✓
+Use rose / coral selectively — single
+CTAs, one accent word per headline, key
+data figures, brand stamps.
+✓
+Use cream, sand, and sea foam for soft
+callouts, card surfaces, table heads, and
+gentle accents only.
+✓
+Hold body text in navy or muted — never
+in coral, sand, or sea foam.
+✓
+Use colors at full saturation. No tints, no
+opacity overlays.
+✓
+Never use dark navy in a heading.
+Headings are teal or coral, always.
+✗
+Never use dark navy as a block, card fill,
+or page surface. Navy is a body-text color
+only.
+✗
+Don't tint or fade brand colors with opacity
+— solid colors only.
+✗
+Don't set body text in coral, teal, sand, or
+sea foam. They're not body-text colors.
+✗
+Don't use coral on cream below 12pt —
+contrast fails for older readers. Use teal
+instead.
+✗
+Don't fill entire pages or large cards with
+coral — it's an accent, never a field.
+✗
+Don't use bright pure red (#FF0000) for
+errors — use --coral (#FA7268).
+✗
+Don't default to pure white (#FFFFFF)
+instead of #FFFaf6 — the page background
+is warm, never pure white.
+✗
+Don't stack accent colors next to each other
+in heavy blocks — one accent per moment.
+✗
+
+===== PAGE 15 =====
+0 9 · D E S I G N E L E M E N T S
+G R A D I E N T S & E L E M E N T S
+Signature stamps,
+quiet marks.
+Solid colors are the rule. Gradients exist only as decorative photo overlays — never on
+cards, buttons, or text fills. Brand marks (flower, Medicare stamp) appear in single solid
+colors, used like punctuation.
+Photo overlays — gradients allowed only here
+Documentary photo + soft radial
+light. The standard treatment for senior
+portraits.
+Sea foam → Sand overlay. Calm,
+wellness contexts. For lifestyle imagery.
+Coral → Sand overlay. Warm-hero
+contexts, daughter funnel only.
+Brand marks
+Flower mark
+The flower from the Total
+Life lockup. Used at
+favicon scale, on merch,
+social avatars, and as an
+oversized background
+stamp. Cropped from the
+master logo file — never
+recreated.
+C O V E R E D
+B Y
+M E D I C A R E
+Medicare stamp
+Used on consumer-facing
+surfaces to communicate
+coverage instantly. Coral
+outline ring, navy text.
+Never on dark
+backgrounds.
+Underlines & dividers
+Coral underlines
+emphasize key phrases.
+Coral-dot dividers separate
+sections. Single-color thin
+rules subdivide content.
+Always in coral or teal.
+The logo in context
+
+===== PAGE 16 =====
+1 0 · T Y P O G R A P H Y
+T Y P O G R A P H Y
+Built for legibility,
+at every age.
+Inter is our workhorse type family — chosen for maximum legibility across older readers,
+clinical density, and screen-to-print fidelity. Sentence case, minimal letterspacing,
+generous line height.
+P R I M A RY FA M I LY
+Inter
+A neutral, humanist sans-serif designed for
+screen and print legibility. Excellent at small
+sizes for clinical body text and at large display
+sizes for headlines. Open-source.
+Weights in use: 400 Regular · 500 Medium · 600
+SemiBold · 700 Bold
+FA L L B A C K
+Open Sans
+System fallback for email, partner Word
+documents, and contexts where Inter isn't
+available. Maintains the same humanist
+character at acceptable fidelity.
+Use when: email signatures, .docx clinical letters,
+partner templates without webfont support.
+Type scale
+Display headline
+Style: Inter Tight · Weight: 700 · Size: 28–46pt · Tracking: -2.5% · Leading: 1.02 · Use: Hero, page titles
+Section heading
+Style: Inter Tight · Weight: 700 · Size: 14–22pt · Use: Section titles, card titles
+Subhead — bold call
+Style: Inter · Weight: 600 · Size: 10–12pt · Use: Subheads, emphasis
+
+===== PAGE 17 =====
+11 · L O G O & W O R D M A R K
+L O G O & W O R D M A R K
+The mark.
+How it lives in the world.
+The primary logo is the Total Life wordmark in coral, with the flower mark. Always
+reproduced from the master file — never recreated, redrawn, or recolored. Sits on cream
+or FFFaf6 backgrounds only. Never on dark surfaces.
+P R I M A RY L O G O · C O R A L
+The Total Life primary logo. Coral wordmark with flower mark. Used on cream and
+FFFaf6 backgrounds. Always reproduced from the master file — never recreated,
+redrawn, or recolored.
+The brand mark never sits on heavy dark backgrounds. When the logo must appear on a small dark surface
+(footer strip, social card teal bar), use cream as the foreground — but those surfaces remain small and narrow,
+never page-dominant.
+Rules
+RULE
+DETAIL
+Logo color
+Coral is the primary logo color. Always use the master file — never recreate the mark in
+code or recolor it. No tints, no opacity, no gradients applied on top.
+Clear space
+Minimum clear space around the logo equals the height of the flower mark on all four
+sides. No content inside the buffer.
+Minimum size
+1.5" wide minimum for print, 100px wide minimum for digital. Below this the flower mark
+loses clarity. Inline-in-text usage exempt.
+Flower mark
+Used on favicons, merch, social avatars, and as an oversized brand stamp behind
+sections. Always in a single high-contrast solid color.
+Partner co brand
+Total Life logo sits left of a vertical 1pt rule partner logo right Equal height Equal weight
+
+===== PAGE 18 =====
+1 2 · C O M P O N E N T S & C TA S
+C O M P O N E N T S
+The patterns the brand
+operates inside.
+Approved patterns for web, document, and deck. Anyone — designer, engineer,
+contractor — should be able to reach for these without inventing a new one. CTAs are
+always fully rounded. Cards are cream-on-cream with subtle borders, never heavy fills.
+CTAs — coral leads, sparingly
+Check your coverage
+Primary CTA — coral fill, cream text,
+fully rounded. The signature button.
+Single instance per screen.
+Learn more
+Secondary CTA — sand fill, navy text,
+fully rounded. Sits beside primary or
+alone in subdued contexts.
+Read the research →
+Tertiary / link — text with coral
+underline. For inline references and
+paper citations.
+Statistic / data cards
+92%
+of members stay with their
+assigned therapist
+3
+sessions to feel hope, on
+average
+200+
+licensed providers across 49
+states
+Testimonial / quote block
+"As a senior, it was difficult to find resources that cater to my experience. Total Life does.
+I feel like I am in good hands and can trust that my therapist will help me work through
+any challenges I may be facing."
+Total Life Member · joined March 2024
+Carrier credibility bar
+
+===== PAGE 19 =====
+PA RT T H R E E · I N C L U S I V E D E S I G N
+III
+Inclusive design.
+I N S I D E T H I S PA R T
+13 Designing for 65+
+14 Plain language
+15 Trust signals
+16 Accessibility
+"Most products are designed for the people
+who built them. Ours isn't. We design for the
+woman whose hands shake when she fills out
+a form — and the brand has to feel like it
+knows that."
+
+===== PAGE 20 =====
+1 3 · D E S I G N I N G F O R O L D E R A D U LT S
+D E S I G N I N G F O R 6 5 +
+Built for the way older adults
+actually use things.
+Most digital products are designed for the people who built them — fast typers, sharp
+eyes, fluent in apps. Our members are not those people. These are the patterns that
+make Total Life feel obvious, calm, and easy at any age.
+Core principles
+P R I N C I P L E 0 1
+One thing per screen.
+One question. One CTA.
+One decision. Never two
+columns of choices. Never
+"while you're here, also…"
+Older users get lost when
+a screen does more than
+one job.
+P R I N C I P L E 0 2
+Show, don't hide.
+No hamburger menus on
+critical paths. No "tap here
+to reveal." Always show:
+where you are, how to go
+back, how to reach a
+human, the phone
+number. Hidden
+navigation is hostile.
+P R I N C I P L E 0 3
+Generous time, soft
+errors.
+30-minute session
+timeouts (not 5). Forgiving
+inputs. Errors in plain
+English: "Let's try that
+again" — never "Invalid
+format." A user who can't
+recover from one error is
+lost forever.
+Pattern minimums
+PATTERN
+STANDARD
+Body text
+16pt minimum on senior-facing digital. 18pt preferred. 12pt minimum print. Line height 1.5+.
+Tap targets
+48×48pt minimum (above WCAG 44pt floor) for any primary action. 56pt for "Get started" type
+CTAs.
+Forms
+One question per screen. Labels above fields, never inside. Inputs at least 48pt tall. Show
+progress: "Step 2 of 4."
+Icons
+Always paired with text labels. Never icon-only buttons. The pictogram is decoration; the label
+does the work.
+Loading
+Use words, not spinners alone: "Loading your information…" "Almost there — checking your
+coverage."
+Confirmation
+Full sentences before destructive actions: "Cancel your appointment with Dr Lee on Tuesday
+
+===== PAGE 21 =====
+1 4 · P L A I N L A N G U A G E & G L O S S A RY
+P L A I N L A N G U A G E
+If a 12-year-old can't read it,
+rewrite it.
+Behavioral health is full of clinical language that locks people out. Our job is to translate.
+Every senior-facing piece of writing should land at a 6th–8th grade reading level. Every
+clinical term should have a plain-English shadow.
+Reading level by audience
+AUDIENCE
+TARGET GRADE
+SENTENCE RULES
+Senior B2C
+6th–8th grade
+Sentences under 20 words. Active voice. Define every clinical
+term inline. Plain words for everything.
+Caregiver B2C
+8th–10th grade
+Slightly more nuance allowed. Emotional vocabulary OK. Still
+avoid clinical jargon unless it earns its place.
+B2B Clinical
+12th grade+
+Clinical terminology expected. CPT/HCC codes, scale names,
+evidence standards. Peer-to-peer voice.
+Translation glossary — clinical to senior-friendly
+CLINICAL TERM
+WHAT WE SAY TO SENIORS
+Behavioral health
+Mental and emotional health
+Psychotherapy
+Talk therapy
+Cognitive behavioral therapy (CBT)
+A kind of talk therapy that helps with thoughts and feelings
+Medication management
+Help managing your medications
+Care coordination
+Help organizing your care
+Telehealth
+Visits by video call
+Network provider
+A therapist we work with
+Authorization / prior auth
+Approval
+Coverage determination
+Checking if Medicare pays
+
+===== PAGE 22 =====
+1 5 · T R U S T S I G N A L S
+T R U S T & C A R E
+Where trust gets built
+and where care shows up.
+Building trust with older adults isn't about more disclaimers. It's about putting the right
+reassurance in the right place — and treating sensitive moments with the gravity they
+deserve.
+C O V E R E D
+B Y
+M E D I C A R E
+The stamp does the heavy lifting.
+Above the fold of every consumer landing page. Header of every
+consumer email. Body of every printed mailer. The coral ring +
+"Covered by Medicare" lockup is the single most important trust
+signal in the brand. It earns its place on every senior-facing
+surface.
+W E A C C E P T M E D I C A R E A N D M O S T S U P P L E M E N TA L P L A N S
+Medicare
+Mutual of Omaha
+Humana
+HCSC
+BCBS
+AARP · UHC
+Required trust signals
+C O V E R A G E
+"Covered by
+Medicare" stamp
+The coral-outlined
+Medicare stamp appears
+on every consumer
+landing page above the
+fold, in every consumer
+email, and on every
+printed mailer.
+P H O N E A C C E S S
+Phone number, always
+visible
+Top right of every web
+page. Header of every
+email. Body of every
+printed piece. Format: 1
+(800) 567-LIFE. Never just
+"call us."
+R E A L P E O P L E
+Named therapists, real
+photos
+Wherever we say "our
+therapists," we should be
+able to link to or show
+them. Stock photos of
+clinicians are forbidden.
+Use named providers with
+credentials shown.
+Trust-building moments
+MOMENT
+WHAT WE SAY / SHOW
+
+===== PAGE 23 =====
+1 6 · A C C E S S I B I L I T Y
+A C C E S S I B I L I T Y & C O M P L I A N C E
+The brand has
+a duty of care.
+Our audience includes older adults with low vision, hearing loss, cognitive impairment,
+and limited tech fluency. The brand respects this by design — not by accommodation
+after the fact.
+Digital accessibility — WCAG 2.2 AA minimums
+REQUIREMENT
+DETAIL
+Text contrast
+Body minimum 4.5:1 ratio (WCAG AA). Large text (18pt+) minimum 3:1. Verified before
+any design ships.
+Body text size
+16pt minimum for senior-facing digital. 11pt minimum for clinician and partner-facing
+surfaces.
+Tap targets
+44×44pt minimum on patient-facing interactions. 48pt preferred for primary CTAs.
+Focus states
+Visible 2pt teal outline with 2pt offset on every interactive element. Never rely on color
+alone.
+Motion
+Respect prefers-reduced-motion. No autoplay video with sound. Static fallbacks for
+animation.
+Forms
+Labels above fields, never placeholder-only. Errors shown in coral with an icon, never by
+color alone.
+Compliance overlay — Medicare marketing
+Coverage language is brand language. Any creative referencing Medicare or "free" must clear the
+Medicare Compliance reference in Part V of this document. The three-prompt check: Inducement Test ·
+Free-What Test · Substantiation Test. No new outcome statistic or partnership co-marketing ships without
+compliance sign-off.
+Governance & updates
+Where this guideline lives. Maintained by Marketing in partnership with Clinical and Tech. Version-
+ll d R
+i
+l
+di i
+d
+ll
+Si
+ifi
+h
+(
+di
+i
+
+===== PAGE 24 =====
+PA RT F O U R · M A R K E T I N G P L AY B O O K
+IV
+Marketing
+playbook.
+I N S I D E T H I S PA R T
+17 Voice
+18–20 Social
+21–22 Landing
+23 Email
+24 Banners
+25 Copy bank
+26 Calendar
+"Three voices. One truth. Whichever audience
+hears us — the senior, the daughter, the
+medical director — the underlying claim is the
+same. And it's always provable."
+
+===== PAGE 25 =====
+1 7 · V O I C E F O R M A R K E T I N G
+V O I C E F O R M A R K E T I N G
+Three voices.
+Pick one per piece.
+Which audience are you talking to? That sets the register. Never blend — a single piece
+of marketing speaks to one audience in one voice.
+AUDIENCE
+VOICE
+SAMPLE HEADLINES
+Senior B2C
+Age 65+
+Warm & empowering.
+Clear. Direct. Hopeful. Never
+patronizing.
+"Therapy that takes Medicare."
+"You don't have to ignore it."
+"Hope, after three sessions."
+"It's covered. Let's start."
+Caregiver B2C
+Adult daughter/son
+Daughter to daughter.
+Founder voice. Emotional.
+Honest. The "I get it" voice.
+"Worried about Mom?"
+"We'll make the first call."
+"You don't have to carry it alone."
+"I built this because I needed it."
+B2B Clinical
+PCP · ACO · MA
+plans
+Clinical & credible.
+Peer-to-peer. Data-led. Real
+codes, real outcomes.
+"Medicare-billed CoCM, at scale."
+"92% therapist retention."
+"PHQ-9 measurement-based care."
+"Built for fee-for-service."
+Headline rules
+R U L E 0 1
+Under 8 words
+Senior eyes scan, they
+don't read. If you can't say
+it in 8, rewrite.
+R U L E 0 2
+One coral word
+Set one key word in coral
+— the emotional or active
+word. Never more than
+one phrase.
+R U L E 0 3
+Active voice
+"Talk to someone" not
+"Someone can be talked
+to." Always action, never
+passive.
+The test for any headline: would Mom read it without her glasses? If yes, it's working. If you need to
+explain it, rewrite it.
+Total Life · Brand & Marketing System
+2 4
+
+===== PAGE 26 =====
+1 8 · S O C I A L · P O RT R A I T + O V E R L AY
+S O C I A L — T E M P L AT E 0 1
+Portrait + overlay.
+The workhorse.
+Real older adult, full-bleed portrait, headline overlaid at the bottom. One coral word in the
+headline. Narrow teal footer bar with flower mark and contact. This is the pattern that's
+working — keep using it.
+Total Life
+1-800-567-LIFE
+Total Life
+1-800-567-LIFE
+Total Life
+1-800-567-LIFE
+Original — Senior B2C. Worry/avoidance
+hook. Use for top-funnel awareness.
+Variation A — Senior B2C. Reframe the
+dismissal. Strong for retargeting.
+Variation B — Caregiver. Daughter-
+funnel framing. Photo reads as the
+daughter, not the mom.
+Specs
+ELEMENT
+STANDARD
+Format
+1080×1350px (Meta feed), 1080×1080px (Instagram square), 1080×1920px (Story)
+Photo
+Real older adult (55–75). Documentary lighting. Soft, candid expression. Looking at camera or
+thoughtfully off-frame. No stock-feeling smiles.
+Headline
+Inter Tight · 700 · 56–72pt on 1080 canvas. One coral word. Cream text. Bottom-left
+placement.
+Subhead
+Inter · 500 · 22–26pt. Cream. Two lines max. Coral on phrase, not single word.
+Flower mark
+Coral flower, top-right, 80–120px. Small — punctuation, not a banner.
+You don't have
+to ignore it.
+Talking to someone can help you
+understand what's happening.
+It's not just
+getting older.
+Anxiety and sadness at 70
+deserve the same care they did at
+30.
+Mom's quieter
+than usual.
+She might not call. We will.
+Medicare covers it.
+
+===== PAGE 27 =====
+1 9 · S O C I A L · S TAT S , F O U N D E R , C TA
+S O C I A L — T E M P L AT E S 0 2 · 0 3 · 0 4
+Three more cards.
+Same restraint.
+When you can't use portrait photography — or when the message is data, founder voice,
+or a direct call to action — these three patterns carry it. Cream-dominant, single accent
+moments, never busy.
+Total Life
+1-800-567-LIFE
+Total Life
+1-800-567-LIFE
+Total Life
+1-800-567-LIFE
+02 · Stat card. Cream surface. Coral
+figure, teal unit. Cite source in small print.
+For research-led posts.
+03 · Founder quote. Sand-tinted surface
+for warmth. Founder voice. One coral
+word inside the quote. For caregiver-
+funnel.
+04 · Direct CTA card. Coral fill — the
+ONE place coral fills a card. For bottom-
+funnel conversion only.
+When to use which
+TEMPLATE
+BEST FOR
+SKIP WHEN
+01 · Portrait
+Top-of-funnel awareness ·
+emotional hooks · senior-facing
+campaigns
+No real portrait available · message is data-led ·
+clinical/B2B
+02 · Stat
+Outcomes data · trust-building ·
+senior-living & PCP-facing
+thought leadership
+You don't have a citable source · the number isn't
+compelling on its own
+03 · Founder
+Caregiver funnel · Mother's Day ·
+founder PR moments · partner
+outreach
+Senior-direct B2C — founder voice can read as
+marketing to the senior
+T O TA L L I F E R E S E A R C H
+3x
+More likely to feel
+hopeful after three
+sessions of therapy with
+Total Life.
+Internal outcomes data · Q3 2024 ·
+N=2,847
+F R O M O U R F O U N D E R
+"I built Total Life
+because I couldn't
+find help for my
+own mom."
+— Neelam Brar, Founder &
+CEO
+Check your
+coverage in
+90 seconds.
+Most members are covered up
+to 100% with Medicare +
+supplemental insurance.
+TA K E T H E F I R S T S T E P
+
+===== PAGE 28 =====
+2 0 · S TO R I E S & C A R O U S E L S
+S O C I A L — 9 : 1 6 & M U LT I - S L I D E
+Stories that read.
+Carousels that build.
+Vertical (9:16) social — Instagram and Facebook Stories, Reels covers. Carousels build
+a small narrative: hook, context, proof, ask. Same restraint, longer attention.
+Total Life
+1-800-567
+Total Life
+1-800-567
+Total Life
+1-800-567
+Total Life
+1-800-567
+Story · portrait. Same as 01,
+sized 9:16. Less subhead,
+bigger headline.
+Story · stat. Big figure
+dominates. Subhead concise.
+Source visible.
+Carousel · cover slide.
+Promise + count + "swipe →"
+cue. Coral on the payoff word.
+Carousel · content slide. Big
+numeral in coral. Single
+statement. Slide count cue.
+Carousel structure
+5-slide pattern (default)
+1. Slide 1 — Hook. Question or surprising
+claim. "Swipe →" cue.
+2. Slides 2–4 — Build. Three concrete points,
+evidence, or signs. Big numeral, one
+statement each.
+3. Slide 5 — Ask. The CTA. Coral-fill card.
+Phone number prominent.
+Rules
+One idea per slide. Never crowd.
+Type stays large — readable in the feed.
+Coral lives on key words and the final CTA
+only.
+Last slide is always the ask — never end on
+an information slide.
+Caption echoes Slide 1 hook. First line is the
+hook line.
+A F T E R 3
+S E S S I O N S
+68%
+of members
+report
+meaningful
+improvement.
+Internal · 2024
+S L I D E 1 O F 5
+5 signs
+Mom
+might
+need a
+therapist.
+Swipe →
+3.
+She
+stopped
+doing the
+things she
+used to
+love.
+Slide 3 of 5 · Swipe
+→
+You don't
+have to do
+this alone.
+Medicare covers it.
+
+===== PAGE 29 =====
+2 1 · L A N D I N G · S E N I O R B 2 C
+L A N D I N G PA G E — S E N I O R B 2 C
+One page,
+one decision.
+The senior landing page does one job: get a coverage check started. Large type. High
+contrast. Phone number always visible. No carousel hero, no scrolling animation, no chat
+bot. Cream surface, teal in small marks, coral on the single CTA.
+How it works Coverage About
+1-800-567-LIFE
+T H E R A P Y. C O V E R E D B Y M E D I C A R E .
+Hope is closer
+than you think.
+Talk to a therapist who specializes in older adults —
+from home, on the phone or by video. Most members
+are covered up to 100% with Medicare + supplemental
+insurance.
+Check my coverage
+C O V E R E D
+B Y
+M E D I C A R E
+200+
+licensed therapists, all 49 states
+92%
+therapist retention rate
+3
+sessions to feel hope, on average
+01
+Check coverage
+Tell us your Medicare details.
+Takes 90 seconds.
+02
+Match with a therapist
+We pair you with someone
+trained for older adults.
+03
+Meet from home
+By phone or video —
+whatever's easier for you.
+04
+We bill Medicare
+You pay only what your plan
+asks. Often nothing.
+Anatomy. Top nav with phone always visible. Eyebrow label primes coverage. Single H1 with one coral word. Single
+coral CTA. Trust band of three numbers with coral figures + teal accents. How-it-works on sand surface — soft, never
+busy. Below the fold: testimonials, therapist photos with names & credentials, FAQ, then a final CTA matching the
+hero.
+Total Life · Brand & Marketing System
+2 8
+
+===== PAGE 30 =====
+2 2 · L A N D I N G · C A R E G I V E R F U N N E L
+L A N D I N G PA G E — C A R E G I V E R F U N N E L
+For the daughter
+doing it alone.
+A different page for a different job. The caregiver landing leads with the founder, names
+the emotional reality, and makes one promise — "we make the first call." Sand-tinted
+hero for warmth. Daughter-to-daughter voice.
+For families Our founder
+1-800-567-LIFE
+A N O T E F R O M O U R F O U N D E R
+Worried about
+Mom?
+We'll call her.
+"I built Total Life because I couldn't find behavioral health
+support for my own mom inside Medicare. If you're
+carrying this alone — we'll make the first call for you." —
+Neelam, Founder
+Tell us about your mom
+C O V E R E D
+B Y
+M E D I C A R E
+After you reach out
+A real person calls you
+Not Mom — you. Within one
+business day. We listen first.
+Then together
+We make the call to Mom
+Warmly, on your terms. You
+can be on the line — or not.
+Once she's ready
+We match a therapist
+Someone who works with
+older adults. Covered by her
+Medicare.
+Going forward
+You get peace of mind
+Regular updates with her
+consent. Less worry. More
+presence.
+What changes vs. senior landing. Eyebrow shifts to founder voice. Sand-tinted hero for emotional warmth. Photo is
+a single intimate portrait (square, not wide). "How it works" reframes around the daughter's experience, not the
+patient's. Trust signals lean privacy + coverage + real-people. Single CTA still leads — coral, fully rounded, never two
+CTAs on this page.
+Total Life · Brand & Marketing System
+2 9
+
+===== PAGE 31 =====
+2 3 · E M A I L T E M P L AT E S
+E M A I L
+Short emails.
+One clear ask.
+Total Life emails read like letters, not announcements. First-name greeting.
+Conversational opening. One ask. Phone number in the signature. Cream surface, navy
+text, one coral CTA per email.
+1-800-567-LIFE
+W E L C O M E E M A I L
+You took the first step,
+Margaret.
+Thanks for reaching out. A real person — not a
+bot — will call you tomorrow between 10 a.m. and
+2 p.m. We'll check your Medicare coverage
+together and answer any questions.
+If you'd rather call us first, we're here today: 1
+(800) 567-LIFE.
+We're glad you're here.
+— The Total Life team
+Confirm your appointment
+Total Life · Therapy for older adults
+Unsubscribe
+1-800-567-LIFE
+A P P O I N T M E N T R E M I N D E R
+Tomorrow at 2:00 PM.
+Hi Margaret — your session with Dr. Lisa Park is
+tomorrow (Wednesday) at 2:00 PM. Dr. Park will
+call you on the phone you gave us.
+If you need to reschedule, just call 1 (800) 567-
+LIFE. No paperwork, no fees.
+See you tomorrow.
+View my appointment
+Total Life · Therapy for older adults
+Unsubscribe
+Email specs
+ELEMENT
+STANDARD
+Subject line
+Under 45 characters. First name where possible. Specific action verb. "You took the first
+step, Margaret" — not "Welcome to Total Life."
+Preheader
+40–80 characters. Expands the subject. Never duplicates it.
+Header
+Cream background, teal flower mark + wordmark left, phone number right.
+
+===== PAGE 32 =====
+2 4 · D I S P L AY & B A N N E R S
+D I S P L AY A D V E R T I S I N G
+Small surfaces.
+Same brand.
+Display banners work hard with very little real estate. The brand still applies: cream
+surface, navy text, one coral CTA, phone number visible. No competing visual elements
+— banner ads are not the place to show off.
+Medium rectangle · 300×250
+Half-page · 300×600
+Specs & standard sizes
+SIZE
+USE
+300×250 Medium
+rectangle
+The workhorse. Most placements. Default brief.
+728×90
+Leaderboard
+Top-of-page web placements. Heavily abbreviated
+copy.
+300×600 Half-
+page
+Premium placements. Allows portrait photo + copy.
+320×50 Mobile
+banner
+Mobile-only. Wordmark + one-line headline +
+phone number.
+1200×628 Social
+link card
+Meta and LinkedIn link previews. Hero photo + 1
+headline.
+Therapy that takes
+Medicare.
+Most members are covered up to 100%.
+Check coverage
+1-800-567-LIFE
+totallife.com
+Worried about Mom?
+We make the first call so you don't have
+to.
+Tell us about her
+1-800-567-LIFE
+totallife.com
+Hope, after 3
+sessions.
+The therapy older adults are asking for.
+Get started
+1-800-567-LIFE
+totallife.com
+1-800-567-LIFE
+totallife.com
+You don't have to do
+this alone.
+Therapy covered by Medicare.
+Designed for older adults.
+Check coverage
+
+===== PAGE 33 =====
+2 5 · H E A D L I N E & C O P Y B A N K
+C O P Y B A N K
+Lines that work.
+Use these directly. Adapt them. Trade words. The coral accent in each indicates which
+word should hold the coral color treatment in design.
+Senior B2C headlines
+Therapy that takesMedicare.
+Hope is closer than youthink.
+You don't have toignoreit.
+It's not justgetting older.
+Talk to someone whogets it.
+Caregiver headlines
+Worried aboutMom?
+We'll make the firstcall.
+You're carrying alot.
+I built this because Ineededit.
+She might not call. Wewill.
+Email subject lines
+
+===== PAGE 34 =====
+2 6 · C A M PA I G N C A L E N D A R
+C A M PA I G N C A L E N D A R
+The year, in moments.
+Total Life ships a small number of seasonal campaigns each year. The point is
+concentration, not coverage — each window has a single primary audience and a single
+primary message.
+WINDOW
+AUDIENCE
+PRIMARY MESSAGE & MODE
+Mother's Day
+Apr 15 – May 14
+Caregiver B2C
+Adult daughters
+Founder origin story amplified. "I built Total Life because I couldn't
+find help for my own mom." Sand-tinted founder cards, daughter-
+funnel landing, founder podcast tour.
+Mental Health
+Awareness Month
+May 1 – May 31
+Senior B2C + B2B
+clinical
+Education + workshops. Three signature workshops (Memory Table,
+Gratitude Garden, Letters to Younger Me). Carousel content. Mental
+Health Index data release.
+Father's Day
+May 20 – Jun 18
+Caregiver B2C
+Adult children
+"Dads don't ask for help. So we ask first." Quieter than Mother's Day
+— Father's Day messaging respects how men in this generation
+receive emotional content.
+Medicare Open
+Enrollment
+Oct 15 – Dec 7
+Senior B2C
+Coverage education — not "buy now." Plain-language explainers,
+supplemental insurance walkthroughs, Medigap partner co-
+marketing (Mutual of Omaha, HCSC, Humana priorities).
+Holidays /
+loneliness
+window
+Nov 15 – Jan 15
+Senior B2C +
+caregiver
+Loneliness and grief at the holidays. Gentle tone. Founder voice
+mixed with senior register. Crisis resources always present (988).
+Year-end
+reflection
+Dec 15 – Dec 31
+All audiences
+Outcomes report and impact story. Annual member growth,
+retention, outcomes data. Founder year-end note. Sets up the next
+year.
+What never makes the calendar. Black Friday and other commerce-coded moments. We are not selling
+a product — we are matching someone with their therapist. Discounts and urgency framings violate
+Medicare compliance and undermine the brand. See Part V.
+Total Life · Brand & Marketing System
+3 3
+
+===== PAGE 35 =====
+PA RT F I V E · M E D I C A R E C O M P L I A N C E
+V
+C O V E R E D
+B Y
+M E D I C A R E
+Medicare
+compliance.
+I N S I D E T H I S PA R T
+27 Rules of the road
+28 3-Prompt check
+29 Copy rewrites
+"Effective Medicare marketing isn't clever. It's
+precise, qualified, and source-able. The brand
+wins by being trustworthy — not by being
+persuasive."
+
+===== PAGE 36 =====
+2 7 · R U L E S O F T H E R O A D
+M E D I C A R E M A R K E T I N G
+What we do.
+What we never do.
+Marketing to Medicare beneficiaries is regulated under the Anti-Kickback Statute (AKS),
+the Civil Monetary Penalties Law (CMP), CMS marketing guidelines, and TCPA. These
+rules govern every consumer-facing surface — paid, organic, partner, mail. Cross-
+reference before any campaign ships.
+✓ Do
+✗ Don't
+Describe what Medicare actually covers.
+"Behavioral health is covered by Medicare.
+Most members are covered up to 100% with
+supplemental insurance."
+✓
+Call out free services Total Life provides.
+"Our coverage check is free." "Initial care
+navigation is free."
+✓
+Qualify coverage language carefully.
+"Most members are covered up to 100%
+with Medicare + supplemental insurance" —
+specific, accurate, source-able.
+✓
+Make truthful outcome claims with
+sources. "Most members feel hope after
+three sessions (internal data, Q3 2024,
+N=2,847)."
+✓
+Disclose Medicare provider status. "Total
+Life is an enrolled Medicare provider."
+✓
+Lead with the founder origin story in
+caregiver contexts. Caregiver-to-caregiver
+framing. First person.
+✓
+Get legal sign-off same-day before any
+new claim ships. Don't bottleneck the
+work, but never skip it.
+✓
+Don't say "free therapy" or "free
+sessions." AKS / CMP risk — Medicare
+beneficiaries can't be induced with free
+covered services.
+✗
+Don't say "no cost" without a
+supplemental qualifier. Most members pay
+something with original Medicare alone.
+✗
+No gifts, gift cards, raffles, or contest
+entries for Medicare beneficiaries. The OIG
+hard limit is $15 single / $75 annual.
+✗
+No paid patient referrals. Affiliate / content
+partner programs use flat-fee sponsored
+content, not per-patient referral fees.
+✗
+No absolute outcome claims. "Will cure
+depression" / "Guaranteed results" — never.
+Always "may help," "for many members,"
+with source.
+✗
+No fear or false urgency framing on
+seniors. "Limited spots" / "Act now or lose
+your spot" — never. Even when accurate.
+✗
+Don't impersonate Medicare or imply
+official endorsement. Never use CMS,
+Medicare, or HHS logos. Never imply we
+are Medicare.
+✗
+No cold-calling. TCPA + CMS marketing
+rules prohibit unsolicited calls. Inbound only,
+with documented consent.
+✗
+"Medicare-approved discount" is OIG
+bait. Never use this phrase or its variants.
+✗
+
+===== PAGE 37 =====
+2 8 · 3 - P R O M P T C O M P L I A N C E C H E C K
+P R E - F L I G H T C H E C K
+Three prompts.
+Every piece, every time.
+Before any Medicare-facing piece of marketing leaves the building, run it through these
+three prompts. If any of them comes back wrong — reframe or kill the asset. Don't ship it
+and hope.
+T E S T 0 1
+Inducement
+Test
+The prompt: "Does this
+offer something of value to
+a Medicare beneficiary to
+influence them to use a
+Medicare-reimbursable
+service?"
+If no → proceed. Most
+truthful, value-based
+marketing passes this.
+If yes → reframe. Remove
+the inducement. Or kill the
+asset.
+T E S T 0 2
+Free-What Test
+The prompt: "If we say
+'free' anywhere, is it
+specifically a service
+Medicare doesn't cover —
+or that Total Life is
+independently providing
+— and is that clear?"
+If yes → proceed. "Our free
+coverage check" is fine —
+coverage checks aren't a
+Medicare service.
+If no → reframe. "Free
+therapy" / "free sessions"
+violate AKS / CMP. Use
+"covered by Medicare"
+instead.
+T E S T 0 3
+Substantiation
+Test
+The prompt: "Every
+numerical claim, outcome
+statement, and superlative
+— can we cite a source
+today, internally or
+externally?"
+If yes → proceed. Include
+the source in fine print or
+methodology page.
+If no → kill the claim.
+Substitute a sourceable
+alternative. No source = no
+claim.
+Pull compliance in early, not late. The cost of a compliance correction at the brief stage is a 10-minute
+conversation. The cost at production stage is reshooting, redesigning, and rebriefing. Sign-off is part of
+the brief, not the launch.
+Total Life · Brand & Marketing System
+3 6
+
+===== PAGE 38 =====
+2 9 · C O M M O N C O P Y R E W R I T E S
+B E F O R E & A F T E R
+The lines we don't ship.
+And what we say instead.
+A working reference of common marketing instincts that violate Medicare rules — and
+the compliant alternative that does the same job, often better.
+TYPE
+✗ DON'T SAY
+✓ SAY INSTEAD
+Headline
+"Free therapy for seniors on Medicare."
+"Therapy that takes Medicare. Most members
+covered up to 100% with supplemental
+insurance."
+Daughter
+funnel
+"We'll get your mom into therapy this week."
+"We'll make the first call to your mom. She
+decides what's next."
+Coverage
+CTA
+"Get your free Medicare therapy benefit."
+"Check what your Medicare plan covers. Takes
+90 seconds."
+Outcome
+claim
+"Therapy that will fix your depression."
+"Most members report meaningful
+improvement after three sessions (internal, Q3
+'24)."
+Referral
+postcard
+"Refer a friend, get a $25 Amazon gift card."
+Do not run referral incentives to Medicare
+beneficiaries. Replace with founder thank-you
+note.
+Urgency
+framing
+"Limited Medicare spots available — act now."
+"We're accepting new members. A real person
+will call you within one business day."
+Medicare
+framing
+"Approved by Medicare for seniors."
+"Total Life is an enrolled Medicare provider."
+Free trial
+"Try your first therapy session free."
+"Your free coverage check tells you what your
+plan covers before your first session."
+Approved phrase quick-reference
+This is operational guidance, not legal advice. Specific campaigns and claims still require sign-off from Total Life's legal
+and compliance team. When in doubt, route the asset through Slack #marketing-compliance before publication.
