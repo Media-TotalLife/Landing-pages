@@ -20,7 +20,9 @@ for (const key of which) {
     await page.goto('http://localhost:4173' + pages[key], { waitUntil: 'networkidle' });
     await page.evaluate(() => document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in')));
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    await page.addStyleTag({ content: '.sticky-cta{display:none!important}' });
     await page.screenshot({ path: `screens/${key}-${name}.png`, fullPage: true });
+    await page.evaluate(() => document.querySelector('style:last-of-type')?.remove());
     await page.screenshot({ path: `screens/${key}-${name}-fold.png`, fullPage: false });
     console.log(`${key} @${w}: overflow=${overflow}px errors=${errors.length}${errors.length ? ' ' + errors.join(' | ') : ''}`);
     await ctx.close();

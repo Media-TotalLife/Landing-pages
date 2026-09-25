@@ -74,14 +74,10 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
 @media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
 
 /* Proof */
-.proof-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-.proof-grid .quote { background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.5rem, 2.5vw, 2.25rem); }
+.proof-grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+.proof-grid .quote { max-width: 60rem; margin-inline: auto; text-align: center; } .proof-grid .quote figcaption { justify-content: center; }
 .therapists { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 1.5vw, 1.25rem); }
-.therapists .portrait .chip { left: .9rem; top: .9rem; font-size: .8125rem; padding: .4rem .8rem; }
 .therapists .portrait[data-placeholder]::after { font-size: .6875rem; left: .75rem; right: .75rem; bottom: .75rem; padding: .45rem .6rem; }
-.therapists figcaption { margin-top: .75rem; font-size: var(--text-sm); color: var(--muted); }
-.therapists figcaption b { display: block; color: var(--navy); font-size: var(--text); }
-.therapists figure { margin: 0; }
 .carriers-wrap { margin-top: clamp(3rem, 5vw, 4.5rem); padding-top: clamp(2rem, 3vw, 2.5rem); border-top: 1px solid var(--line); }
 .carriers-wrap p { text-align: center; color: var(--muted); font-size: .875rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; margin-bottom: 1.25rem; }
 @media (max-width: 900px) {
@@ -89,9 +85,8 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
 }
 @media (max-width: 640px) {
   .therapists { grid-template-columns: 1fr 1fr; }
-  .therapists figure:last-child { grid-column: 1 / -1; max-width: calc(50% - .5rem); }
-  .therapists .portrait .chip { font-size: .75rem; padding: .35rem .65rem; white-space: nowrap; left: .6rem; top: .6rem; }
-}
+  .therapists .therapist:last-child { grid-column: 1 / -1; max-width: calc(50% - .5rem); }
+  }
 
 /* FAQ */
 .faq-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
@@ -104,6 +99,19 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
 
 /* Dividers between major sections */
 .divider { margin-block: 0; }
+
+.hero .hero-actions {
+  display: grid; grid-template-columns: max-content max-content; grid-template-areas: "btn stamp" "reassure reassure";
+  column-gap: 1.75rem; row-gap: 1.125rem; align-items: center; justify-items: start;
+}
+.hero .hero-actions .btn { grid-area: btn; }
+.hero .hero-actions .stamp { grid-area: stamp; }
+.hero .hero-actions .reassure { grid-area: reassure; margin-top: 0; }
+@media (max-width: 560px) {
+  .hero .hero-actions { grid-template-columns: 1fr auto; grid-template-areas: "btn btn" "reassure stamp"; column-gap: 1rem; row-gap: 1.25rem; align-items: start; }
+  .hero .hero-actions .stamp { width: 104px; height: 72px; font-size: .5625rem; }
+  .hero .hero-actions .btn { width: 100%; }
+}
 </style>
 </head>
 <body data-page="check">
@@ -136,14 +144,16 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
         <div class="hero-actions">
           <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-hero-cta data-track="hero_cta">Start the 2-minute check</a>
           <div class="stamp" role="img" aria-label="Covered by Medicare">Covered<br>by<br>Medicare</div>
-        </div>
-        <p class="reassure">
+          <p class="reassure">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
           <span>Not a test. No wrong answers. Or call <a href="tel:+18005675433" data-track="hero_phone">1-800-567-LIFE</a></span>
         </p>
+        </div>
       </div>
-      <div class="portrait portrait--wide" data-placeholder="[PORTRAIT: real Total Life member, 70s, on a porch or by a window, thoughtful, documentary light]">
-        <span class="chip"><i></i>Real members, real therapists</span>
+      <div class="hero-art">
+        <div class="portrait portrait--wide" data-placeholder="[PORTRAIT: real Total Life member, 70s, on a porch or by a window, thoughtful, documentary light]" role="img" aria-label="A Total Life member at home">
+          <span class="chip"><i></i>Real members, real therapists</span>
+        </div>
       </div>
     </div>
   </section>
@@ -347,15 +357,15 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
           <figcaption><span><b>Total Life Member</b> · joined March 2024</span></figcaption>
         </figure>
         <div class="therapists">
-          <figure>
+          <figure class="therapist">
             <div class="portrait" data-placeholder="[PORTRAIT: therapist, warm, seated, natural window light]"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
             <figcaption><b>[THERAPIST NAME]</b>[LCSW · 14 yrs with older adults]</figcaption>
           </figure>
-          <figure>
+          <figure class="therapist">
             <div class="portrait" data-placeholder="[PORTRAIT: therapist, smiling, home office, documentary light]"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
             <figcaption><b>[THERAPIST NAME]</b>[CREDENTIAL · yrs with older adults]</figcaption>
           </figure>
-          <figure>
+          <figure class="therapist">
             <div class="portrait" data-placeholder="[PORTRAIT: therapist, listening, calm, soft daylight]"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
             <figcaption><b>[THERAPIST NAME]</b>[CREDENTIAL · yrs with older adults]</figcaption>
           </figure>

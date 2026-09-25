@@ -51,7 +51,7 @@
 
 /* ---- Reset ------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0;
@@ -254,6 +254,30 @@ h4 { font-weight: 600; font-size: 1.25rem; line-height: 1.3; }
   padding: .5rem 1rem; font-size: .9375rem; font-weight: 600; display: inline-flex; gap: .5rem; align-items: center;
 }
 .portrait .chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); display: inline-block; }
+
+/* Hero art: portrait with a solid sand "sun" behind it (depth without gradients) */
+.hero-art { position: relative; }
+.hero-art::before {
+  content: ""; position: absolute; z-index: 0; border-radius: 50%;
+  width: 58%; aspect-ratio: 1; right: -9%; top: -9%;
+  background: var(--sand);
+}
+.hero-art::after {
+  content: ""; position: absolute; z-index: 0; border-radius: 50%;
+  width: 11%; aspect-ratio: 1; left: -5.5%; bottom: -4%;
+  background: var(--coral);
+}
+.section--sand .hero-art::before { background: var(--bg); }
+section:has(.hero-art) { overflow: hidden; }
+.hero-art .portrait { position: relative; z-index: 1; }
+@media (max-width: 900px) { .hero-art { max-width: 560px; } .hero-art::before { width: 46%; right: -6%; top: -6%; } .hero-art::after { width: 12%; left: -3%; } }
+
+/* Therapist cards: chip = name only, credential as caption */
+.therapist { margin: 0; }
+.therapist .portrait .chip { left: .9rem; top: .9rem; font-size: .875rem; padding: .4rem .85rem; white-space: nowrap; max-width: calc(100% - 1.8rem); overflow: hidden; text-overflow: ellipsis; }
+.therapist .portrait[data-placeholder]::after { font-size: .6875rem; left: .75rem; right: .75rem; bottom: .75rem; padding: .45rem .6rem; }
+.therapist figcaption { margin-top: .875rem; font-size: var(--text-sm); color: var(--muted); line-height: 1.4; }
+.therapist figcaption b { display: block; color: var(--teal); font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: -.01em; margin-bottom: .15rem; }
 
 /* ---- Cards ------------------------------------------------------------- */
 .card {

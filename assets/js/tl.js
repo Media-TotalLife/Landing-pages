@@ -32,6 +32,26 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
+  // ---- Stat count-up (reduced-motion safe) ---------------------------------
+  function countUp(el) {
+    var node = el.firstChild; if (!node || node.nodeType !== 3) return;
+    var target = parseFloat(node.nodeValue); if (isNaN(target)) return;
+    var start = null, dur = 1100;
+    function tick(t) {
+      if (!start) start = t; var p = Math.min(1, (t - start) / dur); p = 1 - Math.pow(1 - p, 3);
+      node.nodeValue = String(Math.round(target * p));
+      if (p < 1) requestAnimationFrame(tick); else node.nodeValue = String(target);
+    }
+    node.nodeValue = '0'; requestAnimationFrame(tick);
+  }
+  var stats = document.querySelectorAll('.stat b');
+  if (stats.length && !reduced && 'IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); cio.unobserve(en.target); } });
+    }, { threshold: 0.4 });
+    stats.forEach(function (s) { cio.observe(s); });
+  }
+
   // ---- FAQ single-open ----------------------------------------------------
   document.querySelectorAll('.faq').forEach(function (faq) {
     faq.addEventListener('toggle', function (e) {
