@@ -110,8 +110,8 @@
       target.classList.add('has-error');
       var err = target.querySelector(':scope > .error') || target.querySelector('.error');
       if (err && message) { var m = err.querySelector('span'); if (m) m.textContent = message; else err.appendChild(document.createTextNode(message)); }
-      var input = target.querySelector('.input') || target.querySelector('input');
-      if (input) input.focus({ preventScroll: true });
+      if (field) { var input = target.querySelector('.input'); if (input) input.focus({ preventScroll: true }); }
+      else if (err) { err.setAttribute('tabindex', '-1'); err.focus({ preventScroll: true }); }
     }
     function clearErrors(step) { step.classList.remove('has-error'); step.querySelectorAll('.has-error').forEach(function (f) { f.classList.remove('has-error'); }); }
 
@@ -150,6 +150,10 @@
         if (index < steps.length - 1) show(index + 1); else complete();
       }
       if (back) { e.preventDefault(); if (index > 0) show(index - 1); }
+    });
+    form.addEventListener('input', function (e) {
+      var field = e.target.closest('.field.has-error'); if (field) field.classList.remove('has-error');
+      var step = e.target.closest('.tl-step.has-error'); if (step && e.target.type === 'radio') step.classList.remove('has-error');
     });
     form.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' && e.target.classList.contains('input')) { e.preventDefault(); var b = steps[index].querySelector('[data-next]'); if (b) b.click(); }
