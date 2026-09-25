@@ -37,6 +37,16 @@ Copy that depends on decisions not yet made is left in square brackets and must 
 `[FORM ENDPOINT]` (on each `form.tl-form`), footer links `[PRIVACY POLICY]`, `[TERMS]`, `[HIPAA NOTICE]`, `[ABOUT US]`, etc.
 Stats, the member quote, founder quotes, and carrier names come from the brand book and are used verbatim with their source line.
 
+## Installing generated assets
+
+Drop the files from the generation job into `assets/img/people/` (stills, `*.mp4`, `*-poster.jpg`), then run
+`npm run assets` to rebuild `assets/img/people/index.json`. Frames pick up any listed file automatically; unlisted
+frames keep their placeholder. Clips play muted and looped, switch the frame to the clip's ratio so the still and
+clip share one crop, and are skipped under `prefers-reduced-motion`. **Do not install the generated founder
+placeholder**: the caregiver page labels that frame as Neelam Brar, so only a real photograph belongs there. All
+therapist images are placeholders until named Total Life providers replace them (brand book: no stock clinicians).
+The generation brief lives in `docs/higgsfield-agent-prompt.md`.
+
 ## Wiring the form and analytics
 
 - **Form submit:** in `assets/js/tl.js`, `complete()` collects `data` (all radio + text answers). Replace the commented `fetch` with your CRM / intake POST.

@@ -47,6 +47,9 @@
           v.setAttribute('aria-hidden', 'true'); v.preload = 'metadata';
           var poster = frame.getAttribute('data-poster'); if (poster && have[poster]) v.poster = base + poster;
           v.src = base + clip;
+          v.addEventListener('loadedmetadata', function () {
+            if (v.videoWidth && v.videoHeight) frame.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+          });
           v.addEventListener('canplay', function () { v.classList.add('is-ready'); v.play().catch(function () {}); });
           v.addEventListener('error', function () { v.remove(); });
           frame.insertBefore(v, img.nextSibling);
