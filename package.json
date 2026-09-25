@@ -5,7 +5,8 @@
   "description": "Three Total Life landing pages (senior coverage check, caregiver funnel, self-check) built on the Total Life Brand & Marketing System.",
   "scripts": {
     "start": "node server.js",
-    "screens": "node tools/screens.mjs"
+    "screens": "node tools/screens.mjs",
+    "assets": "node tools/assets-index.mjs"
   },
   "dependencies": {
     "playwright": "1.54"

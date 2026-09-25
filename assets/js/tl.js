@@ -21,6 +21,40 @@
     if (el) window.tlTrack(el.getAttribute('data-track'), { page: document.body.dataset.page || '' });
   });
 
+  // ---- Portrait assets ---------------------------------------------------
+  // Frames declare data-asset / data-video / data-poster. Only files listed in
+  // assets/img/people/index.json are attached (run `npm run assets` after adding files),
+  // so nothing 404s before the assets exist and the placeholder stays visible.
+  (function attachAssets() {
+    var frames = document.querySelectorAll('.portrait[data-asset]');
+    if (!frames.length) return;
+    var base = document.querySelector('script[src*="tl.js"]').getAttribute('src').replace(/js\/tl\.js.*$/, 'img/people/');
+    fetch(base + 'index.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+      var have = {}; (list || []).forEach(function (f) { have[f] = true; });
+      frames.forEach(function (frame, i) {
+        var still = frame.getAttribute('data-asset');
+        if (!have[still]) return;
+        var img = document.createElement('img');
+        img.alt = ''; img.decoding = 'async'; img.loading = i === 0 ? 'eager' : 'lazy';
+        img.src = base + still;
+        img.addEventListener('load', function () { frame.classList.add('has-photo'); });
+        img.addEventListener('error', function () { img.remove(); });
+        frame.insertBefore(img, frame.firstChild);
+        var clip = frame.getAttribute('data-video');
+        if (clip && have[clip] && !reduced && !window.matchMedia('(max-width: 640px) and (prefers-reduced-data: reduce)').matches) {
+          var v = document.createElement('video');
+          v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', '');
+          v.setAttribute('aria-hidden', 'true'); v.preload = 'metadata';
+          var poster = frame.getAttribute('data-poster'); if (poster && have[poster]) v.poster = base + poster;
+          v.src = base + clip;
+          v.addEventListener('canplay', function () { v.classList.add('is-ready'); v.play().catch(function () {}); });
+          v.addEventListener('error', function () { v.remove(); });
+          frame.insertBefore(v, img.nextSibling);
+        }
+      });
+    }).catch(function () {});
+  })();
+
   // ---- Reveal -----------------------------------------------------------
   var revealEls = document.querySelectorAll('[data-reveal]');
   if (reduced || !('IntersectionObserver' in window)) {

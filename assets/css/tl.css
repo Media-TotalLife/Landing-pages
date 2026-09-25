@@ -217,7 +217,11 @@ h4 { font-weight: 600; font-size: 1.25rem; line-height: 1.3; }
 }
 .portrait--wide { aspect-ratio: 5 / 4; }
 .portrait--square { aspect-ratio: 1; }
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
+.portrait img, .portrait video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.portrait video { opacity: 0; transition: opacity 600ms var(--ease); }
+.portrait video.is-ready { opacity: 1; }
+.portrait.has-photo[data-placeholder] { background: #5A4634; }
+.portrait.has-photo[data-placeholder]::after { display: none; }
 /* The only place gradients are allowed: as a photo overlay. */
 .portrait::before {
   content: ""; position: absolute; inset: -20%;

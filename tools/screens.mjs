@@ -19,6 +19,10 @@ for (const key of which) {
     page.on('pageerror', e => errors.push(String(e)));
     await page.goto('http://localhost:4173' + pages[key], { waitUntil: 'networkidle' });
     await page.evaluate(() => document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in')));
+    // scroll through so lazy images attach, then return to top
+    const total = await page.evaluate(() => document.body.scrollHeight);
+    for (let y = 0; y < total; y += 700) { await page.evaluate(v => window.scrollTo(0, v), y); await page.waitForTimeout(40); }
+    await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(400);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     await page.addStyleTag({ content: '.sticky-cta{display:none!important}' });
     await page.screenshot({ path: `screens/${key}-${name}.png`, fullPage: true });
