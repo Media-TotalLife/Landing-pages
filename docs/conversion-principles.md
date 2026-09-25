@@ -53,3 +53,14 @@ Medicare-compliance questions.
 - Direction.com senior care landing page practices: https://direction.com/landing-page-best-practices/
 - Senior Living Smart, marketing to seniors and adult kids: https://seniorlivingsmart.com/blog/marketing-to-seniors-and-adult-kids/
 - Care Marketing trust-signal audit: https://www.caremarketing.com/trust-signal-audit-caregiver-credentials-convert/
+
+## Addendum — what moves older adults specifically (second research pass)
+
+| Finding | Where it lives on the pages |
+|---|---|
+| Top hesitations older adults report about seeking care: "I won't need it", "it wouldn't help", embarrassment, cost (29% hesitant; logistic barriers and cost cited most). | "I don't need it" → reframe copy ("You don't have to ignore it", "It's not just getting older", "You don't need to be in crisis to talk to someone"). "Wouldn't help" → sourced outcomes stats within one viewport of every ask. Embarrassment → "Talk to someone who gets it", "Is it for someone like me?" FAQ, private-by-default language. Cost → qualified coverage line beside every CTA and first in every FAQ. |
+| Older adults are far more likely than younger adults to use telehealth by phone; about half of 65+ telehealth users are phone-only, and comfort with audio-only is high even when video comfort is low. | "By phone if you prefer. No computer needed." is now an explicit reassurance beside the form on senior and check pages, in how-it-works, and in the FAQ. Every CTA has a tap-to-call alternative. |
+| Reframing therapy as practical support for grief, retirement, health changes and loneliness, and treating life experience as a strength, outperforms clinical framing. | "What therapy can help with" grid uses everyday language; therapist section states life experience is an asset. |
+| Goal-setting increases acceptance of a mental-health referral among older adults. | Success states name the concrete next step and time ("a real person will call you in the morning, within one business day"). |
+
+Sources: AARP PRI, barriers to behavioral health for older adults (https://www.aarp.org/pri/topics/health/coverage-access/mental-health-substance-use-disorder-accessible-affordable-care-older-adults/); Perceptions of mental health and barriers to treatment among U.S. older adults, PMC8938292 (https://pmc.ncbi.nlm.nih.gov/articles/PMC8938292/); Postpandemic telehealth use among older adults 2024, PMC13296669 (https://pmc.ncbi.nlm.nih.gov/articles/PMC13296669/); Older patient preferences and comfort with telemedicine, PMC12554828 (https://pmc.ncbi.nlm.nih.gov/articles/PMC12554828/); NCOA, online therapy guide for older adults (https://www.ncoa.org/article/online-therapy-a-mental-health-guide-for-older-adults/); Commonwealth Fund, older adults' mental health needs and access (https://www.commonwealthfund.org/publications/issue-briefs/2022/jan/comparing-older-adults-mental-health-needs-and-access-treatment).
