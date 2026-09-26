@@ -451,6 +451,26 @@ section:has(.hero-art) { overflow: hidden; }
 [data-reveal][data-delay="2"] { transition-delay: 180ms; }
 [data-reveal][data-delay="3"] { transition-delay: 270ms; }
 
+
+/* ---- Brand motion (quiet, once, reduced-motion safe) ------------------ */
+/* Coral underline draws on beneath the one accent word in the h1 */
+h1 .accent { position: relative; display: inline-block; }
+h1 .accent::after {
+  content: ""; position: absolute; left: .02em; right: .02em; bottom: .02em; height: .06em;
+  background: var(--coral); border-radius: 2px; transform-origin: left center;
+  transform: scaleX(0); animation: underline 700ms var(--ease) 500ms forwards;
+}
+@keyframes underline { to { transform: scaleX(1); } }
+/* Medicare stamp settles in like a press */
+.stamp { animation: stamp-in 600ms var(--ease) 350ms both; }
+@keyframes stamp-in { from { opacity: 0; transform: scale(1.12) rotate(-4deg); } to { opacity: 1; transform: none; } }
+/* Oversized flower turns imperceptibly */
+.stamp-bg img { animation: turn 160s linear infinite; }
+@keyframes turn { to { transform: rotate(360deg); } }
+/* Header flower breathes once on load */
+.header .logo img { animation: settle 900ms var(--ease) both; }
+@keyframes settle { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
 /* ---- Motion safety ------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0ms !important; }
