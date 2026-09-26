@@ -58,6 +58,35 @@
     }).catch(function () {});
   })();
 
+  // ---- Section textures ------------------------------------------------------
+  (function attachTextures() {
+    var slots = document.querySelectorAll('.texture[data-texture]');
+    if (!slots.length) return;
+    var base = document.querySelector('script[src*="tl.js"]').getAttribute('src').replace(/js\/tl\.js.*$/, 'img/textures/');
+    fetch(base + 'index.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+      var have = {}; (list || []).forEach(function (f) { have[f] = true; });
+      slots.forEach(function (slot) {
+        var name = slot.getAttribute('data-texture');
+        if (have[name + '.mp4'] && !reduced) {
+          var v = document.createElement('video');
+          v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true'); v.preload = 'metadata';
+          if (have[name + '-poster.jpg']) v.poster = base + name + '-poster.jpg';
+          v.src = base + name + '.mp4';
+          v.addEventListener('canplay', function () { v.classList.add('is-ready'); v.play().catch(function () {}); });
+          v.addEventListener('error', function () { v.remove(); });
+          slot.appendChild(v);
+        }
+        if (have[name + '.jpg']) {
+          var img = document.createElement('img'); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+          img.src = base + name + '.jpg';
+          img.addEventListener('load', function () { img.classList.add('is-in'); });
+          img.addEventListener('error', function () { img.remove(); });
+          slot.appendChild(img);
+        }
+      });
+    }).catch(function () {});
+  })();
+
   // ---- Reveal -----------------------------------------------------------
   var revealEls = document.querySelectorAll('[data-reveal]');
   if (reduced || !('IntersectionObserver' in window)) {

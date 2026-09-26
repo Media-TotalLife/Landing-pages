@@ -452,6 +452,16 @@ section:has(.hero-art) { overflow: hidden; }
 [data-reveal][data-delay="3"] { transition-delay: 270ms; }
 
 
+/* ---- Section texture (ambient photo layer, very low opacity) ------------ */
+.texture { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.texture img, .texture video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 900ms var(--ease); }
+.texture img.is-in, .texture video.is-ready { opacity: .13; }
+.section--sand .texture img.is-in, .section--sand .texture video.is-ready { opacity: .22; }
+/* cream wash keeps text contrast and fades the texture toward the edges (photo overlay) */
+.texture::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, rgba(255,250,246,0) 25%, rgba(255,250,246,0) 75%, var(--bg) 100%); }
+.section--sand .texture::after { background: linear-gradient(180deg, var(--sand) 0%, rgba(246,232,212,0) 25%, rgba(246,232,212,0) 75%, var(--sand) 100%); }
+.texture video.is-ready + img { opacity: 0; }
+
 /* ---- Brand motion (quiet, once, reduced-motion safe) ------------------ */
 /* Coral underline draws on beneath the one accent word in the h1 */
 h1 .accent { position: relative; display: inline-block; }
