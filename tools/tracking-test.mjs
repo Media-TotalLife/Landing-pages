@@ -6,7 +6,7 @@ import { chromium } from 'playwright';
 const CFG = `window.TL_CONFIG = { hubspot: { portalId: '424242', meetingsLink: 'https://meetings.hubspot.com/total-life/care-call' },
   meta: { pixelId: '999000111' }, google: { adsId: 'AW-777', leadLabel: 'LEADLBL', bookedLabel: 'BOOKLBL', ga4Id: 'G-TEST' },
   careHours: '9 am to 9 pm Eastern, seven days a week', thanksPath: '../thanks/' };`;
-const pages = ['senior', 'caregiver', 'depression', 'grief'];
+const pages = ['caregiver', 'depression', 'grief'];
 const browser = await chromium.launch();
 let failures = 0; const fail = (m) => { failures++; console.log('  FAIL ' + m); };
 for (const key of pages) {
@@ -67,7 +67,7 @@ for (const key of pages) {
   const fresh = await browser.newContext({ viewport: { width: 1280, height: 900 } }); const p2 = await fresh.newPage(); const fbq2 = [];
   await p2.exposeFunction('__rec', (kind, args) => { if (kind === 'fbq') fbq2.push(args); });
   await p2.route('**/*', async (route) => { const u = route.request().url(); if (u.includes('/assets/js/config.js')) return route.fulfill({ contentType: 'text/javascript', body: CFG }); if (u.includes('connect.facebook.net')) return route.fulfill({ contentType: 'text/javascript', body: `var q=(window.fbq&&window.fbq.queue)||[];window.fbq=function(){window.__rec('fbq',[].slice.call(arguments).map(String));};window.fbq.loaded=true;window.fbq.queue=[];q.forEach(function(a){window.__rec('fbq',[].slice.call(a).map(String));});` }); if (u.includes('googletagmanager.com') || u.includes('js.hs-scripts.com')) return route.fulfill({ contentType: 'text/javascript', body: '' }); return route.continue(); });
-  await p2.goto('http://localhost:4173/thanks/?p=senior', { waitUntil: 'networkidle' });
+  await p2.goto('http://localhost:4173/thanks/?p=caregiver', { waitUntil: 'networkidle' });
   if (fbq2.some(a => a[0] === 'track' && (a[1] === 'Lead' || a[1] === 'Schedule'))) fail('direct visit to /thanks/ fired a conversion without a booking');
   await fresh.close();
   const attrOnThanks = await page.evaluate(() => JSON.parse(sessionStorage.getItem('tl_attr') || '{}'));

@@ -1,6 +1,6 @@
 // Booking-funnel checks for every page. Exits 1 on any failure. usage: node tools/states.mjs (server on :4173)
 import { chromium } from 'playwright';
-const pages = { senior: '/senior/', caregiver: '/caregiver/', depression: '/depression/', grief: '/grief/' };
+const pages = { caregiver: '/caregiver/', depression: '/depression/', grief: '/grief/' };
 const browser = await chromium.launch();
 let failures = 0;
 const fail = (m) => { failures++; console.log('  FAIL ' + m); };
@@ -60,18 +60,12 @@ for (const [key, url] of Object.entries(pages)) {
     await ctx.close();
   }
 }
-// variants
+// thanks page: conversions fire only after a booking flag set by the landing page
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
 const page = await ctx.newPage();
-for (const v of ['', 'caregiver-stress', 'caregiver-support', 'nonsense']) {
-  await page.goto('http://localhost:4173/senior/' + (v ? `?v=${v}&utm_source=t&gclid=x` : ''), { waitUntil: 'networkidle' });
-  const h1s = await page.locator('h1:visible').allTextContents();
-  console.log(`variant "${v}": ${JSON.stringify(h1s)}`);
-  if (h1s.length !== 1) fail('variant h1 count ' + h1s.length);
-}
-// thanks page: conversions fire only after a booking flag set by the landing page
-await page.evaluate(() => sessionStorage.setItem('tl_booked', 'senior'));
-await page.goto('http://localhost:4173/thanks/?p=senior', { waitUntil: 'networkidle' });
+await page.goto('http://localhost:4173/caregiver/', { waitUntil: 'domcontentloaded' });
+await page.evaluate(() => sessionStorage.setItem('tl_booked', 'caregiver'));
+await page.goto('http://localhost:4173/thanks/?p=caregiver', { waitUntil: 'networkidle' });
 const conv = await page.evaluate(() => window.dataLayer.filter(e => e.event === 'tl_conversion').map(e => e.kind));
 console.log('thanks conversions:', JSON.stringify(conv));
 if (!(conv.includes('lead') && conv.includes('booked'))) fail('thanks page did not fire lead+booked');
