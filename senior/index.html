@@ -64,9 +64,6 @@
 }
 
 /* Proof: stat band + quote + therapists + carriers */
-.proof .quote { max-width: 52em; margin: clamp(3.5rem, 7vw, 6rem) auto 0; text-align: center; }
-.proof .quote figcaption { justify-content: center; }
-.proof .quote blockquote { font-size: clamp(1.375rem, 2.2vw, 1.75rem); }
 .therapists { margin-top: clamp(3.5rem, 7vw, 6rem); }
 .therapists .sec-head { margin-bottom: 2rem; }
 
@@ -77,11 +74,6 @@
 /* Final CTA */
 /* Hero holds the booking card (copy left, calendar right; stacked on mobile) */
 .hero .hero-note { margin-top: 1.5rem; color: var(--navy); font-size: var(--text); max-width: 42ch; }
-.quote-row { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; margin-top: clamp(3rem, 6vw, 5rem); }
-.quote-row .quote { margin: 0; text-align: left; } .quote-row .quote figcaption { justify-content: flex-start; }
-.member-photo .portrait { aspect-ratio: 4 / 5; }
-.member-photo { position: relative; } .member-photo .illustrative { position: absolute; left: .9rem; top: .9rem; z-index: 2; margin: 0; background: rgba(255,250,246,.9); color: var(--muted); font-size: var(--text-sm); padding: .35rem .7rem; border-radius: var(--pill); }
-@media (max-width: 760px) { .quote-row { grid-template-columns: 1fr; } .member-photo { max-width: 420px; } }
 /* Hero grid: headline, then the booking card, then lede/CTA/note on phones; two columns on desktop */
 .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); grid-template-rows: auto 1fr; grid-template-areas: "head card" "more card"; align-items: start; row-gap: 0; }
 .hero .hero-more { padding-top: 1.25rem; }
@@ -151,6 +143,13 @@
     </div>
   </section>
 
+  <!-- SCENE PHOTO -->
+  <section class="section section--tight scene" aria-label="Photograph">
+    <div class="wrap">
+      <div class="portrait portrait--scene" data-asset="senior-scene.jpg" data-video="senior-scene.mp4" data-poster="senior-scene-poster.jpg" data-placeholder="[PHOTO 16:9: A sunlit living room where an older woman reads in an armchair by a large window, a cup of tea on the side table, morning light across an oak floor.]" role="img" aria-label="An older woman reading by a window at home"></div>
+    </div>
+  </section>
+
   
 
   <!-- HOW IT WORKS -->
@@ -176,7 +175,9 @@
       <div class="sec-head" data-reveal>
         <h2 id="help-h">What therapy can <span class="accent">help</span> with.</h2>
       </div>
-      <ul class="help-grid">
+      <div class="theme-grid">
+        <div class="portrait" data-asset="senior-hero.jpg" data-video="senior-hero.mp4" data-poster="senior-hero-poster.jpg" data-placeholder="[PHOTO 4:5: an older adult at home in window light]" role="img" aria-label="An older woman at home by a window"></div>
+        <ul class="help-grid">
         <li class="card help-card">
           <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10.2A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7 2.8C19 16.4 12 21 12 21z"/></svg></span>
           <div><h3>Grief</h3><p>Talking through the loss of a spouse, a friend or a sibling.</p></div>
@@ -202,28 +203,26 @@
           <div><h3>Caring for someone else</h3><p>Support for people who look after a spouse, a parent or a friend.</p></div>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- PROOF -->
   <section class="section section--cream proof" aria-label="Member outcomes and plans we work with">
     <div class="wrap">
-      <div class="stat-band" data-reveal="fade">
+      <div class="proof-grid">
+        <div class="portrait portrait--square" data-asset="senior-detail.jpg" data-placeholder="[PHOTO 1:1: Close photograph of an older person's hands around a warm ceramic mug, an oatmeal cardigan sleeve, soft window light, shallow depth of field.]" role="img" aria-label="Hands around a warm mug"></div>
+        <div class="proof-stats">
+          <div class="stat-band" data-reveal="fade">
         <div class="stat"><b>200<small>+</small></b><span>licensed providers</span></div>
         <div class="stat"><b>49</b><span>states served</span></div>
         <div class="stat"><b>92<small>%</small></b><span>of members stay with their assigned therapist</span></div>
       </div>
-      <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
-
-      <div class="quote-row">
-      <div class="member-photo"><p class="illustrative">Illustrative image</p><div class="portrait" data-asset="senior-hero.jpg" data-video="senior-hero.mp4" data-poster="senior-hero-poster.jpg" data-placeholder="[PORTRAIT: real Total Life member, 65–75, at home in natural window light, candid, looking slightly off camera]" role="img" aria-label="Illustrative image of an older adult at home">
-          
-        </div></div>
-      <figure class="quote">
-        <blockquote>“As a senior, it was difficult to find resources that cater to my experience. Total Life does. I feel like I am in good hands and can trust that my therapist will help me work through any challenges I may be facing.”</blockquote>
-        <figcaption><span><b>Total Life Member</b> · joined March 2024</span></figcaption>
-      </figure>
+          <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
+        </div>
       </div>
+
+      
 
       
 

@@ -23,7 +23,9 @@ Research basis: one action per page, CTA above the fold and repeated, trust sign
 for older adults, 18px+ body, 56px targets, high contrast, no carousels or motion that competes with the action.
 
 1. **Header**: logo, phone (digits), nothing else on mobile. Desktop nav: How it works · Questions.
-2. **Hero**: eyebrow (audience + Medicare), headline (theme, one coral word, Meta-compliant), one lede (2 sentences
+2. **Hero** (headline left, booking card right; on phones headline, then card, then lede and note), followed by a
+   full-width 16:9 scene photograph. **Theme block** carries a 4:5 portrait beside its cards.
+   Original hero note: eyebrow (audience + Medicare), headline (theme, one coral word, Meta-compliant), one lede (2 sentences
    max), primary CTA "Book my call" scrolling to the widget, Covered by Medicare stamp, reassurance line with phone,
    portrait frame (real member imagery, or placeholder).
 3. **Booking card in the hero** (`#book`, target of every CTA): the hero's right column is the HubSpot widget with
@@ -33,9 +35,9 @@ for older adults, 18px+ body, 56px targets, high contrast, no carousels or motio
 4. **How it works**: four steps, one line each. Book · We call · We check coverage · Matched with a therapist.
 5. **Theme block**: one short section specific to the theme (what therapy helps with, in statements). Max six
    cards, one sentence each.
-6. **Proof**: stat band (three sourced figures), the brand-book member quote verbatim with its attribution (senior
-   pairs it with the real member photo), and the plans bar ("Medicare and insurance plans we work with"). No
-   therapist strip: Total Life has not supplied therapist names or photos.
+6. **Proof**: a 1:1 detail photograph beside the stat band (200+ licensed providers · 49 states · 92% stay with
+   their assigned therapist, with the source line). No testimonials of any kind, no therapist strip, no carrier
+   logos: Total Life has not supplied them and fabricated proof is disqualifying.
 7. **FAQ**: five questions max, theme-specific where it matters (coverage, phone-only, privacy, what happens next).
 8. **Final CTA**: headline, "Book my call", phone.
 9. **Footer**: compliance block.

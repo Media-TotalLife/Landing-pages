@@ -56,10 +56,6 @@
 @media (max-width: 560px) { .help-grid { grid-template-columns: 1fr; } }
 
 /* Proof: stats + quote + therapists + carriers */
-.proof .source { margin-bottom: clamp(3rem, 6vw, 5rem); }
-.proof .quote { max-width: 52em; margin-inline: auto; text-align: center; }
-.proof .quote figcaption { justify-content: center; }
-.proof .quote blockquote { font-size: clamp(1.375rem, 2.2vw, 1.75rem); }
 .therapists { margin-top: clamp(3.5rem, 7vw, 6rem); }
 .therapists .sec-head { margin-bottom: 2rem; }
 @media (min-width: 641px) and (max-width: 900px) {
@@ -131,6 +127,13 @@
     </div>
   </section>
 
+  <!-- SCENE PHOTO -->
+  <section class="section section--tight scene" aria-label="Photograph">
+    <div class="wrap">
+      <div class="portrait portrait--scene" data-asset="grief-scene.jpg" data-video="grief-scene.mp4" data-poster="grief-scene-poster.jpg" data-placeholder="[PHOTO 16:9: An older woman walking a small dog along a quiet tree-lined street in soft autumn light, seen from a little distance.]" role="img" aria-label="An older woman walking a dog"></div>
+    </div>
+  </section>
+
   
 
   <!-- HOW IT WORKS -->
@@ -156,7 +159,9 @@
       <div class="sec-head" data-reveal>
         <h2 id="help-h">What grief counseling <span class="accent">helps</span> with.</h2>
       </div>
-      <ul class="help-grid">
+      <div class="theme-grid">
+        <div class="portrait" data-asset="grief-portrait.jpg" data-placeholder="[PHOTO 4:5: A man in his seventies at a kitchen table with a mug of tea, looking toward a window, thoughtful and steady, morning light.]" role="img" aria-label="A man at his kitchen table in morning light"></div>
+        <ul class="help-grid">
         <li class="card help-card">
           <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10.2A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7 2.8C19 16.4 12 21 12 21z"/></svg></span>
           <div><h3>Losing a spouse or partner</h3><p>The loss of a husband, wife or long-time partner.</p></div>
@@ -178,23 +183,26 @@
           <div><h3>Losing a pet</h3><p>A companion of many years is a real loss.</p></div>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- PROOF -->
   <section class="section section--cream proof" aria-label="Member outcomes and plans we work with">
     <div class="wrap">
-      <div class="stat-band" data-reveal="fade">
+      <div class="proof-grid">
+        <div class="portrait portrait--square" data-asset="grief-detail.jpg" data-placeholder="[PHOTO 1:1: A garden bench in late afternoon light with a folded cardigan on the seat and roses softly out of focus behind, no person.]" role="img" aria-label="A garden bench in late light"></div>
+        <div class="proof-stats">
+          <div class="stat-band" data-reveal="fade">
         <div class="stat"><b>200<small>+</small></b><span>licensed providers</span></div>
         <div class="stat"><b>49</b><span>states served</span></div>
         <div class="stat"><b>92<small>%</small></b><span>of members stay with their assigned therapist</span></div>
       </div>
-      <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
+          <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
+        </div>
+      </div>
 
-      <figure class="quote">
-        <blockquote>“As a senior, it was difficult to find resources that cater to my experience. Total Life does. I feel like I am in good hands and can trust that my therapist will help me work through any challenges I may be facing.”</blockquote>
-        <figcaption><b>Total Life Member</b> · joined March 2024</figcaption>
-      </figure>
+      
 
       
 

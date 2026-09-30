@@ -55,9 +55,6 @@ a[href^="tel:"] { white-space: nowrap; }
 .theme .card p { color: var(--navy); font-size: var(--text); margin: 0; text-wrap: pretty; }
 
 /* Proof: stat band + quote + therapists + carriers */
-.proof .quote { max-width: 52em; margin: clamp(3.5rem, 7vw, 6rem) auto 0; text-align: center; }
-.proof .quote figcaption { justify-content: center; }
-.proof .quote blockquote { font-size: clamp(1.375rem, 2.2vw, 1.75rem); }
 .therapists { margin-top: clamp(3.5rem, 7vw, 6rem); }
 .therapists .sec-head { margin-bottom: 2rem; }
 
@@ -126,6 +123,13 @@ a[href^="tel:"] { white-space: nowrap; }
     </div>
   </section>
 
+  <!-- SCENE PHOTO -->
+  <section class="section section--tight scene" aria-label="Photograph">
+    <div class="wrap">
+      <div class="portrait portrait--scene" data-asset="depression-scene.jpg" data-video="depression-scene.mp4" data-poster="depression-scene-poster.jpg" data-placeholder="[PHOTO 16:9: An older man opening the curtains in a quiet bedroom, morning light spilling across the floor and a made bed, seen from behind.]" role="img" aria-label="An older man opening curtains in the morning"></div>
+    </div>
+  </section>
+
   
 
   <!-- How it works -->
@@ -150,12 +154,15 @@ a[href^="tel:"] { white-space: nowrap; }
       <div class="sec-head" data-reveal>
         <h2 id="theme-title">What therapy for depression <span class="accent">looks like.</span></h2>
       </div>
-      <div class="grid grid--3">
+      <div class="theme-grid">
+        <div class="portrait" data-asset="depression-portrait.jpg" data-placeholder="[PHOTO 4:5: A woman in her seventies seated in an armchair, holding a phone to her ear mid-conversation, expression calm and open, soft daylight from a window.]" role="img" aria-label="A woman talking on the phone in an armchair"></div>
+        <div class="grid grid--3">
         <div class="card" data-reveal data-delay="1"><span class="num">01</span><p>Sessions work on low mood and on losing interest in things once enjoyed.</p></div>
         <div class="card" data-reveal data-delay="2"><span class="num">02</span><p>Sessions work on sleep, energy and worry.</p></div>
         <div class="card" data-reveal data-delay="3"><span class="num">03</span><p>Sessions work on isolation after a loss, a move or a change in health.</p></div>
         <div class="card" data-reveal data-delay="1"><span class="num">04</span><p>Weekly sessions by phone or video, from home.</p></div>
         <div class="card" data-reveal data-delay="2"><span class="num">05</span><p>A therapist who works with adults 65 and older.</p></div>
+      </div>
       </div>
     </div>
   </section>
@@ -163,17 +170,19 @@ a[href^="tel:"] { white-space: nowrap; }
   <!-- Proof -->
   <section class="section section--cream proof" aria-label="Member outcomes and plans we work with">
     <div class="wrap">
-      <div class="stat-band" data-reveal="fade">
+      <div class="proof-grid">
+        <div class="portrait portrait--square" data-asset="depression-detail.jpg" data-placeholder="[PHOTO 1:1: A reading chair by a window with a folded oatmeal blanket and a closed book on the seat, late-morning light, no person.]" role="img" aria-label="A reading chair by a window"></div>
+        <div class="proof-stats">
+          <div class="stat-band" data-reveal="fade">
         <div class="stat"><b>200<small>+</small></b><span>licensed providers</span></div>
         <div class="stat"><b>49</b><span>states served</span></div>
         <div class="stat"><b>92<small>%</small></b><span>of members stay with their assigned therapist</span></div>
       </div>
-      <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
+          <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
+        </div>
+      </div>
 
-      <figure class="quote">
-        <blockquote>“As a senior, it was difficult to find resources that cater to my experience. Total Life does. I feel like I am in good hands and can trust that my therapist will help me work through any challenges I may be facing.”</blockquote>
-        <figcaption><span><b>Total Life Member</b> · joined March 2024</span></figcaption>
-      </figure>
+      
 
       
 

@@ -60,7 +60,7 @@ frames keep their placeholder. Clips play muted and looped, switch the frame to 
 clip share one crop, and are skipped under `prefers-reduced-motion`. **Do not install the generated founder
 placeholder**: the caregiver page labels that frame as Neelam Brar, so only a real photograph belongs there. All
 therapist images are placeholders until named Total Life providers replace them (brand book: no stock clinicians).
-The generation brief lives in `docs/higgsfield-agent-prompt.md`.
+The current generation brief is `docs/higgsfield-agent-prompt-v3.md` (three image slots per page: a 16:9 scene under the hero, a 4:5 portrait beside the theme cards, a 1:1 detail beside the stats). Earlier briefs are kept for reference. There are no testimonials or therapist photos on the pages by decision.
 
 ## Wiring HubSpot, Meta and Google
 
