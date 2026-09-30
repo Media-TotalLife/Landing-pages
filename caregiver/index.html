@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Therapy for Older Adults Who Look After Someone Else | Total Life</title>
-<meta name="description" content="Talk therapy for adults 65+ who look after a spouse or parent, by phone or video from home, covered by Medicare. Book a call at a time you choose. A family member can book with you.">
+<title>Caregiver Stress Therapy for Adults 65+, Covered by Medicare | Total Life</title>
+<meta name="description" content="Caregiver stress therapy for adults 65+ who care for a spouse, a parent or another loved one, including dementia caregiving. Sessions from home by phone or video with therapists who work with older adults. Covered by Medicare. Book a call.">
 <link rel="icon" href="../assets/img/flower.png">
 <link rel="preload" href="../assets/fonts/InterTight-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,14 +14,11 @@
   main section[id] { scroll-margin-top: 6rem; }
   figure { margin: 0; }
 
-  /* Hero — sand-tinted, letter on the left, square founder portrait on the right */
+  /* Hero — sand-tinted, copy left, booking card right */
   .hero { padding-block: clamp(3rem, 6vw, 5.5rem) clamp(3.5rem, 6vw, 6rem); }
   .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-  .hero h1 { max-width: 14ch; }
-  .letter { margin: 1.5rem 0 0; max-width: 34em; position: relative; padding-left: 1.75rem; border-left: 3px solid var(--coral); }
-  .letter p { font-size: var(--text-lg); line-height: 1.55; color: var(--navy); }
-  .letter footer { margin-top: 1rem; font-size: var(--text-sm); color: var(--muted); }
-  .letter footer b { color: var(--navy); font-weight: 600; }
+  .hero h1 { max-width: 20ch; }
+  .hero .lede { margin-top: 1.25rem; }
   .hero .hero-actions {
     display: grid; grid-template-columns: max-content max-content; grid-template-areas: "btn stamp" "reassure reassure";
     column-gap: 1.75rem; row-gap: 1.125rem; align-items: center; justify-items: start; margin-top: 2.25rem;
@@ -36,7 +33,6 @@
   }
   @media (max-width: 560px) {
     .hero { padding-block: 2rem 2.5rem; }
-    .letter { margin-top: 1rem; padding-left: 1.25rem; }
     .hero .hero-actions { grid-template-columns: auto 1fr; grid-template-areas: "btn btn" "stamp reassure"; column-gap: 1rem; row-gap: 1.25rem; align-items: center; }
     .hero .hero-actions .btn { width: 100%; }
   }
@@ -60,7 +56,8 @@
   .support p { color: var(--navy); font-size: var(--text-lg); line-height: 1.45; text-wrap: pretty; }
 
   /* Proof */
-  .proof-quote { max-width: 46em; margin: 0 auto clamp(3rem, 6vw, 4.5rem); }
+  .proof-quote, .founder-quote { max-width: 46em; margin: 0 auto clamp(3rem, 6vw, 4.5rem); }
+  .founder-quote { margin-top: clamp(3rem, 6vw, 4.5rem); }
   .therapists { margin-bottom: clamp(3rem, 6vw, 4.5rem); }
   .portrait .chip { max-width: calc(100% - 2.5rem); white-space: normal; line-height: 1.3; }
   .carrier-box { padding: clamp(1.5rem, 3vw, 2.25rem); text-align: center; }
@@ -80,7 +77,7 @@
 /* Hero holds the booking card (copy left, calendar right; stacked on mobile) */
 .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); align-items: start; }
 .hero .hero-art { max-width: none; width: 100%; margin: 0; }
-.hero .hero-note { margin-top: 1.5rem; color: var(--navy); font-size: var(--text); max-width: 42ch; }
+.hero .hero-note { margin-top: 1.25rem; color: var(--navy); font-size: var(--text); max-width: 42ch; }
 @media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .hero .hero-art { max-width: none; } }
 </style>
 </head>
@@ -103,16 +100,13 @@
 
 <main id="main">
 
-  <!-- HERO — sand, founder letter -->
+  <!-- HERO — sand -->
   <section class="section section--sand hero" aria-labelledby="hero-title">
     <div class="wrap">
       <div class="hero-copy">
-        <p class="eyebrow">Support for caregivers 65+</p>
-        <h1 id="hero-title">Therapy for older adults who look after <span class="accent">someone else.</span></h1>
-        <blockquote class="letter">
-          <p>“I built Total Life because I couldn't find behavioral health support for my own mom inside Medicare.”</p>
-          <footer>— <b>Neelam Brar</b>, Founder &amp; CEO</footer>
-        </blockquote>
+        <p class="eyebrow">Caregiver stress therapy for adults 65+</p>
+        <h1 id="hero-title">Caring for someone is a full-time job. Support is <span class="accent">covered.</span></h1>
+        <p class="lede">Therapy for older adults who look after a spouse, a parent or another loved one, from home, by phone or video. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
         <div class="hero-actions">
           <a class="btn btn--primary btn--lg" href="#book" data-hero-cta data-track="hero_cta">Book my call</a>
           <div class="stamp" role="img" aria-label="Covered by Medicare">Covered<br>by<br>Medicare</div>
@@ -152,18 +146,19 @@
     </div>
   </section>
 
-  <!-- THEME: SUPPORT FOR CAREGIVERS -->
+  <!-- THEME: CAREGIVER STRESS -->
   <section class="section section--tight" id="caregivers" aria-labelledby="care-title">
     <div class="stamp-bg stamp-bg--left" aria-hidden="true"><img src="../assets/img/flower.png" alt="" loading="lazy"></div>
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <h2 id="care-title">Support for <span class="accent">caregivers.</span></h2>
+        <h2 id="care-title">What caregiver stress therapy <span class="accent">covers.</span></h2>
       </div>
       <ul class="grid support">
-        <li class="card" data-reveal><i aria-hidden="true"></i><p>Looking after a spouse or parent is hard work, and it is worth talking about.</p></li>
-        <li class="card" data-reveal data-delay="1"><i aria-hidden="true"></i><p>Behavioral health is covered by Medicare, including for adults 65+ who care for someone else.</p></li>
-        <li class="card" data-reveal data-delay="2"><i aria-hidden="true"></i><p>Sessions are by phone or video, from home, at a regular time.</p></li>
-        <li class="card" data-reveal data-delay="3"><i aria-hidden="true"></i><p>A care team that answers the phone and helps find the right therapist.</p></li>
+        <li class="card" data-reveal><i aria-hidden="true"></i><p>Caring for a spouse or partner through a long illness, and the strain it puts on the marriage.</p></li>
+        <li class="card" data-reveal data-delay="1"><i aria-hidden="true"></i><p>Caring for a parent while running a home and keeping up with the rest of life.</p></li>
+        <li class="card" data-reveal data-delay="2"><i aria-hidden="true"></i><p>Dementia caregiving, and the way the relationship changes as memory changes.</p></li>
+        <li class="card" data-reveal data-delay="3"><i aria-hidden="true"></i><p>Anticipatory grief: grieving a person who is still here.</p></li>
+        <li class="card" data-reveal data-delay="4"><i aria-hidden="true"></i><p>Guilt, exhaustion and making time for the carer's own health.</p></li>
       </ul>
     </div>
   </section>
@@ -181,6 +176,10 @@
       <p class="source center" style="margin-bottom:clamp(3rem, 6vw, 4.5rem)">Internal outcomes data · Q3 2024 · N=2,847</p>
 
       
+      <figure class="quote founder-quote" data-reveal>
+        <blockquote>“I built Total Life because I couldn't find behavioral health support for my own mom inside Medicare.”</blockquote>
+        <figcaption><span><b>Neelam Brar</b> · Founder &amp; CEO</span></figcaption>
+      </figure>
       <figure class="quote proof-quote" data-reveal>
         <blockquote>“As a senior, it was difficult to find resources that cater to my experience. Total Life does. I feel like I am in good hands and can trust that my therapist will help me work through any challenges I may be facing.”</blockquote>
         <figcaption><span><b>Total Life Member</b> · joined March 2024</span></figcaption>
@@ -203,34 +202,33 @@
       </div>
       <div class="faq">
         <details>
-          <summary>Can a family member help set this up?<span class="plus" aria-hidden="true">+</span></summary>
+          <summary>Is caregiver stress therapy covered by Medicare?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
-            <p>Yes. A family member can book the call and join it. The older adult decides whether to go ahead, and nothing starts until they say so.</p>
+            <p>Behavioral health is covered by Medicare, and Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
           </div>
         </details>
         <details>
-          <summary>Can a family member book on behalf of an older adult?<span class="plus" aria-hidden="true">+</span></summary>
+          <summary>Is this for the caregiver or the person being cared for?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
-            <p>Yes. The person booked for should know about the call and agree to it. We call the number on the booking at the chosen time; a family member is welcome to be on the line.</p>
+            <p>For the caregiver, who is the member and the person the therapist sees. The person being cared for may have their own care separately.</p>
           </div>
         </details>
         <details>
-          <summary>Is it covered by Medicare?<span class="plus" aria-hidden="true">+</span></summary>
+          <summary>Can sessions fit around caregiving?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
-            <p>Behavioral health is covered by Medicare, and Total Life is an enrolled Medicare provider and works with many insurance plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
-            <p>We go over the plan on the call, before any session.</p>
+            <p>Sessions are by phone or video, from home, at a regular time each week. There is no travel and no waiting room.</p>
           </div>
         </details>
         <details>
-          <summary>Can family be part of the sessions?<span class="plus" aria-hidden="true">+</span></summary>
+          <summary>Can a family member book with me?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
-            <p>That is up to the member and their therapist. Sessions are private, and family is included only with the member's consent.</p>
+            <p>Yes, as long as the member knows about the call and agrees to it. A family member is welcome to book with you and join the call.</p>
           </div>
         </details>
         <details>
-          <summary>Is a computer needed?<span class="plus" aria-hidden="true">+</span></summary>
+          <summary>What happens after I book?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
-            <p>No. Sessions can be a regular phone call at a regular time. Anyone who prefers video gets help setting it up.</p>
+            <p>We call the number on the booking at the chosen time, go over coverage and talk about what matters most. Then we match the member with a therapist who works with older adults.</p>
           </div>
         </details>
       </div>
