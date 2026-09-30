@@ -1,3 +1,5 @@
+> **Superseded (30 Sept 2026):** replaced by `docs/higgsfield-agent-prompt-v4.md` (Higgsfield, 21 stills + 3 scene loops, one recurring person per page). Kept for history only.
+
 # Image generation brief — Total Life landing pages (GPT Image)
 
 For whoever generates the photographs with GPT Image (ChatGPT image generation or the Images API). Supersedes

@@ -1,4 +1,4 @@
-> **Superseded (30 Sept 2026):** the current brief is `docs/image-generation-brief.md` (GPT Image, 21 slots). This file is kept for the clip prompts only.
+> **Superseded (30 Sept 2026):** replaced by `docs/higgsfield-agent-prompt-v4.md` (21 stills + 3 scene loops). Kept for history only.
 
 # System prompt — Total Life landing page photography, set 3 (9 stills, 3 clips; superseded for stills by image-generation-brief.md)
 
