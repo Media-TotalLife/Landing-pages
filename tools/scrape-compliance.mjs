@@ -9,6 +9,11 @@ const pages = {
   'terms-and-conditions': 'https://totallife.com/termsandconditions/',
   'consent-to-telehealth': 'https://totallife.com/consent-to-telehealth-and-therapy/',
   'home': 'https://totallife.com/',
+  // Added after the 2026-09 parity check: the sitemap lists a HIPAA Notice of Privacy Practices page and a
+  // Consumer Health Data Privacy Policy page whose slugs search engines never exposed; the sitemap scrape prints them.
+  'sitemap': 'https://totallife.com/sitemap/',
+  'contact': 'https://totallife.com/contact/',
+  'not-affiliated-with-medicare': 'https://totallife.com/not-affiliated-with-medicare/',
 };
 mkdirSync('docs/compliance', { recursive: true });
 const browser = await chromium.launch();
@@ -36,12 +41,16 @@ for (const [slug, url] of Object.entries(pages)) {
       const a = src.indexOf('<!-- POLICY-START -->') + '<!-- POLICY-START -->'.length; const b = src.indexOf('<!-- POLICY-END -->');
       writeFileSync(file, src.slice(0, a) + `\n        <p class="meta">Copied ${new Date().toISOString().slice(0,10)} from ${url}</p>\n        ` + html + '\n        ' + src.slice(b));
       console.log('wrote privacy/index.html');
-      for (const f of ['senior','caregiver','depression','grief','thanks','privacy']) { const fp = `${f}/index.html`; const t = readFileSync(fp, 'utf8').replace(/<a href="https:\/\/totallife\.com\/privacy\/" rel="noopener" data-privacy-link>/g, '<a href="../privacy/" data-privacy-link>'); writeFileSync(fp, t); }
+      for (const f of ['caregiver','depression','grief','thanks','privacy']) { const fp = `${f}/index.html`; const t = readFileSync(fp, 'utf8').replace(/<a href="https:\/\/totallife\.com\/privacy\/" rel="noopener" data-privacy-link>/g, '<a href="../privacy/" data-privacy-link>'); writeFileSync(fp, t); }
       console.log('footer Privacy Policy links now point to /privacy/');
     }
     writeFileSync(`docs/compliance/${slug}.txt`, `${url}\nFetched ${new Date().toISOString()}\n\n${text}`);
-    const hits = [...new Set((text.match(/Total Life[^.\n]{0,40}(Inc\.?|LLC|Corporation)|[\w.+-]+@[\w-]+\.[\w.]+|\b\d{1,5} [A-Z][\w .]+,? [A-Z]{2} \d{5}\b|Notice of Privacy Practices[^\n]{0,80}|Do Not Sell[^\n]{0,60}|Last (updated|revised)[^\n]{0,40}/gi) || []))];
+    const hits = [...new Set((text.match(/Total Life[^.\n]{0,40}(Inc\.?|LLC|Corporation)|[\w.+-]+@[\w-]+\.[\w.]+|\b\d{1,5} [A-Z][\w .]+,? [A-Z]{2} \d{5}\b|Notice of Privacy Practices[^\n]{0,80}|Do Not Sell[^\n]{0,60}|Consumer Health Data[^\n]{0,80}|not affiliated with Medicare[^\n]{0,80}|Last (updated|revised)[^\n]{0,40}/gi) || []))];
     findings.push({ slug, url, hits });
+    if (slug === 'sitemap') {
+      const links = await page.evaluate(() => [...document.querySelectorAll('a')].map(a => ({ text: a.textContent.trim(), href: a.href })).filter(l => /hipaa|privacy practices|consumer health|accessib|do not sell/i.test(l.text + l.href)));
+      findings.push({ slug: 'sitemap-policy-links', links });
+    }
     if (slug === 'home') {
       const links = await page.evaluate(() => [...document.querySelectorAll('footer a, [class*="footer"] a')].map(a => ({ text: a.textContent.trim(), href: a.href })).filter(l => l.text));
       writeFileSync('docs/compliance/footer-links.json', JSON.stringify(links, null, 2));

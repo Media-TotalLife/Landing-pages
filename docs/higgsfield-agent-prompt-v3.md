@@ -1,4 +1,6 @@
-# System prompt — Total Life landing page photography, set 3 (11 stills, 4 clips)
+> **Superseded (30 Sept 2026):** the current brief is `docs/image-generation-brief.md` (GPT Image, 21 slots). This file is kept for the clip prompts only.
+
+# System prompt — Total Life landing page photography, set 3 (9 stills, 3 clips; superseded for stills by image-generation-brief.md)
 
 Paste everything below the line as the agent's system prompt. Same tooling, credit and safety rules as the earlier
 Total Life jobs (Higgsfield CLI, `--wait --json --wait-timeout 30m`, price check first, log every charge, no
@@ -22,7 +24,7 @@ should look posed for a camera.
 - People: adults 65 to 80, natural grey hair, reading glasses welcome, skin tones rendered warmly and truthfully,
   diverse across the set. Expressions calm and unposed: thoughtful, listening, at ease. No grins at camera, no
   crying, no one looking sad or slumped. Where a phone appears it is held to the ear or resting, never a screen.
-- No faces in the three "detail" images and none in the depression "detail" or grief "detail": objects only.
+- No people in the three "detail" images and none in the depression "detail" or grief "detail": objects only.
 - Composition: keep the top 20% and bottom 15% of every frame simple, subject in the middle 60%.
 - Deliver JPEG quality 90, sRGB, at the exact aspect ratio listed. Filenames exactly as given.
 - One candidate per still except the four scene images (two candidates each, pick the calmer one). Regenerate only
@@ -48,28 +50,18 @@ higgsfield generate create kling3_0 --prompt "<CLIP PROMPT>" --start-image ./<na
 
 Export MP4 H.264, no audio, `-movflags +faststart`, plus the first frame as `<name>-poster.jpg`.
 
-## The 11 stills
-
-### Senior page (general)
-
-`senior-scene.jpg` — 16:9 — two candidates
-> Documentary photograph of a sunlit living room where a woman in her seventies reads in an oatmeal armchair beside a large window, a cup of tea on a small oak side table, morning light lying across an oak floor and a woven rug. She is three-quarter turned away from the camera, absorbed in the book. Cream plaster walls, a trailing plant on a shelf, nothing on the walls. 35mm, f/4, eye level from across the room. Warm neutral palette, gentle Portra 400 grain, calm and unposed. No text, no logos, no watermark.
-
-`senior-detail.jpg` — 1:1
-> Close documentary photograph of an older person's hands wrapped around a warm cream ceramic mug, the cuff of an oatmeal knit cardigan, soft window light from the left, a wooden table edge softly out of focus. 50mm, f/2.8. Natural skin texture, no jewellery, no face in frame. Warm neutral palette, gentle film grain. No text, no logos, no watermark.
-
-(The senior portrait slot uses the existing `senior-hero.jpg` and `senior-hero.mp4`; do not regenerate.)
+## The 9 stills
 
 ### Caregiver stress page
 
 `caregiver-scene.jpg` — 16:9 — two candidates
-> Documentary photograph of an older couple on a wooden front porch in soft morning light, the man steadying the woman's arm as she sits down onto a porch chair, both in cardigans in oatmeal and soft rust, a quiet tree-lined street softly out of focus behind the railing. Seen from a few metres away at eye level, 35mm, f/4. Unposed, mid-movement, neither looking at the camera. Warm neutral palette, gentle Portra 400 grain. No text, no logos, no watermark.
+> Documentary photograph of an older couple on a wooden front porch in soft morning light, the man and the woman settling side by side into two porch chairs, each with a mug, both in cardigans in oatmeal and soft rust, a quiet tree-lined street softly out of focus behind the railing. Seen from a few metres away at eye level, 35mm, f/4. Unposed, mid-movement, neither looking at the camera. Warm neutral palette, gentle Portra 400 grain. No text, no logos, no watermark.
 
 `caregiver-portrait.jpg` — 4:5
 > Documentary portrait of a woman in her seventies seated at a kitchen table, holding a phone to her ear and listening, calm and attentive, eyes toward the window light coming from the side, a mug and a folded newspaper on the table. Sand-coloured wall behind her, cream cardigan, reading glasses. 50mm, f/2.8, eye level. Natural, unposed, no smile for the camera. Warm neutral palette, gentle film grain. No phone screen visible, no text, no logos, no watermark.
 
 `caregiver-detail.jpg` — 1:1
-> Close documentary photograph of two pairs of older hands, one resting gently on the other, on a knitted oatmeal blanket, warm side light from a window, shallow depth of field. 50mm, f/2.8. No faces, no jewellery except a plain wedding band. Warm neutral palette, gentle film grain. No text, no logos, no watermark.
+> Documentary photograph of two cream ceramic mugs and a folded newspaper on a small oak porch table, a knitted oatmeal blanket over the arm of a porch chair behind, warm side light, shallow depth of field. 50mm, f/2.8. No person, no hands. Warm neutral palette, gentle film grain. No text, no logos, no watermark.
 
 ### Depression page
 
@@ -95,10 +87,7 @@ Export MP4 H.264, no audio, `-movflags +faststart`, plus the first frame as `<na
 
 **Checkpoint.** Report files, credits spent and remaining, and the checked Kling price. Stop until told to continue.
 
-## The 4 clips (Kling 3.0, 16:9, 5 s, start = end = the chosen scene still)
-
-`senior-scene.mp4`
-> Locked-off camera. The woman turns a page slowly and the curtain beside the window stirs in a faint breeze; sunlight on the floor brightens and softens as if a thin cloud passes. Nothing else moves. Smooth and continuous, returning to the starting composition. Preserve composition, colours and the room exactly as in the image. No camera movement, no zoom, no cuts, no new objects, no text.
+## The 3 clips (Kling 3.0, 16:9, 5 s, start = end = the chosen scene still)
 
 `caregiver-scene.mp4`
 > Locked-off camera. The couple settle slowly into the porch chairs, a small natural movement, leaves on the street tree stir in a light breeze. Nothing else moves. Smooth and continuous, returning to the starting composition. Preserve composition and colours exactly as in the image. No camera movement, no zoom, no cuts, no new objects, no text.
@@ -113,7 +102,6 @@ Export MP4 H.264, no audio, `-movflags +faststart`, plus the first frame as `<na
 
 ```
 total-life-set-3/
-  senior-scene.jpg  senior-scene.mp4  senior-scene-poster.jpg  senior-detail.jpg
   caregiver-scene.jpg  caregiver-scene.mp4  caregiver-scene-poster.jpg  caregiver-portrait.jpg  caregiver-detail.jpg
   depression-scene.jpg  depression-scene.mp4  depression-scene-poster.jpg  depression-portrait.jpg  depression-detail.jpg
   grief-scene.jpg  grief-scene.mp4  grief-scene-poster.jpg  grief-portrait.jpg  grief-detail.jpg

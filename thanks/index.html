@@ -14,6 +14,9 @@
 .thanks .phone-big { display: inline-flex; align-items: center; min-height: 48px; gap: .6rem; margin-top: .75rem; font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.5rem; text-decoration: none; white-space: nowrap; }
 .thanks .crisis-note { margin-top: 2rem; color: var(--muted); font-size: var(--text); }
 .thanks .crisis-note a { color: var(--teal); font-weight: 700; }
+.thanks .thanks-side { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); }
+.thanks .thanks-photo { aspect-ratio: 4 / 5; max-width: 400px; }
+@media (max-width: 900px) { .thanks .thanks-side { grid-template-columns: 1fr; } .thanks .thanks-photo { max-width: 320px; order: 2; } }
 </style>
 </head>
 <body data-page="thanks">
@@ -47,9 +50,11 @@
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
           1-800-567-5433
         </a>
-        <p class="crisis-note">If you or someone you love is in crisis, call or text <a href="tel:988">988</a> any time.</p>
+        <p class="crisis-note">Total Life is not an emergency service. If you or someone you love is in immediate danger, call 911, or call or text <a href="tel:988">988</a> to reach the Suicide and Crisis Lifeline.</p>
       </div>
 
+      <div class="thanks-side">
+      <div class="portrait thanks-photo" data-asset="senior-hero.jpg" data-video="senior-hero.mp4" data-poster="senior-hero-poster.jpg" data-placeholder="[PHOTO 4:5: senior-hero.jpg, installed: an older woman seated by a window at home in soft daylight, calm.]" role="img" aria-label="An older woman seated by a window at home"></div>
       <section class="next" aria-labelledby="next-h">
         <h2 id="next-h">What happens on the call</h2>
         <ol>
@@ -59,6 +64,7 @@
           <li><span>If you want to go ahead, we match you with a therapist who specializes in older adults. Sessions are by phone or video, from home.</span></li>
         </ol>
       </section>
+      </div>
     </div>
   </section>
 </main>
@@ -88,9 +94,11 @@
     </div>
     <div class="legal">
       <p>Total Life is an enrolled Medicare provider and accepts Medicare and most supplemental plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
-      <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. This page describes a service. It is not medical advice or a diagnosis. Results vary from person to person.</p>
-      <p class="crisis">If you or someone you love is in crisis, call or text 988.</p>
-      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener" data-privacy-link>Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
+      <p>92% figure: internal outcomes data, Q3 2024, N=2,847. Provider and state counts as of 2026. This page describes a service. It is not medical advice or a diagnosis. Results vary from person to person.</p>
+      <p>Total Life is not affiliated with Medicare or any government agency. Total Life is a private telehealth practice and an enrolled Medicare provider. <a href="https://totallife.com/not-affiliated-with-medicare/" rel="noopener">Read the full statement</a>.</p>
+      <p class="crisis">Total Life is not an emergency service. If you or someone you love is in immediate danger, call 911, or call or text 988 to reach the Suicide and Crisis Lifeline.</p>
+      <p style="margin-top:1rem">Total Life Inc. · 136 Madison Avenue, 5th floor, New York, NY 10016 · <a href="tel:+18005675433">1-800-567-5433</a></p>
+      <p>© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener" data-privacy-link>Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span> · <span>[CONSUMER HEALTH DATA PRIVACY POLICY]</span></p>
     </div>
   </div>
 </footer>

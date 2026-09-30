@@ -1,12 +1,11 @@
-# Ads launch — four themes, one Google Search campaign and one Meta campaign each
+# Ads launch — three themes, one Google Search campaign and one Meta campaign each
 
-Four landing pages, each with one event: book a call in the embedded HubSpot widget. Every ad lands on the page
+Three landing pages, each with one event: book a call in the embedded HubSpot widget. Every ad lands on the page
 whose hero headline the ad repeats. The Google headline is the live `<h1>` or a shortened version that keeps its
 words (Google allows 30 characters); the Meta headline is the live `<h1>` word for word.
 
 | Theme | `utm_campaign` | Lands on | Hero eyebrow | Hero headline (`<h1>`) |
 |---|---|---|---|---|
-| **Senior (general)** | `senior` | `/senior/` | Therapy for adults 65+ | Talk therapy for adults 65+, from home. |
 | **Caregiver stress** | `caregiver` | `/caregiver/` | Caregiver stress therapy for adults 65+ | Caring for someone is a full-time job. Therapy for the carer is covered by Medicare. |
 | **Depression** | `depression` | `/depression/` | Depression therapy for adults 65+ | Therapy for depression in later life, covered by Medicare. |
 | **Grief and loss** | `grief` | `/grief/` | Grief counseling for adults 65+ | Grief counseling, covered by Medicare. |
@@ -15,28 +14,28 @@ words (Google allows 30 characters); the Meta headline is the live `<h1>` word f
 after a spouse, a parent or another loved one (totallife.com/caregiver-stress). The carer is the member and the
 person who books. Nothing in this plan targets adult children looking for therapy for a parent.
 
-`/senior/` also carries two hidden hero variants, `?v=caregiver-stress` (h1 "Therapy for caregiver stress.") and
-`?v=caregiver-support` (h1 "Talk therapy for caregivers 65+."). They stay available for a later message-match test
-but are **not in this plan**: no ad group or ad points at them, so the caregiver theme is read from one URL.
+There is no general senior page in this test (`/senior/` was removed on 30 Sept 2026). No ad may point at
+`/senior/` or at a `?v=` variant: a click there lands on a 404, which Meta and Google both treat as a broken
+landing page.
 
 ## Budgets and scope
 
-Test budget from the call notes: **$50 a day on Google in total and $30 a day on Meta in total**, across the four
-theme campaigns. Plan of record: an even split, **$12.50 a day per Google campaign** and **$7.50 a day per Meta
+Test budget from the call notes: **$50 a day on Google in total and $30 a day on Meta in total**, across the three
+theme campaigns. Plan of record: an even split, **$16.67 a day per Google campaign** and **$10 a day per Meta
 campaign**, because the client asked for independent campaigns per theme and even spend makes cost per booked call
 comparable on day one.
 
 Alternative to put to Neelam before launch: run **two themes at a time** ($25 a day Google, $15 a day Meta per
-campaign) for the first two weeks, then the other two. Reason: at $3 to $6 a click, $12.50 buys two to four Google
-clicks a day, and a Meta ad set at $7.50 a day never leaves the learning phase, so four parallel campaigns take a
-month to say anything. Either way the total stays at $50 + $30.
+campaign) for the first two weeks, then the third theme against the better of the two. Reason: at $3 to $6 a
+click, $16.67 buys three to five Google clicks a day, and a Meta ad set at $10 a day rarely leaves the learning
+phase, so three parallel campaigns take a month to say anything. Either way the total stays at $50 + $30.
 
 Google is **Search only**: no Performance Max, no Display, no Search partners. Psychiatry, medication and GLP-1
 are not offered in this funnel and appear only as negatives.
 
 **Negatives on every campaign (both platforms where the platform allows keyword exclusions):** `psychiatry`,
 `psychiatrist`, `medication`, `antidepressant`, `GLP-1`, `Ozempic`, `Wegovy`, `semaglutide`, `job`, `jobs`,
-`free`, `medicaid`, `near me`. Add as a shared negative list in Google Ads and attach it to all four campaigns.
+`free`, `medicaid`, `near me`. Add as a shared negative list in Google Ads and attach it to all three campaigns.
 Sensible extras in the same list: `salary`, `nursing home`, `hospice`, `crisis`, `hotline`.
 
 Replace `DOMAIN` below with the domain the pages are hosted on. Phone everywhere: **1-800-567-5433**.
@@ -57,8 +56,10 @@ ads therefore:
   Medicare + supplemental insurance", "Total Life is an enrolled Medicare provider"). Nothing suggests government
   affiliation or an official Medicare programme. Never "free therapy", "no cost", "Medicare-approved", urgency.
 - **Health data**: the pixel sends only the standard events `PageView`, `Lead` and `Schedule`, with no custom
-  parameters. `PageView` carries the page URL, so Meta sees the path (`/depression/`, `/grief/`). Legal must accept
-  path-level data, or the slugs get renamed before launch (see `docs/compliance-migration.md`).
+  parameters. `PageView` carries the full page URL, so Meta sees the path **and the query string**
+  (`/depression/?utm_campaign=depression`). Legal must accept path-level data, or the slugs **and** the
+  `utm_campaign` / `utm_content` values get renamed to neutral codes together before launch; renaming only the slug
+  changes nothing (see `docs/compliance-migration.md`).
 - **Landing page must match the ad**: the headline on each URL is the ad headline.
 
 ## 0. Tags and conversions (do this before the ads)
@@ -117,7 +118,7 @@ the site's plumbing; it does not prove that HubSpot, Google or Meta received any
 Each campaign: **Search** > goal Leads > `TL — <theme>`. Networks: **Search only** (untick Display and Search
 partners). No Performance Max. Locations: United States (or the states Total Life serves). Language: English.
 Bidding: **Maximise clicks** with a **max CPC cap of $6** for the first two weeks, then Maximise conversions on
-`Care call booked` once a campaign has 15+ bookings. Budget: **$12.50 a day per campaign** ($50 total). Ad
+`Care call booked` once a campaign has 15+ bookings. Budget: **$16.67 a day per campaign** ($50 total). Ad
 schedule: **9 am to 9 pm Eastern** every day (the widget only shows slots in that window). Audience:
 **Observation** only, age 45+ where available. Attach the shared negative list above.
 
@@ -128,27 +129,14 @@ HubSpot reads Paid Search from `utm_medium=cpc` or the `gclid` Google appends. `
 source drill-down 1 and `utm_term` (the keyword) drill-down 2, so keep `utm_term={keyword}` on every URL.
 
 Common assets on every RSA: Callouts `Enrolled Medicare Provider` · `Phone or Video` · `Real People, Not Bots`.
-Sitelinks: How it works → `#how` · Questions → `#faq` · Book a call → `#book`. Call asset: 1-800-567-5433,
-schedule 9 am to 9 pm ET. Common headlines, added to every ad after the pinned ones: `Covered by Medicare` ·
+Sitelinks: How it works · Questions · Book a call → `#book`. Call asset: 1-800-567-5433,
+schedule 9 am to 9 pm ET. The sitelink anchors differ per page: caregiver and grief use `#how-it-works` and
+`#questions`; depression uses `#how` and `#faq` (a wrong anchor scrolls to the top, which reads as a dead link).
+Common headlines, added to every ad after the pinned ones: `Covered by Medicare` ·
 `Book a Call With Our Care Team` · `By Phone or Video, From Home` · `Real Person, 9am–9pm ET` ·
 `Specialists in Adults 65+` · `Enrolled Medicare Provider`. Common descriptions: `Book a 15-minute call. A real
 person from our care team calls you, 9 am to 9 pm ET.` · `Most members are covered up to 100% with Medicare +
 supplemental insurance.`
-
-### Campaign `TL — senior` (→ `/senior/`)
-
-One ad group, `senior-general`. Final URL:
-`https://DOMAIN/senior/?utm_source=google&utm_medium=cpc&utm_campaign=senior&utm_content=senior-general&utm_term={keyword}`
-
-Keywords (phrase match): `therapy for seniors`, `therapy for seniors covered by medicare`, `medicare therapist`,
-`counseling for older adults`, `medicare mental health coverage`, `online therapy medicare`, `therapist for
-elderly`, `talk therapy medicare`.
-
-Responsive search ad
-- Headline pinned to position 1: `Talk Therapy for Adults 65+` (the h1 minus ", from home"). Position 2:
-  `From Home, by Phone or Video`. Then the common headlines.
-- Theme description: `Therapists who specialize in older adults. Sessions by phone or video. Covered by Medicare.`
-  Then the common descriptions.
 
 ### Campaign `TL — caregiver` (→ `/caregiver/`)
 
@@ -211,13 +199,13 @@ stress and grief themes is on the legal sign-off list (`docs/compliance-migratio
 ## 2. Meta — one campaign per theme, one ad set and one ad each
 
 Each campaign: **Leads** objective, name `TL — <theme>`, **Special ad category: none** (not credit, employment,
-housing or politics). Advantage+ campaign budget **off**. Budget **$7.50 a day per campaign** ($30 total).
+housing or politics). Advantage+ campaign budget **off**. Budget **$10 a day per campaign** ($30 total).
 
 Ad set `Adults 65+ — US`: conversion location **Website**, pixel = the dataset above, performance goal
 **Maximise number of conversions**, conversion event **Schedule** (if the dataset is under the Standard Events
 restriction, use **Landing page views**). Schedule: run continuously (Meta only allows dayparting with lifetime
 budgets; the widget shows the next open 9 am to 9 pm slot, so a night click still books). Location: United States.
-Age **65+** for senior, depression and grief; **55 to 65+** for caregiver (spouses caring for a partner). Gender
+Age **65+** for depression and grief; **55 to 65+** for caregiver (spouses caring for a partner). Gender
 all. Detailed targeting: leave broad. Do not use health, grief or caregiving interest targeting: it is restricted
 for health advertisers and unnecessary at this budget. Placements: **Advantage+**, but exclude Audience Network.
 Attribution: 7-day click, 1-day view.
@@ -226,16 +214,11 @@ URL pattern: `https://DOMAIN/<page>/?utm_source=facebook&utm_medium=paid_social&
 HubSpot reads Paid Social from `utm_medium=paid_social` (or the `fbclid`); `utm_campaign` becomes Original source
 drill-down 2. `utm_content` is not stored on the contact, so one ad per campaign keeps the read clean.
 
-Creative for every ad until theme stills are installed: the senior hero (`assets/img/people/senior-hero.jpg`)
-cropped 1:1 and 4:5, and the 5-second `senior-hero.mp4` for Reels/Stories with the headline as an overlay in brand
-teal on cream. No text over faces. CTA button on every ad: **Book Now**.
-
-### `TL — senior` (→ `/senior/`)
-`utm_content=senior-general`
-- Primary text: `Talk therapy for adults 65+, from home, by phone or video, with therapists who specialize in
-  older adults. Book a 15-minute call and a real person from our care team calls at the time you choose. We check
-  coverage together, then match you with a therapist. Covered by Medicare.`
-- Headline: `Talk therapy for adults 65+, from home.` · Description: `Therapy for adults 65+ · Covered by Medicare`
+Creative for every ad until theme stills are installed: the existing home still (`assets/img/people/senior-hero.jpg`)
+cropped 1:1 and 4:5, and the 5-second `senior-hero.mp4` for Reels/Stories. **No text on the image or video**: the
+headline lives in the ad's headline field, not as an overlay (text on a health ad's image is a common reject
+trigger and the photography brief forbids it). No caption may present the AI-generated people as members,
+patients or real customers. CTA button on every ad: **Book Now**.
 
 ### `TL — caregiver` (→ `/caregiver/`)
 `utm_content=caregiver-stress`
@@ -244,20 +227,23 @@ teal on cream. No text over faces. CTA button on every ad: **Book Now**.
   specialize in older adults, from home, by phone or video. Book a 15-minute call with our care team.`
 - Headline: `Therapy for the carer is covered by Medicare.` (the h1's second sentence; the first sentence opens
   the primary text so the full h1 is on the ad) · Description: `Caregiver stress therapy for adults 65+`
-- Creative: the caregiver hero still when installed; until then the senior hero.
+- Creative: the caregiver scene still when installed; until then the existing home still.
 
 ### `TL — depression` (→ `/depression/`)
 `utm_content=depression`
-- Primary text: `Low mood, loss of interest, poor sleep and worry are common in later life, and talk therapy helps.
-  Total Life offers depression therapy for adults 65+ with licensed therapists who specialize in older adults, from
-  home, by phone or video. Book a 15-minute call and a real person from our care team calls at the time you choose.`
+- Primary text: `Total Life offers talk therapy for depression in later life: for adults 65+, with licensed
+  therapists who specialize in older adults, from home, by phone or video. Covered by Medicare. Book a 15-minute call
+  and a real person from our care team calls at the time you choose.`
+  (Not "low mood, loss of interest, poor sleep and worry are common in later life, and talk therapy helps": to an
+  audience targeted at 65+ that lists the reader's symptoms and promises an outcome, which is what Meta's Personal
+  Attributes and Personal Health rules reject.)
 - Headline: `Therapy for depression in later life, covered by Medicare.` · Description: `Depression therapy for adults 65+`
 
 ### `TL — grief` (→ `/grief/`)
 `utm_content=grief`
-- Primary text: `Grief after losing a spouse, a friend, a sibling or a pet does not follow a timetable, and grief
-  counseling is a covered service. Total Life offers grief counseling for adults 65+ with therapists who specialize
-  in older adults, from home, by phone or video. Book a 15-minute call and a real person calls at the time you choose.`
+- Primary text: `Total Life offers grief counseling for adults 65+ after the loss of a spouse, a friend, a sibling
+  or a pet, with therapists who specialize in older adults, from home, by phone or video. Grief counseling is
+  covered by Medicare. Book a 15-minute call and a real person calls at the time you choose.`
 - Headline: `Grief counseling, covered by Medicare.` · Description: `Grief counseling for adults 65+`
 
 Ad copy and the matching hero were written together so review of one covers the other.
@@ -280,7 +266,7 @@ the health restriction; Google may count a repeat booking twice. HubSpot booked 
 | Cost per booked call | Campaign spend ÷ HubSpot booked contacts for that `utm_campaign` | under $150 by end of week 2 |
 | Booked → call happened | Meeting outcome logged by Peggy / Angela | 80%+ |
 
-Stop rule per theme: after **two weeks** (about $280 per theme at the even split, Google + Meta combined),
+Stop rule per theme: after **two weeks** (about $375 per theme at the even split, Google + Meta combined),
 decide on cost per booked call from HubSpot. Pause the theme or move its budget to the theme that books cheapest,
 keeping the $50 + $30 daily totals.
 
@@ -321,7 +307,7 @@ accounts (a fresh profile or a personal device on mobile data), with real IDs in
 9. **GA4** (if configured): Realtime shows `page_view`, `care_call_booked` and `thanks_view`.
 10. Delete the test contact and its meeting in HubSpot, and cancel the calendar slot.
 
-### T+24 h: compare the four counts
+### T+24 h: compare the counts
 
 | HubSpot `Care calls — booked` by source | Google Ads conversions | Meta results (Schedule) | Sales > Meetings > Scheduled |
 |---|---|---|---|
