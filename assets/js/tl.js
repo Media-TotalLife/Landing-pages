@@ -149,6 +149,53 @@
   }
 
   // ---- Multi-step form -------------------------------------------------------
+  function dobAge(v) {
+    var m = v.replace(/\s/g, '').match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/); if (!m) return null;
+    var mo = +m[1], d = +m[2], y = +m[3]; var dt = new Date(y, mo - 1, d);
+    if (dt.getFullYear() !== y || dt.getMonth() !== mo - 1 || dt.getDate() !== d) return null;
+    var now = new Date(); var age = now.getFullYear() - y - ((now.getMonth() < mo - 1 || (now.getMonth() === mo - 1 && now.getDate() < d)) ? 1 : 0);
+    return age;
+  }
+  function normalizeDob(v) { var m = v.replace(/\s/g, '').match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/); if (!m) return v; return ('0' + m[1]).slice(-2) + '/' + ('0' + m[2]).slice(-2) + '/' + m[3]; }
+
+  // Message-match variant: ?v=name shows [data-v="name"] blocks and hides their [data-v="default"] siblings.
+  (function applyVariant() {
+    var v = window.tlVariant ? window.tlVariant() : (new URLSearchParams(window.location.search).get('v') || '');
+    if (!v) return;
+    var matches = document.querySelectorAll('[data-v="' + v.replace(/"/g, '') + '"]');
+    if (!matches.length) return;
+    document.querySelectorAll('[data-v="default"]').forEach(function (el) { el.hidden = true; });
+    matches.forEach(function (el) { el.hidden = false; });
+    document.body.setAttribute('data-variant', v);
+  })();
+
+  // Submit the lead to HubSpot (Forms API v3, unauthenticated, CORS). Resolves {ok, mode}.
+  function submitLead(data, page) {
+    var cfg = window.TL_CONFIG || {}; var hs = cfg.hubspot || {};
+    var attrib = window.tlAttribution ? window.tlAttribution() : {};
+    var payload = Object.assign({}, attrib, data, { landing_page: page });
+    if (!hs.portalId || !hs.formGuid) {
+      if (window.location.hostname === 'localhost') console.debug('[lead] HubSpot not configured; would send', payload);
+      return Promise.resolve({ ok: true, mode: 'unconfigured' });
+    }
+    var CORE = ['firstname', 'lastname', 'email', 'phone', 'date_of_birth', 'zip'];
+    function body(keys) {
+      var fields = keys.filter(function (k) { return payload[k] !== undefined && payload[k] !== ''; })
+        .map(function (k) { return { objectTypeId: '0-1', name: k, value: String(payload[k]) }; });
+      var ctx = { pageUri: window.location.href, pageName: document.title };
+      var hutk = (document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/) || [])[1]; if (hutk) ctx.hutk = hutk;
+      return JSON.stringify({ submittedAt: Date.now(), fields: fields, context: ctx });
+    }
+    var url = 'https://api.hsforms.com/submissions/v3/integration/submit/' + hs.portalId + '/' + hs.formGuid;
+    function post(keys) {
+      return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body(keys) })
+        .then(function (r) { return r.ok ? { ok: true, mode: 'hubspot' } : r.json().then(function (j) { return { ok: false, status: r.status, error: j }; }, function () { return { ok: false, status: r.status }; }); });
+    }
+    // If a hidden attribution field is missing from the HubSpot form definition, retry with the six core fields only.
+    return post(Object.keys(payload)).then(function (res) { return res.ok || res.status !== 400 ? res : post(CORE); })
+      .catch(function (e) { return { ok: false, error: String(e) }; });
+  }
+
   function initForm(form) {
     var steps = Array.prototype.slice.call(form.querySelectorAll('.tl-step:not(.tl-step--success)'));
     var success = form.querySelector('.tl-step--success');
@@ -200,6 +247,8 @@
         if (required && !v) msg = input.dataset.emptyMessage || "Let's try that again — this one is needed.";
         else if (v && type === 'tel' && v.replace(/\D/g, '').length < 10) msg = 'That number looks short. Please add your area code.';
         else if (v && type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) msg = "That email doesn't look right. Let's try that again.";
+        else if (v && type === 'zip' && !/^\d{5}$/.test(v.replace(/\D/g, ''))) msg = 'Please enter your 5-digit ZIP code.';
+        else if (v && type === 'dob') { var age = dobAge(v); if (age === null) msg = 'Please enter your date of birth as MM / DD / YYYY.'; else if (age < 18) msg = 'You need to be 18 or older to book a call. A family member can book for you.'; else if (age > 115) msg = 'That date looks off. Please check the year.'; }
         if (msg) { ok = false; setError(step, field, msg); }
         else data[input.name] = v;
       });
@@ -236,21 +285,42 @@
       });
     });
 
+    // Format date of birth as the user types: MM / DD / YYYY
+    form.querySelectorAll('input[data-validate=dob]').forEach(function (dob) {
+      dob.addEventListener('input', function () {
+        var d = dob.value.replace(/\D/g, '').slice(0, 8); var out = d;
+        if (d.length > 4) out = d.slice(0, 2) + ' / ' + d.slice(2, 4) + ' / ' + d.slice(4);
+        else if (d.length > 2) out = d.slice(0, 2) + ' / ' + d.slice(2);
+        dob.value = out;
+      });
+    });
+    form.querySelectorAll('input[data-validate=zip]').forEach(function (zip) {
+      zip.addEventListener('input', function () { zip.value = zip.value.replace(/\D/g, '').slice(0, 5); });
+    });
+
+    var submitting = false;
     function complete() {
+      if (submitting) return; submitting = true;
       window.tlTrack('form_complete', { page: page, form: form.id || '' });
-      // [FORM ENDPOINT] — POST `data` to your CRM / call-center intake here.
-      // fetch(form.dataset.endpoint, { method: 'POST', body: JSON.stringify(data) })
-      steps.forEach(function (s) { s.classList.remove('is-active'); });
-      if (progressWrap) progressWrap.style.display = 'none';
-      if (success) {
-        success.querySelectorAll('[data-fill]').forEach(function (el) {
-          var key = el.getAttribute('data-fill'); var v = data[key];
-          if (v) el.textContent = (el.dataset.prefix || '') + v + (el.dataset.suffix || '');
-          else if (el.dataset.fallback) el.textContent = el.dataset.fallback;
-        });
-        success.classList.add('is-active');
-        var h = success.querySelector('h3'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
-      }
+      var last = steps[steps.length - 1];
+      var btn = last.querySelector('[data-next]'); var label = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'One moment…'; }
+      if (data.date_of_birth) data.date_of_birth = normalizeDob(data.date_of_birth);
+      var lead = { firstname: data.firstname || '', lastname: data.lastname || '', email: data.email || '', phone: data.phone || '', page: page };
+      try { sessionStorage.setItem('tl_lead', JSON.stringify(lead)); } catch (e) {}
+      submitLead(data, page).then(function (res) {
+        if (res.ok) {
+          window.tlTrack('lead_submitted', { page: page, mode: res.mode });
+          var cfg = window.TL_CONFIG || {};
+          var to = (form.dataset.thanks || cfg.thanksPath || '../thanks/') + '?p=' + encodeURIComponent(page);
+          window.location.assign(to);
+          return;
+        }
+        submitting = false;
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+        window.tlTrack('lead_submit_failed', { page: page, status: res.status || 0 });
+        setError(last, null, "We couldn't send that just now. Please try once more, or call 1-800-567-LIFE and we'll book you by phone.");
+      });
     }
 
     show(0);

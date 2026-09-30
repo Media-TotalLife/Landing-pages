@@ -2,12 +2,12 @@
 import { chromium } from 'playwright';
 const banned = [/free therapy/i, /free session/i, /limited spots/i, /act now/i, /guaranteed/i, /will cure/i, /elderly/i, /no cost(?! .*supplemental)/i, /medicare-approved discount/i, /#fff\b|#ffffff/i];
 const browser = await chromium.launch();
-for (const key of ['senior', 'caregiver', 'check']) {
+for (const key of ['senior', 'caregiver', 'check', 'thanks']) {
   const page = await (await browser.newContext({ viewport: { width: 375, height: 812 } })).newPage();
   await page.goto(`http://localhost:4173/${key}/`, { waitUntil: 'networkidle' });
   const r = await page.evaluate(() => {
     const out = {};
-    out.h1 = document.querySelectorAll('h1').length;
+    out.h1 = [...document.querySelectorAll('h1')].filter(h => h.offsetParent !== null).length;
     const hs = [...document.querySelectorAll('h1,h2,h3,h4')].map(h => +h.tagName[1]);
     out.headingJumps = hs.filter((l, i) => i && l > hs[i - 1] + 1).length;
     out.inputsWithoutLabel = [...document.querySelectorAll('input:not([type=radio]):not([type=hidden])')].filter(i => !document.querySelector(`label[for="${i.id}"]`)).length;

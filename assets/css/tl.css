@@ -360,6 +360,9 @@ section:has(.hero-art) { overflow: hidden; }
 .progress .bar { flex: 1; height: 6px; background: var(--sand); border-radius: var(--pill); overflow: hidden; }
 .progress .bar i { display: block; height: 100%; width: 0; background: var(--coral); border-radius: var(--pill); transition: width var(--dur) var(--ease); }
 
+fieldset.tl-step { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+fieldset.tl-step legend { padding: 0; float: left; width: 100%; }
+fieldset.tl-step legend + * { clear: both; }
 .tl-step { display: none; }
 .tl-step.is-active { display: block; animation: stepIn var(--dur) var(--ease); }
 @keyframes stepIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -486,3 +489,32 @@ h1 .accent::after {
   *, *::before, *::after { animation: none !important; transition-duration: 0ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* ---- Book-a-call form additions --------------------------------------------- */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+@media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+.consent { color: var(--muted); font-size: .9375rem; line-height: 1.5; margin-top: 1.25rem; max-width: 60ch; }
+.consent a { color: var(--teal); font-weight: 600; }
+.btn[disabled] { opacity: .7; cursor: progress; }
+
+/* ---- Confirmation page (/thanks/) --------------------------------------------- */
+.thanks { padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(3rem, 6vw, 5rem); }
+.thanks .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+.thanks h1 { max-width: 14ch; }
+.thanks .lede { margin-top: 1.25rem; max-width: 40ch; }
+.thanks .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--sand); display: grid; place-items: center; margin-bottom: 1.25rem; color: var(--teal); }
+.thanks .tick svg { width: 32px; height: 32px; }
+.thanks .checks { margin-top: 1.75rem; }
+.thanks .aside-note { margin-top: 1.75rem; }
+.calendar-card { background: var(--bg); border: 1px solid var(--line-strong); border-radius: var(--radius); padding: clamp(1rem, 2vw, 1.5rem); box-shadow: 0 30px 60px -40px rgba(21,32,44,.35); }
+.calendar-card .cal-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .25rem .5rem 1rem; }
+.calendar-card .cal-head b { font-family: var(--font-display); color: var(--teal); font-size: 1.25rem; }
+.calendar-card .cal-head span { color: var(--muted); font-size: var(--text-sm); }
+.meetings-iframe-container { min-height: 640px; }
+.meetings-iframe-container iframe { border: 0; width: 100%; min-height: 640px; border-radius: var(--radius-sm); }
+.calendar-placeholder { min-height: 420px; display: grid; place-items: center; text-align: center; padding: 2rem; border: 2px dashed var(--line-strong); border-radius: var(--radius-sm); color: var(--muted); background: var(--cream); }
+.calendar-placeholder b { display: block; color: var(--teal); font-family: var(--font-display); font-size: 1.25rem; margin-bottom: .5rem; }
+.calendar-card .booked { display: none; padding: 1.5rem .5rem .5rem; }
+.calendar-card.is-booked .booked { display: block; }
+.calendar-card.is-booked .meetings-iframe-container, .calendar-card.is-booked .cal-head { display: none; }
+@media (max-width: 900px) { .thanks .wrap { grid-template-columns: 1fr; } }

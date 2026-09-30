@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>It's not just getting older. A 2-minute self-check | Total Life</title>
-<meta name="description" content="Anxiety and sadness at 70 deserve the same care they did at 30. Take a gentle two-minute check, in your own words. Then we'll tell you what your Medicare covers.">
+<meta name="description" content="Anxiety and sadness at 70 deserve the same care they did at 30. Take a gentle two-minute check, in your own words. Then book a call with our care team about what your Medicare covers.">
 <link rel="icon" href="../assets/img/flower.png">
 <link rel="preload" href="../assets/fonts/InterTight-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -140,7 +140,7 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
       <div>
         <p class="eyebrow">For anyone who's said "it's probably nothing"</p>
         <h1 id="hero-title">It's not just <span class="accent">getting older.</span></h1>
-        <p class="lede">Anxiety and sadness at 70 deserve the same care they did at 30. Take a two-minute check, in your own words. Then we'll tell you what your Medicare covers.</p>
+        <p class="lede">Anxiety and sadness at 70 deserve the same care they did at 30. Take a two-minute check, in your own words. Then book a call with our care team about what your Medicare covers.</p>
         <div class="hero-actions">
           <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-hero-cta data-track="hero_cta">Start the 2-minute check</a>
           <div class="stamp" role="img" aria-label="Covered by Medicare">Covered<br>by<br>Medicare</div>
@@ -200,7 +200,7 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
-            <span>Nothing is stored until you choose to share your number</span>
+            <span>Nothing is stored until you choose to book your call</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
@@ -214,8 +214,8 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
       </div>
 
       <div class="form-card" aria-live="polite">
-        <form class="tl-form" id="coverage-form" data-endpoint="[FORM ENDPOINT]" data-track="check_form" novalidate>
-          <div class="progress" aria-hidden="true"><span>Step 1 of 5</span><div class="bar"><i></i></div></div>
+        <form class="tl-form" id="coverage-form" data-lead-form data-thanks="../thanks/" data-track="check_form" novalidate>
+          <div class="progress"><span>Step 1 of 7</span><div class="bar"><i></i></div></div>
 
           <!-- Step 1 -->
           <fieldset class="tl-step">
@@ -276,46 +276,78 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
             </div>
           </fieldset>
 
-          <!-- Step 5: contact -->
-          <div class="tl-step">
-            <h3 class="q">Last thing. What's your first name, and the best number to call you?</h3>
-            <p class="hint">A real person will call to talk through what your Medicare covers. No pressure.</p>
+                    <!-- Name -->
+          <fieldset class="tl-step">
+            <legend class="q">First, what's your name?</legend>
+            <p class="hint">So our care team knows who to ask for.</p>
+            <div class="field-row">
             <div class="field">
               <label for="first_name">First name</label>
-              <input class="input" id="first_name" name="first_name" type="text" required autocomplete="given-name" data-empty-message="Let's try that again — what should we call you?">
-              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+              <input class="input" id="first_name" name="firstname" type="text" required autocomplete="given-name" data-empty-message="Please add your first name.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             </div>
             <div class="field">
-              <label for="phone">Best number to call</label>
-              <input class="input" id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(555) 123-4567" data-empty-message="Let's try that again — we need a number to call you.">
-              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+              <label for="last_name">Last name</label>
+              <input class="input" id="last_name" name="lastname" type="text" required autocomplete="family-name" data-empty-message="Please add your last name.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             </div>
-            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             <div class="form-actions">
-              <button type="button" class="btn btn--primary" data-next data-track="check_form_submit">Check my coverage</button>
+              <button type="button" class="btn btn--primary" data-next data-track="book_step_name">Continue</button>
+              <button type="button" class="btn btn--back" data-back>Back</button>
+            </div>
+          </fieldset>
+
+          <!-- Contact -->
+          <fieldset class="tl-step">
+            <legend class="q">How can our care team reach you?</legend>
+            <p class="hint">We call from 1-800-567-LIFE, 9 am to 9 pm Eastern, seven days a week. Your booking confirmation goes to your email.</p>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input class="input" id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(555) 123-4567" data-empty-message="We need a number to call you on.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input class="input" id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="name@example.com" data-empty-message="We need an email to send your confirmation to.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="book_step_contact">Continue</button>
+              <button type="button" class="btn btn--back" data-back>Back</button>
+            </div>
+            <p class="consent">By continuing, you agree that Total Life may call, text or email you about your care using the details above. Message and data rates may apply. You can opt out at any time. See our <a href="https://totallife.com/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+          </fieldset>
+
+          <!-- About you -->
+          <fieldset class="tl-step">
+            <legend class="q">Last two things, then pick a time.</legend>
+            <p class="hint">Your date of birth and ZIP code let us check what your Medicare covers before we call.</p>
+            <div class="field-row">
+            <div class="field">
+              <label for="dob">Date of birth</label>
+              <input class="input" id="dob" name="date_of_birth" aria-describedby="dob-help" type="text" required inputmode="numeric" autocomplete="bday" placeholder="MM / DD / YYYY" data-validate="dob" data-empty-message="Please add your date of birth.">
+              <p class="help" id="dob-help">For example, 03 / 14 / 1954</p>
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            </div>
+            <div class="field">
+              <label for="zip">ZIP code</label>
+              <input class="input" id="zip" name="zip" type="text" required inputmode="numeric" autocomplete="postal-code" placeholder="12345" maxlength="5" data-validate="zip" data-empty-message="Please add your 5-digit ZIP code.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            </div>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="book_submit">Book my call</button>
               <button type="button" class="btn btn--back" data-back>Back</button>
             </div>
             <p class="privacy">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <span>We only use this to call you about your coverage. We never sell your information.</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span>Your information is protected under HIPAA and only used to arrange your care. We never sell it.</span>
             </p>
-          </div>
-
-          <!-- Success -->
-          <div class="tl-step tl-step--success">
-            <div class="success">
-              <div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-              <h3>Thank you, <span data-fill="first_name" data-fallback="friend">friend</span>.</h3>
-              <p>Feelings like these are common — and they are worth talking about. Many members who answered the way you did found talk therapy helped. This check isn't a diagnosis, and only a clinician can tell you more.</p>
-              <p>A real person will call you within one business day to check your Medicare coverage and answer questions. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
-              <p>Rather talk now? Call us any time.</p>
-              <a class="phone-big" href="tel:+18005675433" data-track="success_phone">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
-                1-800-567-LIFE
-              </a>
-              <p class="crisis-note">If you're in crisis, call or text <a href="tel:988">988</a> any time.</p>
-            </div>
-          </div>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -441,7 +473,7 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
     <div class="wrap">
       <p class="eyebrow">Ready when you are</p>
       <h2 id="final-title">Talk to someone who <span class="accent">gets it.</span></h2>
-      <p class="lede" style="margin:1.25rem auto 0">Four questions. Two minutes. Then a real conversation about what your Medicare covers.</p>
+      <p class="lede" style="margin:1.25rem auto 0">Four questions. Two minutes. Then book a call with our care team about what your Medicare covers.</p>
       <div class="hero-actions">
         <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-track="final_cta">Start the 2-minute check</a>
       </div>
@@ -479,20 +511,22 @@ fieldset.tl-step legend { padding: 0; display: block; width: 100%; }
     <div>
       <h3 class="foot-h">Total Life</h3>
       <ul>
-        <li><a href="#">[ABOUT]</a></li>
-        <li><a href="#">[FOR CLINICIANS]</a></li>
-        <li><a href="#">[CONTACT]</a></li>
+        <li><a href="https://totallife.com/learn-more/" rel="noopener">About Total Life</a></li>
+        <li><a href="https://totallife.com/therapy/" rel="noopener">Therapy covered by Medicare</a></li>
+        <li><a href="https://totallife.com/faq/" rel="noopener">Frequently asked questions</a></li>
       </ul>
     </div>
     <div class="legal">
       <p>Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance. Coverage depends on your plan; we confirm it with you by phone before your first session.</p>
       <p>The self-check on this page is not a medical test or a diagnosis. Only a clinician can assess your health. Outcome figures: internal outcomes data, Q3 2024, N=2,847.</p>
       <p class="crisis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>If you or someone you love is in crisis, call or text 988.</p>
-      <p>© 2026 Total Life · <a href="#">[PRIVACY POLICY]</a> · <a href="#">[TERMS]</a> · <a href="#">[HIPAA NOTICE]</a></p>
+      <p>© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <a href="#">[HIPAA NOTICE OF PRIVACY PRACTICES]</a></p>
     </div>
   </div>
 </footer>
 
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/track.js" defer></script>
 <script src="../assets/js/tl.js" defer></script>
 </body>
 </html>

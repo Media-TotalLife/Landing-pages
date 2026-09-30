@@ -1,0 +1,21 @@
+/* Total Life landing pages — one place for every ID.
+   Fill these in from HubSpot, Meta and Google (see docs/hubspot-setup.md and docs/ads-launch.md).
+   Leave a value empty and that integration is simply skipped: nothing loads, nothing errors. */
+window.TL_CONFIG = {
+  hubspot: {
+    portalId: '',        // HubSpot Hub ID, e.g. '12345678' (Settings > Account defaults)
+    formGuid: '',        // GUID of the "Book a care call" form (Marketing > Forms > form > Share > embed code)
+    meetingsLink: ''     // Round-robin meetings link for Peggy + Angela, e.g. 'https://meetings.hubspot.com/total-life/care-call'
+  },
+  meta: {
+    pixelId: ''          // Meta Pixel / dataset ID
+  },
+  google: {
+    adsId: '',           // 'AW-XXXXXXXXX'
+    leadLabel: '',       // conversion label for "Care call requested" (form submitted)
+    bookedLabel: '',     // conversion label for "Care call booked" (time picked in the calendar)
+    ga4Id: ''            // 'G-XXXXXXXXXX' (optional)
+  },
+  careHours: '9 am to 9 pm Eastern, seven days a week',
+  thanksPath: '../thanks/'
+};

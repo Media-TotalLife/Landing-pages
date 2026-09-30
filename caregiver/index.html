@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Worried about Mom? We'll call her. | Total Life</title>
-<meta name="description" content="A note from our founder. If you're worried about Mom or Dad, tell us a little about them and a real person will call you within one business day. We make the first call. Covered by her Medicare.">
+<meta name="description" content="A note from our founder. If you're worried about Mom or Dad, book a call with our care team and a real person will call you at a time you choose. We make the first call. Covered by her Medicare.">
 <link rel="icon" href="../assets/img/flower.png">
 <link rel="preload" href="../assets/fonts/InterTight-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -144,11 +144,11 @@
           <footer>— <b>Neelam Brar</b>, Founder &amp; CEO</footer>
         </blockquote>
         <div class="hero-actions">
-          <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-hero-cta data-track="hero_cta">Tell us about your mom</a>
+          <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-hero-cta data-track="hero_cta">Book my call</a>
           <div class="stamp" role="img" aria-label="Covered by Medicare">Covered<br>by<br>Medicare</div>
           <p class="reassure">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span>A real person calls you within one business day · covered by her Medicare · <a href="tel:+18005675433" data-track="hero_phone">1-800-567-LIFE</a></span>
+          <span>A real person, at a time you pick · 9 am to 9 pm Eastern · covered by her Medicare · <a href="tel:+18005675433" data-track="hero_phone">1-800-567-LIFE</a></span>
         </p>
         </div>
       </div>
@@ -235,9 +235,9 @@
   <section class="section ask" id="tell-us" aria-labelledby="ask-title">
     <div class="wrap">
       <div class="ask-copy">
-        <p class="eyebrow">Three quick questions</p>
-        <h2 id="ask-title">Tell us a little about <span class="accent">her.</span></h2>
-        <p class="lede" style="margin-top:1rem">Then a real person — not a bot — calls you back. We listen before we do anything.</p>
+        <p class="eyebrow">Book a call</p>
+        <h2 id="ask-title">Let's talk about <span class="accent">her.</span></h2>
+        <p class="lede" style="margin-top:1rem">A few details about you, then pick a time. A real person — not a bot — calls you. We listen before we do anything.</p>
         <ul class="checks">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>You decide how and when we reach out</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Covered by her Medicare, usually up to 100% with supplemental</span></li>
@@ -246,69 +246,80 @@
       </div>
 
       <div class="form-card" aria-live="polite">
-        <form class="tl-form" id="coverage-form" data-endpoint="[FORM ENDPOINT]" data-track="coverage_form" novalidate>
+        <form class="tl-form" id="coverage-form" data-lead-form data-thanks="../thanks/" data-track="coverage_form" novalidate>
           <div class="progress"><span>Step 1 of 3</span><div class="bar"><i></i></div></div>
 
-          <div class="tl-step is-active">
-            <h3 class="q" id="q-relationship">Who are you worried about?</h3>
-            <div class="choices" role="radiogroup" aria-labelledby="q-relationship">
-              <label class="choice"><input type="radio" name="relationship" value="mom"><span class="dot"></span><span>My mom</span></label>
-              <label class="choice"><input type="radio" name="relationship" value="dad"><span class="dot"></span><span>My dad</span></label>
-              <label class="choice"><input type="radio" name="relationship" value="family member"><span class="dot"></span><span>Another family member</span></label>
-              <label class="choice"><input type="radio" name="relationship" value="you"><span class="dot"></span><span>Myself, actually<small>That's welcome too.</small></span></label>
-            </div>
-            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
-            <div class="form-actions"><button type="button" class="btn btn--primary" data-next data-track="form_step1_next">Continue</button></div>
-          </div>
-
-          <div class="tl-step">
-            <h3 class="q">What's your first name and best number?</h3>
-            <p class="hint">Just so we know who to ask for when we call.</p>
+          <!-- Name -->
+          <fieldset class="tl-step is-active">
+            <legend class="q">First, what's your name?</legend>
+            <p class="hint">Your name, not hers. You're the one we call first.</p>
+            <div class="field-row">
             <div class="field">
-              <label for="first_name">Your first name</label>
-              <input class="input" id="first_name" name="first_name" type="text" required autocomplete="given-name" data-empty-message="Let's try that again — we'd like to know what to call you.">
-              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+              <label for="first_name">First name</label>
+              <input class="input" id="first_name" name="firstname" type="text" required autocomplete="given-name" data-empty-message="Please add your first name.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             </div>
             <div class="field">
-              <label for="phone">Best number to reach you</label>
-              <input class="input" id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(555) 123-4567" data-empty-message="Let's try that again — we need a number to call you back on.">
-              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+              <label for="last_name">Last name</label>
+              <input class="input" id="last_name" name="lastname" type="text" required autocomplete="family-name" data-empty-message="Please add your last name.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             </div>
-            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             <div class="form-actions">
-              <button type="button" class="btn btn--primary" data-next data-track="form_step2_next">Continue</button>
+              <button type="button" class="btn btn--primary" data-next data-track="book_step_name">Continue</button>
+            </div>
+          </fieldset>
+
+          <!-- Contact -->
+          <fieldset class="tl-step">
+            <legend class="q">How can our care team reach you?</legend>
+            <p class="hint">We call from 1-800-567-LIFE, 9 am to 9 pm Eastern, seven days a week. Your booking confirmation goes to your email.</p>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input class="input" id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(555) 123-4567" data-empty-message="We need a number to call you on.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input class="input" id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="name@example.com" data-empty-message="We need an email to send your confirmation to.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            <div class="form-actions">
+              <button type="button" class="btn btn--primary" data-next data-track="book_step_contact">Continue</button>
               <button type="button" class="btn btn--back" data-back>Back</button>
             </div>
-          </div>
+            <p class="consent">By continuing, you agree that Total Life may call, text or email you about your care using the details above. Message and data rates may apply. You can opt out at any time. See our <a href="https://totallife.com/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+          </fieldset>
 
-          <div class="tl-step">
-            <h3 class="q" id="q-medicare">Does she have Medicare?</h3>
-            <div class="choices" role="radiogroup" aria-labelledby="q-medicare">
-              <label class="choice"><input type="radio" name="medicare" value="original"><span class="dot"></span><span>Yes, Original Medicare</span></label>
-              <label class="choice"><input type="radio" name="medicare" value="advantage"><span class="dot"></span><span>Yes, Medicare Advantage</span></label>
-              <label class="choice"><input type="radio" name="medicare" value="supplemental"><span class="dot"></span><span>Yes, with a supplemental plan</span></label>
-              <label class="choice"><input type="radio" name="medicare" value="unsure"><span class="dot"></span><span>I'm not sure<small>Most people aren't. We'll check with you.</small></span></label>
+          <!-- About you -->
+          <fieldset class="tl-step">
+            <legend class="q">Last two things, then pick a time.</legend>
+            <p class="hint">Your own date of birth and ZIP code. They let us check coverage options before we call. We ask about her on the call.</p>
+            <div class="field-row">
+            <div class="field">
+              <label for="dob">Date of birth</label>
+              <input class="input" id="dob" name="date_of_birth" aria-describedby="dob-help" type="text" required inputmode="numeric" autocomplete="bday" placeholder="MM / DD / YYYY" data-validate="dob" data-empty-message="Please add your date of birth.">
+              <p class="help" id="dob-help">For example, 03 / 14 / 1954</p>
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             </div>
-            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg><span></span></div>
+            <div class="field">
+              <label for="zip">ZIP code</label>
+              <input class="input" id="zip" name="zip" type="text" required inputmode="numeric" autocomplete="postal-code" placeholder="12345" maxlength="5" data-validate="zip" data-empty-message="Please add your 5-digit ZIP code.">
+              <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
+            </div>
+            </div>
+            <div class="error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span></span></div>
             <div class="form-actions">
-              <button type="button" class="btn btn--primary" data-next data-track="form_submit">Ask us to call</button>
+              <button type="button" class="btn btn--primary" data-next data-track="book_submit">Book my call</button>
               <button type="button" class="btn btn--back" data-back>Back</button>
             </div>
             <p class="privacy">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <span>We only use this to call you back about her care and coverage. We never sell your information.</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span>Your information is protected under HIPAA and only used to arrange your care. We never sell it.</span>
             </p>
-          </div>
-
-          <div class="tl-step tl-step--success">
-            <div class="success">
-              <div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-              <h3>Thank you, <span data-fill="first_name" data-fallback="friend">friend</span>.</h3>
-              <p id="success-copy">A real person will call you within one business day. We'll listen first, then decide together how and when to reach out to your <span data-fill="relationship" data-fallback="family member">family member</span>. Nothing happens without you.</p>
-              <p>Rather talk now?</p>
-              <a class="phone-big" href="tel:+18005675433" data-track="success_phone">Call 1-800-567-LIFE</a>
-            </div>
-          </div>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -426,9 +437,9 @@
     <div class="wrap" data-reveal>
       <p class="eyebrow">One more thing</p>
       <h2 id="final-title">You don't have to carry it <span class="accent">alone.</span></h2>
-      <p class="lede" style="margin:1.25rem auto 0">Tell us a little about her. A real person will call you within one business day, and we'll take it from there — together.</p>
+      <p class="lede" style="margin:1.25rem auto 0">Book a call. A real person will call you at the time you choose, and we'll take it from there — together.</p>
       <div class="hero-actions">
-        <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-track="final_cta">Tell us about your mom</a>
+        <a class="btn btn--primary btn--lg" href="#coverage-form" data-focus-form data-track="final_cta">Book my call</a>
       </div>
       <p class="reassure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
@@ -440,7 +451,7 @@
 </main>
 
 <div class="sticky-cta">
-  <a class="btn btn--primary" href="#coverage-form" data-focus-form data-track="sticky_cta">Tell us about your mom</a>
+  <a class="btn btn--primary" href="#coverage-form" data-focus-form data-track="sticky_cta">Book my call</a>
   <a class="call" href="tel:+18005675433" aria-label="Call 1-800-567-LIFE" data-track="sticky_phone">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
   </a>
@@ -473,30 +484,13 @@
       <p>Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance. Coverage depends on the plan; we confirm it with you before the first session.</p>
       <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. Individual results vary.</p>
       <p><span class="crisis"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>If you or someone you love is in crisis, call or text 988.</span></p>
-      <p>© 2026 Total Life · <a href="#">[PRIVACY POLICY]</a> · <a href="#">[TERMS]</a> · <a href="#">[HIPAA NOTICE]</a></p>
+      <p>© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <a href="#">[HIPAA NOTICE OF PRIVACY PRACTICES]</a></p>
     </div>
   </div>
 </footer>
 
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/track.js" defer></script>
 <script src="../assets/js/tl.js" defer></script>
-<script>
-  // Page-scoped: when the visitor picked "Myself, actually" (value "you"), the success
-  // sentence "reach out to your you" would read wrong. Swap it for a first-person line.
-  (function () {
-    var form = document.getElementById('coverage-form'); if (!form) return;
-    var success = form.querySelector('.tl-step--success'); var copy = document.getElementById('success-copy');
-    if (!success || !copy || !('MutationObserver' in window)) return;
-    var original = copy.innerHTML;
-    new MutationObserver(function () {
-      if (!success.classList.contains('is-active')) return;
-      var picked = form.querySelector('input[name="relationship"]:checked');
-      if (picked && picked.value === 'you') {
-        copy.textContent = "A real person will call you within one business day. We'll listen first, then decide together what a good next step looks like for you. Nothing happens without you.";
-      } else if (copy.innerHTML !== original && !copy.querySelector('[data-fill]')) {
-        copy.innerHTML = original;
-      }
-    }).observe(success, { attributes: true, attributeFilter: ['class'] });
-  })();
-</script>
 </body>
 </html>
