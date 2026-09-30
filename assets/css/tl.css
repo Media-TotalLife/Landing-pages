@@ -124,6 +124,7 @@
   /* Brand colors — exact values from the brand book */
   --coral: #FA7268;
   --coral-deep: #E85F55;   /* hover state only, still a solid */
+  --coral-text: #D64B41;   /* coral for text: 4.1:1 on bg, 3.5:1 on sand (large text only) */
   --teal: #17484E;
   --teal-deep: #0F3338;    /* hover state on teal links */
   --bg: #FFFAF6;
@@ -139,7 +140,7 @@
   --font-body: "Inter", "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Inter Tight", "Inter", "Open Sans", system-ui, sans-serif;
   --text: 1.125rem;         /* 18px senior minimum-preferred */
-  --text-sm: 1rem;          /* 16px floor */
+  --text-sm: 1.0625rem;     /* 17px floor for secondary text */
   --text-lg: 1.3125rem;     /* 21px */
   --lh: 1.55;
 
@@ -198,7 +199,7 @@ h1, h2, h3 {
 h1 { font-weight: 700; font-size: clamp(2.5rem, 5.6vw, 4.375rem); line-height: 1.02; letter-spacing: -0.025em; }
 h2 { font-weight: 700; font-size: clamp(2rem, 3.6vw, 2.875rem); line-height: 1.08; }
 h3 { font-weight: 700; font-size: clamp(1.375rem, 2vw, 1.625rem); line-height: 1.2; }
-.accent { color: var(--coral); }          /* the one coral word */
+.accent { color: var(--coral-text); }          /* the one coral word */
 .lede { font-size: var(--text-lg); color: var(--navy); max-width: 36em; }
 .muted { color: var(--muted); }
 .small { font-size: var(--text-sm); }
@@ -210,9 +211,9 @@ h3 { font-weight: 700; font-size: clamp(1.375rem, 2vw, 1.625rem); line-height: 1
   text-transform: uppercase;
   color: var(--teal);
   margin: 0 0 1.25rem;
-  display: flex; align-items: center; gap: .75rem;
+  display: flex; align-items: flex-start; gap: .75rem;
 }
-.eyebrow::before { content: ""; width: 1.5rem; height: 2px; background: var(--coral); border-radius: 2px; flex: none; }
+.eyebrow::before { content: ""; width: 1.5rem; height: 2px; background: var(--coral); border-radius: 2px; flex: none; margin-top: .6em; }
 .eyebrow--plain::before { display: none; }
 
 /* ---- Layout ------------------------------------------------------------ */
@@ -266,7 +267,7 @@ h3 { font-weight: 700; font-size: clamp(1.375rem, 2vw, 1.625rem); line-height: 1
   min-height: 48px; padding: 0 .25rem;
 }
 .phone svg { width: 22px; height: 22px; flex: none; }
-.phone small { display: block; font-size: .75rem; font-weight: 500; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; line-height: 1; }
+.phone small { display: block; font-size: .8125rem; font-weight: 500; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; line-height: 1; }
 .phone b { display: block; line-height: 1.1; }
 @media (max-width: 760px) {
   .nav { display: none; }
@@ -284,21 +285,21 @@ h3 { font-weight: 700; font-size: clamp(1.375rem, 2vw, 1.625rem); line-height: 1
   transition: background-color 160ms var(--ease), transform 160ms var(--ease), box-shadow 160ms var(--ease);
   -webkit-tap-highlight-color: transparent;
 }
-.btn--primary { background: var(--coral); color: var(--bg); box-shadow: 0 8px 24px -12px rgba(250,114,104,.75); }
+.btn--primary { background: var(--coral); color: var(--navy); box-shadow: 0 8px 24px -12px rgba(250,114,104,.75); }
 .btn--primary:hover { background: var(--coral-deep); transform: translateY(-1px); box-shadow: 0 12px 28px -12px rgba(250,114,104,.85); }
 .btn--primary:active { transform: translateY(0); }
 .btn--lg { min-height: 64px; padding: 0 2.5rem; font-size: var(--text-lg); }
 
 /* Reassurance line under a CTA */
-.reassure { display: flex; align-items: center; gap: .6rem; color: var(--muted); font-size: var(--text-sm); margin-top: 1rem; }
+.reassure { display: flex; align-items: center; gap: .6rem; color: var(--muted); font-size: var(--text); margin-top: 1rem; }
 .reassure svg { width: 20px; height: 20px; color: var(--teal); flex: none; }
 
 /* ---- Medicare stamp (brand mark) --------------------------------------- */
 .stamp {
   display: inline-grid; place-items: center; text-align: center;
-  width: 124px; height: 84px;
+  width: 136px; height: 92px;
   border: 2px solid var(--coral); border-radius: 50% / 50%;
-  color: var(--navy); font-weight: 700; font-size: .625rem; letter-spacing: .2em; line-height: 1.25;
+  color: var(--navy); font-weight: 700; font-size: .75rem; letter-spacing: .14em; line-height: 1.25;
   text-transform: uppercase; padding: 0 .5rem;
   flex: none;
 }
@@ -372,7 +373,7 @@ section:has(.hero-art) { overflow: hidden; }
 .therapist { margin: 0; }
 .therapist .portrait .chip { left: .9rem; top: .9rem; font-size: .875rem; padding: .4rem .85rem; white-space: nowrap; max-width: calc(100% - 1.8rem); overflow: hidden; text-overflow: ellipsis; }
 .therapist .portrait[data-placeholder]::after { font-size: .6875rem; left: .75rem; right: .75rem; bottom: .75rem; padding: .45rem .6rem; }
-.therapist figcaption { margin-top: .875rem; font-size: var(--text-sm); color: var(--muted); line-height: 1.4; }
+.therapist figcaption { margin-top: .875rem; font-size: var(--text); color: var(--muted); line-height: 1.4; }
 .therapist figcaption b { display: block; color: var(--teal); font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: -.01em; margin-bottom: .15rem; }
 
 /* ---- Cards ------------------------------------------------------------- */
@@ -384,11 +385,11 @@ section:has(.hero-art) { overflow: hidden; }
 /* Stat / data card */
 .stat { display: grid; gap: .5rem; align-content: start; }
 .stat b {
-  font-family: var(--font-display); font-weight: 700; color: var(--coral);
+  font-family: var(--font-display); font-weight: 700; color: var(--coral-text);
   font-size: clamp(3rem, 5.5vw, 4.5rem); line-height: .95; letter-spacing: -.03em;
 }
 .stat b small { color: var(--teal); font-size: .55em; font-weight: 700; letter-spacing: -.01em; }
-.stat span { color: var(--muted); font-size: var(--text-sm); max-width: 20em; }
+.stat span { color: var(--muted); font-size: var(--text); max-width: 20em; }
 .stat-band { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); overflow: hidden; }
 .stat-band .stat { padding: clamp(1.5rem, 2.5vw, 2.25rem); text-align: center; justify-items: center; }
 .stat-band .stat + .stat { border-left: 1px solid var(--line); }
@@ -396,12 +397,12 @@ section:has(.hero-art) { overflow: hidden; }
   .stat-band { grid-template-columns: 1fr; }
   .stat-band .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
 }
-.source { color: var(--muted); font-size: .9375rem; margin-top: .75rem; }
+.source { color: var(--muted); font-size: var(--text-sm); margin-top: .75rem; }
 
 /* Numbered steps */
 .steps { counter-reset: step; }
 .step { position: relative; }
-.step .num { font-family: var(--font-display); font-weight: 700; color: var(--coral); font-size: .9375rem; letter-spacing: .1em; display: block; margin-bottom: .75rem; }
+.step .num { font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1rem; letter-spacing: .1em; display: block; margin-bottom: .75rem; }
 .step h3 { color: var(--teal); font-size: 1.375rem; margin-bottom: .5rem; }
 .step p { color: var(--muted); font-size: var(--text-sm); }
 
@@ -447,12 +448,12 @@ section:has(.hero-art) { overflow: hidden; }
 .booking-card .cal-head span { color: var(--muted); font-size: var(--text-sm); }
 .meetings-iframe-container { min-height: 640px; }
 .meetings-iframe-container iframe { border: 0; width: 100%; min-height: 640px; border-radius: var(--radius-sm); }
-.calendar-placeholder { min-height: 420px; display: grid; place-items: center; text-align: center; padding: 2rem; border: 2px dashed var(--line-strong); border-radius: var(--radius-sm); color: var(--muted); background: var(--cream); }
+.calendar-placeholder { min-height: 640px; display: grid; place-items: center; text-align: center; padding: 2rem; border: 2px dashed var(--line-strong); border-radius: var(--radius-sm); color: var(--muted); background: var(--cream); }
 .calendar-placeholder b { display: block; color: var(--teal); font-family: var(--font-display); font-size: 1.25rem; margin-bottom: .5rem; }
 .calendar-placeholder code { font-size: .9em; }
-.booking-card .optin { color: var(--muted); font-size: .9375rem; line-height: 1.5; padding: 1rem .5rem 0; max-width: 60ch; }
+.booking-card .optin { color: var(--navy); font-size: var(--text); line-height: 1.5; padding: 1rem .5rem 0; max-width: 60ch; }
 .booking-card .optin a { color: var(--teal); font-weight: 600; }
-.booking-card .privacy { display: flex; gap: .6rem; align-items: flex-start; color: var(--muted); font-size: .9375rem; padding: .75rem .5rem 0; }
+.booking-card .privacy { display: flex; gap: .6rem; align-items: flex-start; color: var(--muted); font-size: var(--text-sm); padding: .75rem .5rem 0; }
 .booking-card .privacy svg { width: 20px; height: 20px; color: var(--teal); flex: none; margin-top: 2px; }
 
 /* Booking section: copy + card, card first on mobile */
@@ -474,7 +475,7 @@ section:has(.hero-art) { overflow: hidden; }
   transform: translateY(110%); transition: transform 320ms var(--ease);
  visibility: hidden; transition: transform 320ms var(--ease), visibility 0s 320ms; }
 .sticky-cta.is-visible { transform: none; visibility: visible; transition-delay: 0s; }
-.sticky-cta .btn { flex: 1; min-height: 52px; padding: 0 1rem; font-size: 1.0625rem; }
+.sticky-cta .btn { flex: 1; min-height: 52px; padding: 0 1rem; font-size: var(--text); }
 .sticky-cta .call { flex: none; display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--sand); color: var(--teal); }
 .sticky-cta .call svg { width: 24px; height: 24px; }
 @media (max-width: 760px) { .sticky-cta { display: flex; } body { padding-bottom: 0; } body.has-sticky { padding-bottom: 84px; } }
@@ -522,7 +523,7 @@ h1 .accent::after {
 }
 @keyframes underline { to { transform: scaleX(1); } }
 /* Medicare stamp settles in like a press */
-.stamp { animation: stamp-in 600ms var(--ease) 350ms both; }
+@media (min-width: 761px) { .stamp { animation: stamp-in 600ms var(--ease) 350ms both; } }
 @keyframes stamp-in { from { opacity: 0; transform: scale(1.12) rotate(-4deg); } to { opacity: 1; transform: none; } }
 /* Oversized flower turns imperceptibly */
 .stamp-bg img { animation: turn 160s linear infinite; }
@@ -552,5 +553,19 @@ h1 .accent::after {
 .thanks .next h2 { font-size: clamp(1.375rem, 2.2vw, 1.75rem); margin-bottom: 1rem; }
 .thanks .next ol { list-style: none; counter-reset: n; display: grid; gap: 1rem; }
 .thanks .next li { counter-increment: n; display: grid; grid-template-columns: 2.25rem 1fr; gap: .75rem; align-items: start; color: var(--navy); }
-.thanks .next li::before { content: counter(n, decimal-leading-zero); font-family: var(--font-display); font-weight: 700; color: var(--coral); }
+.thanks .next li::before { content: counter(n, decimal-leading-zero); font-family: var(--font-display); font-weight: 700; color: var(--coral-text); }
 @media (max-width: 900px) { .thanks .wrap { grid-template-columns: 1fr; } }
+
+/* ---- Review fixes: tap targets, mobile density ------------------------------ */
+.reassure a[href^="tel:"], .aside-note a[href^="tel:"], .lede a[href^="tel:"], .crisis-note a, .intro a[href^="tel:"] { display: inline-block; padding-block: .75rem; margin-block: -.75rem; }
+.footer .legal a { display: inline-block; padding: .75rem .1rem; margin-block: -.5rem; }
+.footer .legal a[href="#"] { pointer-events: none; }
+.stamp { border-color: var(--coral-text); color: var(--teal); }
+@media (max-width: 640px) {
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .grid--3:has(> .therapist) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+  .therapist .portrait { aspect-ratio: 1; }
+  .therapist .portrait .chip, .therapist .portrait[data-placeholder]::after { display: none; }
+  .therapist figcaption { font-size: var(--text-sm); }
+  .therapist figcaption b { font-size: var(--text); }
+}

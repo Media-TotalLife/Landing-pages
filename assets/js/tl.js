@@ -133,10 +133,10 @@
     document.body.classList.add('has-sticky');
     sticky.setAttribute('inert', '');
     var sio = new IntersectionObserver(function (entries) {
-      var formVisible = false;
-      var form = document.querySelector('.booking-card');
-      if (form) { var r = form.getBoundingClientRect(); formVisible = r.top < window.innerHeight && r.bottom > 0; }
-      sticky.classList.toggle('is-visible', !entries[0].isIntersecting && !formVisible);
+      var cardVisible = false;
+      var card = document.querySelector('.booking-card');
+      if (card) { var r = card.getBoundingClientRect(); var vis = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0); cardVisible = vis > Math.min(r.height, window.innerHeight) * 0.25; }
+      sticky.classList.toggle('is-visible', !entries[0].isIntersecting && !cardVisible);
       sticky.toggleAttribute('inert', !sticky.classList.contains('is-visible'));
     }, { threshold: 0 });
     sio.observe(heroCta);
@@ -147,7 +147,7 @@
         if (entries[0].isIntersecting) sticky.classList.remove('is-visible');
         else { var hr = heroCta.getBoundingClientRect(); if (hr.bottom < 0) sticky.classList.add('is-visible'); }
         sticky.toggleAttribute('inert', !sticky.classList.contains('is-visible'));
-      }, { threshold: 0.15 });
+      }, { threshold: 0.25 });
       fio.observe(formCard);
     }
   }
