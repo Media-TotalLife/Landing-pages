@@ -4,8 +4,30 @@ Two angles, both about caregivers, both landing on pages whose headline matches 
 
 | Angle | Ad says | Lands on | Who it is for |
 |---|---|---|---|
-| **A. Caregiver support** | Worried about Mom? We'll call her. | `/caregiver/` (default hero) | Adult daughters and sons, 45 to 64, arranging care for a parent |
-| **B. Caregiver stress, covered by Medicare** | You look after everyone. Who looks after you? Caregiver stress therapy, covered by Medicare. | `/senior/?v=caregiver-stress` | Adults 65+ caring for a spouse, parent or grandchild |
+| **A. Caregiver support** | Therapy for older adults. We make the first call. | `/caregiver/` (default hero) | Adults 65+, and the family members who book with them |
+| **B. Caregiver stress, covered by Medicare** | Caregiver stress support for adults 65+. Covered by Medicare. | `/senior/?v=caregiver-stress` | Adults 65+ caring for a spouse, parent or grandchild |
+
+## Meta compliance rules every headline follows
+
+Meta's **Personal Attributes** standard rejects copy that asserts or implies something about the reader: age,
+health or mental state, family situation, or a struggle. Since March 2026 that includes indirect second-person
+framing. The pages and ads therefore:
+
+- **Describe the service, never the reader.** "Therapy for adults 65+" (audience statement) is allowed;
+  "Are you over 65?" is not. "Caregiver stress support, covered by Medicare" is allowed; "Caregiver stress? Talk to
+  someone" and "You look after everyone. Who looks after you?" are not.
+- **No questions that presume a condition or situation.** "Worried about Mom?" and "Sound familiar?" were removed
+  for this reason. "Do you feel…" never appears in a headline.
+- **"You" only for the action, never for an attribute.** "Book a call. A real person calls you." is fine.
+  "You're carrying a lot" is not.
+- **No negative self-perception, no before/after, no cure or guarantee language.** Outcomes are quoted with their
+  source line only.
+- **Medicare wording** stays on the approved lines ("Covered by Medicare", "Most members are covered up to 100% with
+  Medicare + supplemental insurance", "Total Life is an enrolled Medicare provider"). Nothing suggests government
+  affiliation or an official Medicare programme.
+- **Health data**: the pixel sends only PageView, Lead and Schedule, with no parameters, and the ad never links
+  directly to a page that asks health questions before identity (the self-check page is not in this test).
+- **Landing page must match the ad**: the hero headline on each URL below repeats the ad headline.
 
 The `?v=` parameter swaps only the hero eyebrow, headline and lede so the first screen repeats the ad. Everything
 else on the page is unchanged. `?v=caregiver-support` is also available on `/senior/` if angle A ever needs a
@@ -72,12 +94,12 @@ Negatives: `job`, `jobs`, `salary`, `free`, `near me` (we are telehealth), `deme
 `hospice`, `medicaid`.
 
 Responsive search ad
-- Headlines (pin 1 to position 1): `Worried About Mom? We'll Call Her` · `Therapy for Your Parent, by Phone` ·
-  `Covered by Medicare` · `Book a Call With Our Care Team` · `Senior-Specialized Therapists` · `We Make the First
-  Call` · `Talk to a Real Person Today` · `9am–9pm ET, 7 Days` · `No Computer Needed`
-- Descriptions: `Book a 15-minute call. We listen first, then decide together how and when to reach her. Covered by
-  Medicare.` · `Licensed therapists who specialize in older adults. Sessions by phone or video from her home.` ·
-  `Most members are covered up to 100% with Medicare + supplemental insurance. Book your call today.`
+- Headlines (pin 1 to position 1): `Therapy for Older Adults` · `We Make the First Call` · `Covered by Medicare` ·
+  `Book a Call With Our Care Team` · `Senior-Specialized Therapists` · `By Phone or Video, From Home` ·
+  `Talk to a Real Person Today` · `9am–9pm ET, 7 Days` · `No Computer Needed`
+- Descriptions: `Book a 15-minute call. A real person listens first. Family members are welcome to book with you.
+  Covered by Medicare.` · `Licensed therapists who specialize in older adults. Sessions by phone or video from home.`
+  · `Most members are covered up to 100% with Medicare + supplemental insurance. Book a call today.`
 - Sitelinks: How it works → `#how` · Signs it might be time → `#signs` · Our founder → `#founder` · Questions → `#faq`
 - Callout: `Enrolled Medicare provider` · `Phone or video` · `Real people, not bots`
 - Call asset: 1-800-567-LIFE, schedule 9 am to 9 pm ET.
@@ -93,11 +115,11 @@ spouse with dementia stress`, `caregiver counseling medicare`, `therapy for care
 Negatives: as above plus `respite care`, `paid caregiver`, `caregiver agency`, `become a caregiver`.
 
 Responsive search ad
-- Headlines (pin 1): `Caregiver Stress? Talk to Someone` · `Who Looks After You?` · `Covered by Medicare` ·
-  `Therapy by Phone, From Home` · `Book a Call With Our Care Team` · `Therapists Who Get Caregiving` ·
+- Headlines (pin 1): `Caregiver Stress Support, 65+` · `Therapy for Older Adult Caregivers` · `Covered by Medicare` ·
+  `Therapy by Phone, From Home` · `Book a Call With Our Care Team` · `Therapists Who Understand Caregiving` ·
   `Real Person, 9am–9pm ET` · `Medicare + Supplemental: Up to 100%`
-- Descriptions: `You look after everyone. Talk to a therapist who specializes in older adults, by phone or video.
-  Covered by Medicare.` · `Book a 15-minute call. We check your coverage together and match you with a therapist.`
+- Descriptions: `Talk therapy for adults 65+ who look after a loved one, with therapists who specialize in older
+  adults. Covered by Medicare.` · `Book a 15-minute call. We check coverage together and match you with a therapist.`
   · `Most members are covered up to 100% with Medicare + supplemental insurance. No computer needed.`
 
 Compliance: never use "free therapy", urgency ("act now", "limited"), or guarantees. "Covered by Medicare" and
@@ -108,19 +130,19 @@ Compliance: never use "free therapy", urgency ("act now", "limited"), or guarant
 Campaign: **Leads** objective, name `TL — Caregiver test`, **Special ad category: none** (this is not credit,
 employment, housing or politics). Advantage+ campaign budget **off**.
 
-Ad set `Caregivers — US`: conversion location **Website**, pixel = the dataset above, performance goal
+Ad set `Adults 65+ — US`: conversion location **Website**, pixel = the dataset above, performance goal
 **Maximise number of conversions**, conversion event **Lead** (if restricted, use **Landing page views**).
 Budget **$5/day**. Schedule: run continuously (Meta only allows dayparting with lifetime budgets; the landing
-page and HubSpot handle after-hours leads by letting them pick a time). Location: United States. Age **45 to 65+**.
-Gender all. Detailed targeting: leave broad, or **Family caregivers** / **Caregiving** interests if available.
+page and HubSpot handle after-hours leads by letting them pick a time). Location: United States. Age **55 to 65+** (Meta caps the top bracket at 65+; 55 catches spouses booking together).
+Gender all. Detailed targeting: leave broad. Do not use health or caregiving interest targeting: it is both restricted for health advertisers and unnecessary at this budget.
 Placements: **Advantage+**, but exclude Audience Network. Attribution: 7-day click, 1-day view.
 
 ### Ad A — Caregiver support (→ `/caregiver/`)
 URL: `https://YOUR-DOMAIN/caregiver/?utm_source=facebook&utm_medium=paid_social&utm_campaign=caregiver-test&utm_content=caregiver-support`
-- Primary text: `You've probably been the one making every call for a while now. This one, we take. Tell us a little
-  about your mom and a real person from our care team calls you at a time you choose. Therapy for older adults, by
-  phone or video, covered by her Medicare.`
-- Headline: `Worried about Mom? We'll call her.` · Description: `Covered by Medicare · Book a call`
+- Primary text: `Talk therapy for adults 65+, from home, by phone or video. Book a call and a real person from our
+  care team calls at a time you choose. We listen first, then match you with a therapist who specializes in older
+  adults. Family members are welcome to book with you. Covered by Medicare.`
+- Headline: `Therapy for older adults. We make the first call.` · Description: `Covered by Medicare · Book a call`
 - CTA button: **Book Now**
 - Creative: the caregiver hero still when installed; until then the senior hero (`assets/img/people/senior-hero.jpg`)
   cropped 1:1 and 4:5, and the 5-second `senior-hero.mp4` for Reels/Stories with the headline as an overlay in
@@ -128,16 +150,14 @@ URL: `https://YOUR-DOMAIN/caregiver/?utm_source=facebook&utm_medium=paid_social&
 
 ### Ad B — Caregiver stress, covered by Medicare (→ `/senior/?v=caregiver-stress`)
 URL: `https://YOUR-DOMAIN/senior/?v=caregiver-stress&utm_source=facebook&utm_medium=paid_social&utm_campaign=caregiver-test&utm_content=caregiver-stress`
-- Primary text: `You look after everyone. Who looks after you? Caring for a spouse or parent wears on you, and it
-  deserves real support. Talk to a therapist who specializes in older adults, from home, by phone or video. Most
-  members are covered up to 100% with Medicare + supplemental insurance. Book a short call with our care team.`
-- Headline: `Caregiver stress. Covered by Medicare.` · Description: `Book a 15-minute call`
+- Primary text: `Looking after a spouse, a parent or a grandchild is hard work. Total Life offers talk therapy for
+  adults 65+ who care for someone else, with therapists who specialize in older adults, from home, by phone or video.
+  Most members are covered up to 100% with Medicare + supplemental insurance. Book a short call with our care team.`
+- Headline: `Caregiver stress support for adults 65+. Covered by Medicare.` · Description: `Book a 15-minute call`
 - CTA button: **Book Now**
 - Creative: `senior-hero.jpg` / `senior-hero.mp4` as above.
 
-Meta health policy: no claims about diagnosing or treating a condition in ad copy, no before/after implications, and
-the landing page must not collect health information before the person consents (it does not; the self-check page is
-not in this test).
+See the Meta compliance rules at the top. Ad copy and the matching hero headline were written together so review of one covers the other.
 
 ## 3. Reading the results
 
