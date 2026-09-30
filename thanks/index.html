@@ -11,9 +11,8 @@
 <link rel="preload" href="../assets/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/tl.css">
 <style>
-.thanks .reassure { margin-top: 1.5rem; }
-.thanks .phone-big { display: inline-flex; align-items: center; gap: .6rem; margin-top: .75rem; font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.5rem; text-decoration: none; white-space: nowrap; }
-.thanks .crisis-note { margin-top: 2rem; color: var(--muted); font-size: var(--text-sm); }
+.thanks .phone-big { display: inline-flex; align-items: center; min-height: 48px; gap: .6rem; margin-top: .75rem; font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.5rem; text-decoration: none; white-space: nowrap; }
+.thanks .crisis-note { margin-top: 2rem; color: var(--muted); font-size: var(--text); }
 .thanks .crisis-note a { color: var(--teal); font-weight: 700; }
 </style>
 </head>
@@ -25,7 +24,7 @@
     <a class="logo" href="./" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
     <a class="phone" href="tel:+18005675433" data-track="header_phone">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
-      <span><small>Call us today</small><b>1-800-567-5433</b></span>
+      <span><small>Call us</small><b>1-800-567-5433</b></span>
     </a>
   </div>
 </header>
@@ -37,13 +36,13 @@
         <div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <p class="eyebrow">Your call is booked</p>
         <h1 id="thanks-h">Thank you. We'll call you at the time you <span class="accent">chose.</span></h1>
-        <p class="lede">A confirmation with the date and time is on its way to your email. The call comes from 1-800-567-5433, so it helps to save that number.</p>
+        <p class="lede">A confirmation with the date and time is on its way to your email.</p>
         <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>A reminder arrives the day before and an hour before</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>Need to change the time? Use the link in your confirmation email, or call us</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>No computer needed for the call, or for therapy afterward</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>A reminder arrives before the call</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>To change the time, use the link in your confirmation email or call us</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>No computer is needed for the call, or for therapy afterward</span></li>
         </ul>
-        <p class="aside-note">Questions before then? We're here <span data-hours>9 am to 9 pm Eastern, seven days a week</span>.</p>
+        <p class="aside-note">We are here <span data-hours>9 am to 9 pm Eastern, seven days a week</span>.</p>
         <a class="phone-big" href="tel:+18005675433" data-track="thanks_phone">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
           1-800-567-5433
@@ -51,15 +50,15 @@
         <p class="crisis-note">If you or someone you love is in crisis, call or text <a href="tel:988">988</a> any time.</p>
       </div>
 
-      <div class="next" aria-labelledby="next-h">
+      <section class="next" aria-labelledby="next-h">
         <h2 id="next-h">What happens on the call</h2>
         <ol>
-          <li><span>A real person from our care team calls you. Most calls take about 15 minutes.</span></li>
+          <li><span>A member of our care team calls you at the time you chose.</span></li>
           <li><span>We check what your Medicare covers, together. Most members are covered up to 100% with Medicare + supplemental insurance.</span></li>
-          <li><span>We answer your questions. No pressure, no sales pitch.</span></li>
-          <li><span>If you'd like to go ahead, we match you with a therapist who specializes in older adults. Sessions are by phone or video, from home.</span></li>
+          <li><span>We answer your questions.</span></li>
+          <li><span>If you want to go ahead, we match you with a therapist who specializes in older adults. Sessions are by phone or video, from home.</span></li>
         </ol>
-      </div>
+      </section>
     </div>
   </section>
 </main>
@@ -75,8 +74,9 @@
       <h3 class="foot-h">Our pages</h3>
       <ul>
         <li><a href="../senior/">Therapy covered by Medicare</a></li>
-        <li><a href="../caregiver/">For families</a></li>
-        <li><a href="../check/">The 2-minute check</a></li>
+        <li><a href="../caregiver/">Support for caregivers</a></li>
+        <li><a href="../depression/">Depression therapy</a></li>
+        <li><a href="../grief/">Grief counseling</a></li>
       </ul>
     </div>
     <div>
@@ -89,9 +89,9 @@
     </div>
     <div class="legal">
       <p>Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance. Your share, if any, depends on your plan.</p>
-      <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. Results vary from person to person.</p>
+      <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. This page describes a service. It is not medical advice or a diagnosis. Results vary from person to person.</p>
       <p class="crisis">If you or someone you love is in crisis, call or text 988.</p>
-      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <a href="#">[HIPAA NOTICE OF PRIVACY PRACTICES]</a></p>
+      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
     </div>
   </div>
 </footer>
