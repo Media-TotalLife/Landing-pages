@@ -367,7 +367,8 @@ h3 { font-weight: 700; font-size: clamp(1.375rem, 2vw, 1.625rem); line-height: 1
 .section--sand .hero-art::before { background: var(--bg); }
 section:has(.hero-art) { overflow: hidden; }
 .hero-art .portrait { position: relative; z-index: 1; }
-@media (max-width: 900px) { .hero-art { max-width: 560px; } .hero-art::before { width: 46%; right: -6%; top: -6%; } .hero-art::after { display: none; } }
+@media (max-width: 900px) { .hero-art { max-width: none; } .hero-art::before, .hero-art::after { display: none; } }
+.hero .hero-head, .hero .hero-more { position: relative; z-index: 2; }
 
 /* Therapist cards: chip = name only, credential as caption */
 .therapist { margin: 0; }
