@@ -15,11 +15,12 @@ npm start          # serves the repo at http://localhost:4173
 | Caregiver support | http://localhost:4173/caregiver/ | Adults 65+ caring for someone, family welcome to book |
 | Depression | http://localhost:4173/depression/ | Adults 65+ · depression therapy theme |
 | Grief and loss | http://localhost:4173/grief/ | Adults 65+ · grief counseling theme |
+| Privacy Policy | http://localhost:4173/privacy/ | Total Life Inc. policy text, filled by `node tools/scrape-compliance.mjs --write` |
 | Confirmation | http://localhost:4173/thanks/ | After booking in the HubSpot widget: conversion events fire here |
 | Review index | http://localhost:4173/ | Internal links to all pages |
 
 Every page has one event: **book a call**. The HubSpot round-robin booking widget (Peggy + Angela, 9 am to
-9 pm Eastern) is embedded directly under the hero; its booking form collects first name, last name, email, phone,
+9 pm Eastern) sits in the hero beside the headline; its booking form collects first name, last name, email, phone,
 date of birth and state. Booking redirects to `/thanks/`, where the Meta and Google conversions fire. The full spec
 is `docs/build-plan-v2.md`.
 
@@ -32,7 +33,7 @@ assets/js/track.js     UTM + click-id capture, Meta Pixel, Google tag, HubSpot t
 assets/js/tl.js        HubSpot booking embed + booked redirect, hero variants, FAQ, reveal, sticky CTA, asset attach
 assets/fonts/          self-hosted Inter + Inter Tight (brand type)
 assets/img/            logo.png and flower.png, cropped from the master brand file
-senior/ caregiver/ depression/ grief/ thanks/   one index.html each; page-scoped CSS lives in the <head>
+senior/ caregiver/ depression/ grief/ thanks/ privacy/   one index.html each; page-scoped CSS lives in the <head>
 docs/conversion-principles.md   research and the ten rules every page follows (with sources)
 docs/build-brief.md             the original brief
 docs/build-plan-v2.md           the current spec: page anatomy, copy rules, technical contract, review gates

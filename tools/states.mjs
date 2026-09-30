@@ -42,7 +42,7 @@ for (const [key, url] of Object.entries(pages)) {
     if (r.ctas !== r.ctasToBook) fail(`${r.ctas - r.ctasToBook} primary CTAs do not point to #book`);
     if (r.ctaText.some(t => t !== 'Book my call')) fail('CTA text not "Book my call": ' + JSON.stringify(r.ctaText));
     if (r.heroCtaTop === null || r.heroCtaTop > (w === 375 ? 812 : 900)) fail('hero CTA not above the fold (' + r.heroCtaTop + ')');
-    if (w === 375 && r.cardTop > 812 * 2.2) fail('booking card further than ~2 screens down on mobile (' + Math.round(r.cardTop) + 'px)');
+    if (w === 375 && r.cardTop > 812 * 1.6) fail('booking card further than ~2 screens down on mobile (' + Math.round(r.cardTop) + 'px)');
     if (r.vanity) fail('567-LIFE still present');
     if (r.digits < 3) fail('phone digits appear only ' + r.digits + ' times');
     if (r.forms) fail(r.forms + ' <form> elements remain');

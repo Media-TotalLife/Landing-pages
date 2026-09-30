@@ -11,7 +11,7 @@ not be scraped from this session. From public search results, these are the live
 | Item | Value | Status |
 |---|---|---|
 | Legal entity | **Total Life Inc.** (named in the Terms and Conditions) | Used in the footer copyright |
-| Privacy Policy | https://totallife.com/privacy/ | Linked in every footer and in the form consent line |
+| Privacy Policy | https://totallife.com/privacy/ | Reproduced on `/privacy/` (text pending: run the scrape with `--write`); every footer links there |
 | Terms and Conditions | https://totallife.com/termsandconditions/ | Linked in every footer |
 | Consent to Telehealth and Therapy | https://totallife.com/consent-to-telehealth-and-therapy/ | Linked in every footer |
 | Notice of Privacy Practices (HIPAA) | Referenced by the Terms and the Consent page; URL not found in search | **Placeholder `[HIPAA NOTICE OF PRIVACY PRACTICES]` in footers. Find the URL on the live site's footer and replace.** |
@@ -30,8 +30,10 @@ and every footer link into `docs/compliance/`. From the repo root, on your own m
 ```bash
 npm i            # once, installs Playwright
 npx playwright install chromium   # once
-node tools/scrape-compliance.mjs
+node tools/scrape-compliance.mjs --write
 ```
+
+`--write` also copies the policy text into `privacy/index.html` between the `POLICY-START` / `POLICY-END` markers.
 
 It writes `docs/compliance/<slug>.txt` for each policy, `docs/compliance/footer-links.json` with every footer
 link on the home page, and prints anything it found that looks like a legal name, address, email, or

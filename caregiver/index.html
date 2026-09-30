@@ -31,17 +31,14 @@
   .hero .hero-actions .reassure { grid-area: reassure; margin-top: 0; }
   .hero .reassure a { color: var(--teal); font-weight: 700; text-decoration: none; white-space: nowrap; }
   .hero .reassure a:hover { text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; }
-  .hero .portrait { width: min(100%, 520px); margin-left: auto; box-shadow: 0 40px 80px -50px rgba(21,32,44,.5); }
   @media (max-width: 900px) {
     .hero .wrap { grid-template-columns: 1fr; }
-    .hero .portrait { margin-left: 0; width: min(100%, 440px); }
   }
   @media (max-width: 560px) {
     .hero { padding-block: 2rem 2.5rem; }
     .letter { margin-top: 1rem; padding-left: 1.25rem; }
     .hero .hero-actions { grid-template-columns: auto 1fr; grid-template-areas: "btn btn" "stamp reassure"; column-gap: 1rem; row-gap: 1.25rem; align-items: center; }
     .hero .hero-actions .btn { width: 100%; }
-    .hero .portrait { aspect-ratio: 5/4; }
   }
 
   /* Section heads: eyebrow + h2 + optional intro */
@@ -50,15 +47,6 @@
   .center .sec-head { margin-inline: auto; }
 
   /* Booking: heading spans the grid, checks left, card right (card first on mobile via tl.css) */
-  #book-section { padding-top: 0; }
-  .book-grid .sec-head { grid-column: 1 / -1; margin-bottom: 0; }
-  .book-grid .checks { margin-top: 0; }
-  #book-section .checks li, #book-section .aside-note { font-size: var(--text); }
-  #book-section .aside-note a { text-decoration: none; font-weight: 700; }
-  #book-section .aside-note a:hover { text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 2px; }
-  @media (max-width: 900px) {
-    .book-grid .sec-head { order: -2; }
-  }
 
   /* Steps: one line each */
   .steps .step { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.5rem, 2.5vw, 2rem); }
@@ -89,6 +77,11 @@
   .final .reassure a { color: var(--teal); font-weight: 700; text-decoration: none; }
 
   .divider { margin: 0 auto; }
+/* Hero holds the booking card (copy left, calendar right; stacked on mobile) */
+.hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); align-items: start; }
+.hero .hero-art { max-width: none; width: 100%; margin: 0; }
+.hero .hero-note { margin-top: 1.5rem; color: var(--navy); font-size: var(--text); max-width: 42ch; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .hero .hero-art { max-width: none; } }
 </style>
 </head>
 <body data-page="caregiver">
@@ -128,41 +121,21 @@
             <span>Or call <a href="tel:+18005675433" data-track="hero_phone">1-800-567-5433</a></span>
           </p>
         </div>
+        <p class="hero-note">Covered by Medicare and many insurance plans. A short call with our care team, 9 am to 9 pm Eastern, seven days a week. A family member is welcome to book with you and join the call.</p>
       </div>
       <div class="hero-art">
-        <div class="portrait portrait--square portrait--warm" data-asset="founder.jpg" data-video="founder.mp4" data-poster="founder-poster.jpg" data-placeholder="[PORTRAIT: Neelam Brar, founder, intimate square portrait, warm side light, looking at camera]" role="img" aria-label="Neelam Brar, founder of Total Life">
-          <span class="chip"><i></i>Neelam Brar · Founder &amp; CEO</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOOKING -->
-  <section class="section" id="book-section" aria-labelledby="book-h">
-    <div class="wrap book-grid">
-      <div class="sec-head">
-        <p class="eyebrow">Book a call</p>
-        <h2 id="book-h">Pick a time. We make the <span class="accent">call.</span></h2>
-        <p class="intro">A family member is welcome to book with you and join the call.</p>
-      </div>
-      <div class="book-copy">
-        <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>A short call with our care team.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>9 am to 9 pm Eastern, seven days a week</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>No obligation.</span></li>
-        </ul>
-        <p class="aside-note">Or call <a href="tel:+18005675433" data-track="book_phone">1-800-567-5433</a>.</p>
-      </div>
-
-      <div class="booking-card" id="book" data-booking data-thanks="../thanks/">
+        <div class="booking-card" id="book" data-booking data-thanks="../thanks/">
         <div class="cal-head"><b>Pick a time for your call</b><span>Times shown in your time zone</span></div>
         <div class="meetings-iframe-container" data-meetings></div>
         <div class="calendar-placeholder" data-calendar-placeholder><div><b>Calendar goes here</b>Add the HubSpot round-robin meetings link to <code>assets/js/config.js</code> (<code>hubspot.meetingsLink</code>). The booking form inside it asks for first name, last name, email, phone, date of birth and state.</div></div>
         <p class="optin">[VETTED OPT-IN LANGUAGE — Total Life's existing opt-in text goes here verbatim]</p>
         <p class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>[PRIVACY LINE — PENDING LEGAL] We use this information only to arrange the call.</span></p>
       </div>
+      </div>
     </div>
   </section>
+
+  
 
   <!-- HOW IT WORKS -->
   <section class="section section--tight" id="how-it-works" aria-labelledby="how-h">
@@ -198,7 +171,7 @@
   <div class="wrap"><div class="divider" aria-hidden="true"><i></i></div></div>
 
   <!-- PROOF -->
-  <section class="section" id="proof" aria-labelledby="proof-title">
+  <section class="section" id="proof" aria-label="Member outcomes and accepted plans">
     <div class="wrap">
       <div class="stat-band" data-reveal>
         <div class="stat"><b>3<small>×</small></b><span>more likely to feel hopeful after three sessions</span></div>
@@ -207,31 +180,14 @@
       </div>
       <p class="source center" style="margin-bottom:clamp(3rem, 6vw, 4.5rem)">Internal outcomes data · Q3 2024 · N=2,847</p>
 
-      <div class="sec-head center" data-reveal>
-        <p class="eyebrow">Our therapists</p>
-        <h2 id="proof-title">Therapists who work with <span class="accent">older adults.</span></h2>
-        <p class="intro" style="margin-inline:auto">Licensed therapists who work with older adults.</p>
-      </div>
+      
       <figure class="quote proof-quote" data-reveal>
         <blockquote>“As a senior, it was difficult to find resources that cater to my experience. Total Life does. I feel like I am in good hands and can trust that my therapist will help me work through any challenges I may be facing.”</blockquote>
         <figcaption><span><b>Total Life Member</b> · joined March 2024</span></figcaption>
       </figure>
-      <div class="grid grid--3 therapists">
-        <figure class="therapist" data-reveal>
-          <div class="portrait" data-asset="caregiver-therapist-1.jpg" data-placeholder="[PORTRAIT: therapist, documentary lighting, seated in home office, soft expression, looking at camera]" role="img" aria-label="Placeholder portrait"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
-          <figcaption><b>[THERAPIST NAME]</b>[CREDENTIAL · YEARS WITH OLDER ADULTS]</figcaption>
-        </figure>
-        <figure class="therapist" data-reveal data-delay="1">
-          <div class="portrait" data-asset="caregiver-therapist-2.jpg" data-placeholder="[PORTRAIT: therapist, documentary lighting, natural window light, thoughtful, looking off-frame]" role="img" aria-label="Placeholder portrait"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
-          <figcaption><b>[THERAPIST NAME]</b>[CREDENTIAL · YEARS WITH OLDER ADULTS]</figcaption>
-        </figure>
-        <figure class="therapist" data-reveal data-delay="2">
-          <div class="portrait" data-asset="caregiver-therapist-3.jpg" data-placeholder="[PORTRAIT: therapist, documentary lighting, warm room, candid smile, looking at camera]" role="img" aria-label="Placeholder portrait"><span class="chip"><i></i>[THERAPIST NAME]</span></div>
-          <figcaption><b>[THERAPIST NAME]</b>[CREDENTIAL · YEARS WITH OLDER ADULTS]</figcaption>
-        </figure>
-      </div>
+      
       <div class="card carrier-box" data-reveal>
-        <h3>Medicare and supplemental plans we work with</h3>
+        <h3>Medicare and insurance plans we work with</h3>
         <ul class="carriers" aria-label="Accepted plans">
           <li>Medicare</li><li>Mutual of Omaha</li><li>Humana</li><li>HCSC</li><li>BCBS</li><li>AARP</li><li>UHC</li>
         </ul>
@@ -261,7 +217,7 @@
         <details>
           <summary>Is it covered by Medicare?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
-            <p>Behavioral health is covered by Medicare, and Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
+            <p>Behavioral health is covered by Medicare, and Total Life is an enrolled Medicare provider and works with many insurance plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
             <p>We go over the plan on the call, before any session.</p>
           </div>
         </details>
@@ -329,10 +285,10 @@
       </ul>
     </div>
     <div class="legal">
-      <p>Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
+      <p>Total Life is an enrolled Medicare provider and works with many insurance plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
       <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. This page describes a service. It is not medical advice or a diagnosis. Results vary from person to person.</p>
       <p class="crisis">If you or someone you love is in crisis, call or text 988.</p>
-      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
+      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="../privacy/">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
     </div>
   </div>
 </footer>

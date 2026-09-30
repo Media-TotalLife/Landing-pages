@@ -2,7 +2,7 @@
 import { chromium } from 'playwright';
 const banned = [/567-LIFE/i, /psychiatr/i, /medication/i, /free (coverage )?check/i, /journey|empower|unlock|seamless|holistic|thrive|transform|embrace/i, /free therapy/i, /free session/i, /limited spots/i, /act now/i, /guaranteed/i, /will cure/i, /elderly/i, /no cost(?! .*supplemental)/i, /medicare-approved discount/i, /#fff\b|#ffffff/i];
 const browser = await chromium.launch();
-for (const key of ['senior', 'caregiver', 'depression', 'grief', 'thanks']) {
+for (const key of ['senior', 'caregiver', 'depression', 'grief', 'thanks', 'privacy']) {
   const page = await (await browser.newContext({ viewport: { width: 375, height: 812 } })).newPage();
   await page.goto(`http://localhost:4173/${key}/`, { waitUntil: 'networkidle' });
   const r = await page.evaluate(() => {
