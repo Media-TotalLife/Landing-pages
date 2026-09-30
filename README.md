@@ -27,7 +27,7 @@ is `docs/build-plan-v2.md`.
 
 ```
 assets/css/tl.css      shared design system (tokens + components) — the brand rules live here
-assets/js/config.js    every ID in one place: HubSpot portal / form / meetings link, Meta Pixel, Google Ads, GA4
+assets/js/config.js    every ID in one place: HubSpot portal ID and meetings link, Meta Pixel, Google Ads, GA4
 assets/js/track.js     UTM + click-id capture, Meta Pixel, Google tag, HubSpot tracking code, conversion events
 assets/js/tl.js        HubSpot booking embed + booked redirect, hero variants, FAQ, reveal, sticky CTA, asset attach
 assets/fonts/          self-hosted Inter + Inter Tight (brand type)

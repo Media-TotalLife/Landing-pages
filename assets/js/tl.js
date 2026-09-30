@@ -3,7 +3,7 @@
    - FAQ: native <details>, enhanced with single-open behaviour.
    - Reveal: gentle opt-in fade for [data-reveal]; off under reduced motion.
    - Sticky mobile CTA: appears after the hero CTA scrolls out of view.
-   - Tracking: every [data-track] click and each form step/complete calls window.tlTrack(name, data).
+   - Tracking: every [data-track] click and the booking event call window.tlTrack(name, data).
 */
 (function () {
   'use strict';
@@ -29,7 +29,7 @@
     var frames = document.querySelectorAll('.portrait[data-asset]');
     if (!frames.length) return;
     var base = document.querySelector('script[src*="tl.js"]').getAttribute('src').replace(/js\/tl\.js.*$/, 'img/people/');
-    fetch(base + 'index.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+    fetch(base + 'index.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
       var have = {}; (list || []).forEach(function (f) { have[f] = true; });
       frames.forEach(function (frame, i) {
         var still = frame.getAttribute('data-asset');
@@ -63,7 +63,7 @@
     var slots = document.querySelectorAll('.texture[data-texture]');
     if (!slots.length) return;
     var base = document.querySelector('script[src*="tl.js"]').getAttribute('src').replace(/js\/tl\.js.*$/, 'img/textures/');
-    fetch(base + 'index.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+    fetch(base + 'index.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
       var have = {}; (list || []).forEach(function (f) { have[f] = true; });
       slots.forEach(function (slot) {
         var name = slot.getAttribute('data-texture');
@@ -101,14 +101,15 @@
   // ---- Stat count-up (reduced-motion safe) ---------------------------------
   function countUp(el) {
     var node = el.firstChild; if (!node || node.nodeType !== 3) return;
-    var target = parseFloat(node.nodeValue); if (isNaN(target)) return;
+    var m = /^(\d+(?:\.\d+)?)(.*)$/.exec(node.nodeValue.trim()); if (!m) return;
+    var target = parseFloat(m[1]), suffix = m[2];
     var start = null, dur = 1100;
     function tick(t) {
       if (!start) start = t; var p = Math.min(1, (t - start) / dur); p = 1 - Math.pow(1 - p, 3);
-      node.nodeValue = String(Math.round(target * p));
-      if (p < 1) requestAnimationFrame(tick); else node.nodeValue = String(target);
+      node.nodeValue = String(Math.round(target * p)) + suffix;
+      if (p < 1) requestAnimationFrame(tick); else node.nodeValue = m[1] + suffix;
     }
-    node.nodeValue = '0'; requestAnimationFrame(tick);
+    node.nodeValue = '0' + suffix; requestAnimationFrame(tick);
   }
   var stats = document.querySelectorAll('.stat b');
   if (stats.length && !reduced && 'IntersectionObserver' in window) {
@@ -130,11 +131,13 @@
   var heroCta = document.querySelector('[data-hero-cta]');
   if (sticky && heroCta && 'IntersectionObserver' in window) {
     document.body.classList.add('has-sticky');
+    sticky.setAttribute('inert', '');
     var sio = new IntersectionObserver(function (entries) {
       var formVisible = false;
       var form = document.querySelector('.booking-card');
       if (form) { var r = form.getBoundingClientRect(); formVisible = r.top < window.innerHeight && r.bottom > 0; }
       sticky.classList.toggle('is-visible', !entries[0].isIntersecting && !formVisible);
+      sticky.toggleAttribute('inert', !sticky.classList.contains('is-visible'));
     }, { threshold: 0 });
     sio.observe(heroCta);
     // hide while the form itself is on screen so we never show two CTAs at once
@@ -143,6 +146,7 @@
       var fio = new IntersectionObserver(function (entries) {
         if (entries[0].isIntersecting) sticky.classList.remove('is-visible');
         else { var hr = heroCta.getBoundingClientRect(); if (hr.bottom < 0) sticky.classList.add('is-visible'); }
+        sticky.toggleAttribute('inert', !sticky.classList.contains('is-visible'));
       }, { threshold: 0.15 });
       fio.observe(formCard);
     }
@@ -156,6 +160,10 @@
     if (!matches.length) return;
     document.querySelectorAll('[data-v="default"]').forEach(function (el) { el.hidden = true; });
     matches.forEach(function (el) { el.hidden = false; });
+    // Point the hero's accessible name at the visible headline
+    var h = document.querySelector('[data-v="' + v.replace(/"/g, '') + '"] h1');
+    var section = h && h.closest('section[aria-labelledby]');
+    if (h && section) { if (!h.id) h.id = 'hero-h-' + v.replace(/[^a-z0-9]+/gi, '-'); section.setAttribute('aria-labelledby', h.id); }
     document.body.setAttribute('data-variant', v);
   })();
 

@@ -1,3 +1,5 @@
+> **Superseded (30 Sept 2026):** the funnel now follows `docs/build-plan-v2.md`. References to `/check/`, the multi-step form and `#coverage-form` below are historical.
+
 # Build brief — one landing page, Total Life
 
 You are building ONE landing page inside `/home/user/Landing-pages`. It must use the shared system

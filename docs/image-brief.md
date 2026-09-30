@@ -1,3 +1,5 @@
+> **Superseded (30 Sept 2026):** the funnel now follows `docs/build-plan-v2.md`. References to `/check/`, the multi-step form and `#coverage-form` below are historical.
+
 # Image generation brief — Total Life landing pages
 
 For: an image-generation model or operator (GPT Image, Higgsfield, or similar) producing the portrait

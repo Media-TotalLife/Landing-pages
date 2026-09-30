@@ -1,3 +1,5 @@
+> **Superseded (30 Sept 2026):** the funnel now follows `docs/build-plan-v2.md`. References to `/check/`, the multi-step form and `#coverage-form` below are historical.
+
 # Conversion principles — Total Life landing pages
 
 Written before design began. Every page decision is checked against this list and against the

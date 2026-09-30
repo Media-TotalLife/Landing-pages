@@ -11,8 +11,8 @@ window.TL_CONFIG = {
   },
   google: {
     adsId: '',           // 'AW-XXXXXXXXX'
-    leadLabel: '',       // conversion label for "Care call requested" (form submitted)
-    bookedLabel: '',     // conversion label for "Care call booked" (time picked in the calendar)
+    leadLabel: '',       // optional second label; /thanks/ fires lead + booked together, so leave empty to count one conversion
+    bookedLabel: '',     // conversion label for "Care call booked" (fires on /thanks/)
     ga4Id: ''            // 'G-XXXXXXXXXX' (optional)
   },
   careHours: '9 am to 9 pm Eastern, seven days a week',

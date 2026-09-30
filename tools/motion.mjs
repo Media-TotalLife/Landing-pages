@@ -1,7 +1,7 @@
 // Verify real-motion behaviour: reveals fire while scrolling, stat count-up lands on the right numbers, no console errors.
 import { chromium } from 'playwright';
 const browser = await chromium.launch();
-for (const key of ['senior', 'caregiver', 'check']) {
+for (const key of ['senior', 'caregiver', 'depression', 'grief']) {
   const page = await (await browser.newContext({ viewport: { width: 1280, height: 800 }, reducedMotion: 'no-preference' })).newPage();
   const errors = []; page.on('pageerror', e => errors.push(String(e)));
   await page.goto(`http://localhost:4173/${key}/`, { waitUntil: 'networkidle' });

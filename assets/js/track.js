@@ -1,8 +1,7 @@
 /* Total Life — attribution + tags. Loads before tl.js (both deferred, order preserved).
    - Captures utm_*, gclid/gbraid/wbraid, fbclid and the message-match variant (?v=) into sessionStorage
-     so they survive the multi-step form and reach HubSpot as hidden fields.
+     (the HubSpot tracking cookie ties the booking to the visit source; the values are kept for GA4 events).
    - Loads Meta Pixel, Google tag (Ads + GA4) and the HubSpot tracking code only when an ID is configured.
-   - window.tlAttribution()  -> object of attribution fields for the lead payload
    - window.tlConvert('lead' | 'booked') -> fires the matching conversion on every configured tag, once per session
    - window.tlTrack(name, data) -> dataLayer + GA4 event (tl.js reuses this)
    Health & wellness note: Meta restricts what health advertisers may send. Only standard events (PageView, Lead,
@@ -25,13 +24,6 @@
   }
   try { sessionStorage.setItem('tl_attr', JSON.stringify(store)); } catch (e) {}
 
-  window.tlAttribution = function () {
-    var out = {};
-    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid', 'landing_page', 'landing_variant'].forEach(function (k) {
-      if (store[k]) out[k] = store[k];
-    });
-    return out;
-  };
   window.tlVariant = function () { return store.landing_variant || ''; };
 
   window.dataLayer = window.dataLayer || [];
