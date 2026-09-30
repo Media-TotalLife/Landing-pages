@@ -52,11 +52,11 @@ booking form fields, not a rewrite of `/caregiver/`.
 | Vetted opt-in language | `[VETTED OPT-IN LANGUAGE]` under every widget, and in the HubSpot consent text | Placeholder until Total Life supplies the text |
 | Bookings into Peggy's and Angela's calendars, 9 am to 9 pm Eastern, manual daily assignment | Round-robin link, `docs/hubspot-setup.md` §1, §2, §5 | Documented |
 | Evening shifts on Peggy's and Tammy's calendars | `docs/hubspot-setup.md` §1 | Documented |
-| Confirmation page where pixels fire | `/thanks/`; `tools/tracking-test.mjs` proves Lead + Schedule and both Google conversions fire once | Built and tested |
+| Confirmation page where pixels fire | `/thanks/`; `tools/tracking-test.mjs` proves Lead + Schedule and both Google conversions fire once | Built and tested with stubs; live proof is the Day-one verification in `docs/ads-launch.md` §4 |
 | Ads match landing page themes: depression, grief and loss, caregiver support | Four pages, `docs/ads-launch.md` | Built |
 | Independent Google and Meta campaigns per theme, $50 and $30 a day | `docs/ads-launch.md` | Documented |
 | No psychiatry (or GLP-1) keywords or ads | Pages carry no psychiatry mention; negatives in `docs/ads-launch.md` | Done |
-| Booking data mapped to keywords and campaign source (Jason) | UTMs + gclid on every ad URL, HubSpot tracking code on every page, sessionStorage attribution; `docs/hubspot-setup.md` §7 | Built; Jason's tagging on HubSpot side |
+| Booking data mapped to keywords and campaign source (Jason) | UTMs + gclid on every ad URL, HubSpot tracking code on every page, sessionStorage attribution; `docs/hubspot-setup.md` §7 | Built; read from Original source drill-downs, confirmed in Day-one verification (`docs/ads-launch.md` §4) |
 | Internal HubSpot booking data as the source of truth | `Care calls — booked` view, `docs/hubspot-setup.md` §4 | Documented |
 | Compliance language carried from the existing site | Footer links to Privacy, Terms, Consent to Telehealth; `/privacy/` page; HIPAA notice URL pending; `docs/compliance-migration.md` | Partial: policy text and HIPAA URL need the scrape run from a machine that can reach totallife.com |
 | Phone as digits | 1-800-567-5433 everywhere | Done |
