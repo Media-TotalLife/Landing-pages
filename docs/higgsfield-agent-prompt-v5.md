@@ -332,9 +332,7 @@ grade, no HDR, no lens flare, no smoothing of skin, nobody looking at the camera
 no motion blur, hands and hems visible), 1 for everything else. Regenerate for a rule above, or when the
 likeness has drifted; not for taste. Keep the full-size originals; web-sized copies are made in Section 6.
 
-**Generation order.** Slots are numbered; produce them in that order, because slots 2–7 of each page take the
-chosen hero (and steps, once it exists) as reference images. Priority marks **P1–P21** say what to make first if
-the job is cut short: heroes, then steps, then finals, then scene stills, then FAQ, portraits, details, then clips.
+**Generation order.** Work in P1–P21 order. The only constraint on top of that is the reference dependency: a page's hero must be generated and chosen before any slot on that page that takes the hero as a reference, and its steps still before any slot that references the steps. P1–P21 already respects this; if it ever does not, generate the reference first, then return to the priority order.
 
 ## 4. The 21 stills — exact prompts and calls
 
@@ -550,7 +548,7 @@ the clip on desktop and the still under reduced motion.
 ## 7. Final checklist
 
 - [ ] Preflight recorded: plan, balance, workspace, model availability, `--image` accepted by `nano_banana_2`, checked prices
-- [ ] Prompts used verbatim, including the shared exclusion sentence; each page's hero generated and chosen before its referenced slots; P1–P21 order respected
+- [ ] Prompts used verbatim, including the shared exclusion sentence; each page's hero generated and chosen before its referenced slots; P1–P21 order respected (reference-dependency exception only)
 - [ ] 21 stills at exactly 3:2 / 16:9 / 4:5 / 1:1 (verified with an image tool), web-sized copies at the stated long edges, originals kept
 - [ ] Every still passes Section 3; the recurring person is recognisably the same across hero, scene, steps, faq, final (and portrait on the caregiver page)
 - [ ] Gaze: frame-right on hero, portrait, FAQ, final; frame-left on steps; no one looks at the lens
