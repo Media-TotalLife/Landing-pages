@@ -37,6 +37,7 @@ senior/ caregiver/ depression/ grief/ thanks/ privacy/   one index.html each; pa
 docs/conversion-principles.md   research and the ten rules every page follows (with sources)
 docs/build-brief.md             the original brief
 docs/build-plan-v2.md           the current spec: page anatomy, copy rules, technical contract, review gates
+docs/targeting.md               who each page targets, with evidence from the call notes and totallife.com; requirements traceability
 docs/hubspot-setup.md           access needed, round-robin calendar, form, lead views, channel
 docs/ads-launch.md              Google Search ad group + Meta ad set per angle, UTMs, conversions, stop rule
 docs/compliance-migration.md    what carries over from totallife.com, what is still a placeholder, scrape tool
@@ -75,6 +76,7 @@ Fill `assets/js/config.js`. Nothing else needs editing.
 ```bash
 node tools/screens.mjs all      # full-page + above-fold PNGs at 1920 / 834 / 375 → screens/, reports overflow + console errors
 node tools/states.mjs           # booking card present, CTAs target #book, phone digits, no <form>, sticky bar, variants, thanks conversions; exits 1 on failure
+node tools/tracking-test.mjs    # stubs HubSpot, Meta and Google with a test config: proves embed, attribution, booking redirect, one-time conversions
 node tools/scrape-compliance.mjs # from a machine that can reach totallife.com: saves policy text + footer links into docs/compliance/
 node tools/audit.mjs            # headings, labels, alt, text size, tap targets, banned Medicare phrases, stamp above fold
 node tools/motion.mjs           # reveal + stat count-up with motion enabled
