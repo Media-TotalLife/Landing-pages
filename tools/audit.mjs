@@ -1,8 +1,8 @@
 // DOM audit: headings, labels, alt, tap targets, body font size, primary CTA per viewport, placeholders count, banned phrases.
 import { chromium } from 'playwright';
-const banned = [/free therapy/i, /free session/i, /limited spots/i, /act now/i, /guaranteed/i, /will cure/i, /elderly/i, /no cost(?! .*supplemental)/i, /medicare-approved discount/i, /#fff\b|#ffffff/i];
+const banned = [/567-LIFE/i, /psychiatr/i, /medication/i, /free (coverage )?check/i, /journey|empower|unlock|seamless|holistic|thrive|transform|embrace/i, /free therapy/i, /free session/i, /limited spots/i, /act now/i, /guaranteed/i, /will cure/i, /elderly/i, /no cost(?! .*supplemental)/i, /medicare-approved discount/i, /#fff\b|#ffffff/i];
 const browser = await chromium.launch();
-for (const key of ['senior', 'caregiver', 'check', 'thanks']) {
+for (const key of ['senior', 'caregiver', 'depression', 'grief', 'thanks']) {
   const page = await (await browser.newContext({ viewport: { width: 375, height: 812 } })).newPage();
   await page.goto(`http://localhost:4173/${key}/`, { waitUntil: 'networkidle' });
   const r = await page.evaluate(() => {

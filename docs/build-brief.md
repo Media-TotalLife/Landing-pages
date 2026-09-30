@@ -12,7 +12,7 @@ match their register, then exceed their polish.
 - Body text navy, 18px minimum (already the default). Never body text in coral/teal/sand.
 - Primary CTA: `class="btn btn--primary"`, one per viewport. Secondary only as `btn--secondary`.
 - "Covered by Medicare" stamp (`<div class="stamp">Covered<br>by<br>Medicare</div>`) above the fold beside the hero CTA.
-- Phone `1-800-567-LIFE` in header (`.phone` with `href="tel:+18005675433"`), in the hero reassurance line, in the success state, in the final CTA and footer. Never hidden.
+- Phone `1-800-567-5433` in header (`.phone` with `href="tel:+18005675433"`), in the hero reassurance line, in the success state, in the final CTA and footer. Never hidden.
 - Gradients only inside `.portrait` frames. Solid colors everywhere else.
 - No urgency, no "limited spots", no "free therapy", no "no cost" without the supplemental qualifier, no absolute outcome claims, no discounts. Coverage line to use verbatim: "Most members are covered up to 100% with Medicare + supplemental insurance." Use "Total Life is an enrolled Medicare provider." in the footer legal.
 - Stats allowed (they come from the brand book, cite the source line under them): 200+ licensed therapists across 49 states · 92% therapist retention · 3 sessions to feel hope, on average · 68% of members report meaningful improvement after 3 sessions (Internal outcomes data, Q3 2024, N=2,847) · 3× more likely to feel hopeful after three sessions.
@@ -27,7 +27,7 @@ match their register, then exceed their polish.
 ## Page skeleton (every page)
 ```
 <a class="skip" href="#main">Skip to main content</a>
-<header class="header"> .wrap > a.logo(img assets/img/logo.png alt "Total Life") · nav.nav (2–3 anchor links) · a.phone[href=tel:+18005675433] (svg + <span><small>Call us today</small><b>1-800-567-LIFE</b></span>)
+<header class="header"> .wrap > a.logo(img assets/img/logo.png alt "Total Life") · nav.nav (2–3 anchor links) · a.phone[href=tel:+18005675433] (svg + <span><small>Call us today</small><b>1-800-567-5433</b></span>)
 <main id="main">
   hero .section (eyebrow · h1 with one .accent · .lede · primary CTA with data-hero-cta data-track · .stamp · .reassure line with phone) + .portrait on the right
   trust .stat-band (3 stats, coral figures, cited .source)
@@ -44,7 +44,7 @@ match their register, then exceed their polish.
   FAQ .faq (5–6 <details><summary>Question<span class="plus">+</span></summary><div class="answer">…</div></details>)
   final CTA .section (h2 mirroring the hero, primary CTA linking to #coverage-form with data-focus-form, phone)
 </main>
-<div class="sticky-cta"> a.btn.btn--primary[href=#coverage-form][data-focus-form] · a.call[href=tel:…][aria-label="Call 1-800-567-LIFE"] </div>
+<div class="sticky-cta"> a.btn.btn--primary[href=#coverage-form][data-focus-form] · a.call[href=tel:…][aria-label="Call 1-800-567-5433"] </div>
 <footer class="footer"> logo + one-line descriptor · two link columns · .legal (Medicare provider disclosure, coverage qualifier, stat source, crisis 988, © 2026 Total Life · [PRIVACY POLICY] · [TERMS] · [HIPAA NOTICE]) </footer>
 <script src="../assets/js/tl.js" defer></script>
 ```

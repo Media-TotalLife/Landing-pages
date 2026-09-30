@@ -3,8 +3,7 @@
    Leave a value empty and that integration is simply skipped: nothing loads, nothing errors. */
 window.TL_CONFIG = {
   hubspot: {
-    portalId: '',        // HubSpot Hub ID, e.g. '12345678' (Settings > Account defaults)
-    formGuid: '',        // GUID of the "Book a care call" form (Marketing > Forms > form > Share > embed code)
+    portalId: '',        // HubSpot Hub ID, e.g. '12345678' (Settings > Account defaults). Loads the tracking code.
     meetingsLink: ''     // Round-robin meetings link for Peggy + Angela, e.g. 'https://meetings.hubspot.com/total-life/care-call'
   },
   meta: {

@@ -11,16 +11,17 @@ npm start          # serves the repo at http://localhost:4173
 
 | Page | URL | Audience · job |
 |---|---|---|
-| Senior coverage check | http://localhost:4173/senior/ | Adults 65+ · start a Medicare coverage check |
-| Caregiver funnel | http://localhost:4173/caregiver/ | Adult daughters/sons · "we make the first call" |
-| Self-check | http://localhost:4173/check/ | Adults 65+ who dismiss how they feel · 4 gentle questions, then coverage |
-| Confirmation | http://localhost:4173/thanks/ | After the form: HubSpot calendar (Peggy + Angela round robin), conversion events |
+| Senior (general) | http://localhost:4173/senior/ | Adults 65+ · variants `?v=caregiver-stress`, `?v=caregiver-support` |
+| Caregiver support | http://localhost:4173/caregiver/ | Adults 65+ caring for someone, family welcome to book |
+| Depression | http://localhost:4173/depression/ | Adults 65+ · depression therapy theme |
+| Grief and loss | http://localhost:4173/grief/ | Adults 65+ · grief counseling theme |
+| Confirmation | http://localhost:4173/thanks/ | After booking in the HubSpot widget: conversion events fire here |
 | Review index | http://localhost:4173/ | Internal links to all pages |
 
-Every page's job is now the same: **book a call with the care team**. The form collects first name, last name,
-phone, email, date of birth and ZIP over three steps (the self-check page asks its four questions first), posts
-the lead to HubSpot, and sends the visitor to `/thanks/` to pick a time. Hero variants for ad message match:
-`/senior/?v=caregiver-stress`, `/senior/?v=caregiver-support`.
+Every page has one event: **book a call**. The HubSpot round-robin booking widget (Peggy + Angela, 9 am to
+9 pm Eastern) is embedded directly under the hero; its booking form collects first name, last name, email, phone,
+date of birth and state. Booking redirects to `/thanks/`, where the Meta and Google conversions fire. The full spec
+is `docs/build-plan-v2.md`.
 
 ## Structure
 
@@ -28,12 +29,13 @@ the lead to HubSpot, and sends the visitor to `/thanks/` to pick a time. Hero va
 assets/css/tl.css      shared design system (tokens + components) — the brand rules live here
 assets/js/config.js    every ID in one place: HubSpot portal / form / meetings link, Meta Pixel, Google Ads, GA4
 assets/js/track.js     UTM + click-id capture, Meta Pixel, Google tag, HubSpot tracking code, conversion events
-assets/js/tl.js        multi-step form (validation, HubSpot submit, redirect), variants, FAQ, reveal, sticky CTA
+assets/js/tl.js        HubSpot booking embed + booked redirect, hero variants, FAQ, reveal, sticky CTA, asset attach
 assets/fonts/          self-hosted Inter + Inter Tight (brand type)
 assets/img/            logo.png and flower.png, cropped from the master brand file
-senior/ caregiver/ check/   one index.html each; page-scoped CSS lives in the <head>
+senior/ caregiver/ depression/ grief/ thanks/   one index.html each; page-scoped CSS lives in the <head>
 docs/conversion-principles.md   research and the ten rules every page follows (with sources)
-docs/build-brief.md             the brief each page was built to
+docs/build-brief.md             the original brief
+docs/build-plan-v2.md           the current spec: page anatomy, copy rules, technical contract, review gates
 docs/hubspot-setup.md           access needed, round-robin calendar, form, lead views, channel
 docs/ads-launch.md              Google Search ad group + Meta ad set per angle, UTMs, conversions, stop rule
 docs/compliance-migration.md    what carries over from totallife.com, what is still a placeholder, scrape tool
@@ -45,7 +47,7 @@ tools/                 Playwright checks (see below)
 
 Copy that depends on decisions not yet made is left in square brackets and must be replaced before launch:
 `[THERAPIST NAME]`, `[LCSW · 14 yrs with older adults]`, `[PORTRAIT: …]` (photo direction inside every `.portrait` frame),
-and the footer link `[HIPAA NOTICE OF PRIVACY PRACTICES]` (URL to be taken from the live site, see `docs/compliance-migration.md`).
+`[VETTED OPT-IN LANGUAGE]` under every booking widget, and the footer link `[HIPAA NOTICE OF PRIVACY PRACTICES]` (URL to be taken from the live site, see `docs/compliance-migration.md`).
 Stats, the member quote, founder quotes, and carrier names come from the brand book and are used verbatim with their source line.
 
 ## Installing generated assets
@@ -62,16 +64,16 @@ The generation brief lives in `docs/higgsfield-agent-prompt.md`.
 
 Fill `assets/js/config.js`. Nothing else needs editing.
 
-- **HubSpot form:** the last step POSTs to the Forms API (`api.hsforms.com/submissions/v3/integration/submit/<portalId>/<formGuid>`) with the six fields plus hidden attribution fields (`utm_*`, `gclid`, `fbclid`, `landing_page`, `landing_variant`). If the HubSpot form lacks a hidden field the request is retried with the six core fields. The `hubspotutk` cookie is attached when the tracking code has loaded.
-- **Calendar:** `/thanks/` embeds `hubspot.meetingsLink` with `embed=true` and the visitor's first name, last name and email pre-filled. When HubSpot posts `meetingBookSucceeded`, the page shows "You're booked" and fires the booked conversion.
-- **Conversions:** `tlConvert('lead')` on `/thanks/` (Meta `Lead`, Google Ads `leadLabel`, GA4 `generate_lead`), `tlConvert('booked')` on calendar booking (Meta `Schedule`, Google Ads `bookedLabel`). Each fires once per session. No health parameters are ever sent.
-- **Events:** every CTA and form step calls `window.tlTrack(name, data)` → `dataLayer` and GA4 when configured.
+- **Booking widget:** `hubspot.meetingsLink` is embedded in every page's `.booking-card` with `embed=true`. When HubSpot posts `meetingBookSucceeded`, `tl.js` fires the booked conversion and sends the visitor to `/thanks/`. Also set HubSpot's own post-booking redirect to `/thanks/` (see `docs/hubspot-setup.md`).
+- **Tracking code:** `hubspot.portalId` loads `js.hs-scripts.com/<id>.js` so bookings attach to the visit source (UTMs, gclid).
+- **Conversions:** `/thanks/` fires `tlConvert('lead')` and `tlConvert('booked')` once per session: Meta `Lead` + `Schedule`, Google Ads `leadLabel` + `bookedLabel`, GA4 events. No health parameters are ever sent.
+- **Events:** every CTA calls `window.tlTrack(name, data)` → `dataLayer` and GA4 when configured.
 
 ## Verification tools (need `npm i` for Playwright)
 
 ```bash
 node tools/screens.mjs all      # full-page + above-fold PNGs at 1920 / 834 / 375 → screens/, reports overflow + console errors
-node tools/states.mjs           # walks every form end to end (errors, dob/zip formatting, redirect to /thanks/) and the hero variants; exits 1 on failure
+node tools/states.mjs           # booking card present, CTAs target #book, phone digits, no <form>, sticky bar, variants, thanks conversions; exits 1 on failure
 node tools/scrape-compliance.mjs # from a machine that can reach totallife.com: saves policy text + footer links into docs/compliance/
 node tools/audit.mjs            # headings, labels, alt, text size, tap targets, banned Medicare phrases, stamp above fold
 node tools/motion.mjs           # reveal + stat count-up with motion enabled
@@ -81,5 +83,5 @@ node tools/motion.mjs           # reveal + stat count-up with motion enabled
 
 All copy was written against Part V of the brand book: no "free therapy", no urgency, qualified coverage language
 ("Most members are covered up to 100% with Medicare + supplemental insurance"), "Total Life is an enrolled Medicare
-provider", sources on every number, 988 crisis line in every footer. The self-check page shows no score or result tier.
+provider", sources on every number, 988 crisis line in every footer. 
 Final sign-off from Total Life legal/compliance is still required before publication.

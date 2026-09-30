@@ -1,9 +1,9 @@
 // Full-page screenshots of one or all pages at desktop / tablet / mobile widths.
-// usage: node tools/screens.mjs [senior|caregiver|check|all] [--server]   (expects server on :4173 unless --server)
+// usage: node tools/screens.mjs [senior|caregiver|depression|grief|thanks|all] [--server]   (expects server on :4173 unless --server)
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
-const pages = { senior: '/senior/', caregiver: '/caregiver/', check: '/check/', thanks: '/thanks/?p=senior' };
+const pages = { senior: '/senior/', caregiver: '/caregiver/', depression: '/depression/', grief: '/grief/', thanks: '/thanks/?p=senior' };
 const which = process.argv[2] && process.argv[2] !== 'all' ? [process.argv[2]] : Object.keys(pages);
 const widths = [[1920, 1080, 'desktop'], [834, 1112, 'tablet'], [375, 812, 'mobile']];
 let server;

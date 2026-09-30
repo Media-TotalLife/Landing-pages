@@ -17,7 +17,7 @@ not be scraped from this session. From public search results, these are the live
 | Notice of Privacy Practices (HIPAA) | Referenced by the Terms and the Consent page; URL not found in search | **Placeholder `[HIPAA NOTICE OF PRIVACY PRACTICES]` in footers. Find the URL on the live site's footer and replace.** |
 | Provider Terms and Conditions | https://totallife.com/provider-terms-and-conditions/ | Not needed on consumer pages |
 | Privacy contact email | Present in the Privacy Policy (redacted in search snippets) | Add to `docs/compliance/` once scraped |
-| Phone | 1-800-567-LIFE (1-800-567-5433) | On every page, header, footer, sticky bar |
+| Phone | 1-800-567-5433 (1-800-567-5433) | On every page, header, footer, sticky bar |
 | California privacy notice | The Privacy Policy includes a CCPA supplement; a "Do Not Sell or Share" link may be required in the footer if the live site has one | Check the live footer |
 | Crisis line | 988 | In every footer and on the confirmation page |
 | Medicare language | "Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance." | Verbatim from the brand book, in every footer |
