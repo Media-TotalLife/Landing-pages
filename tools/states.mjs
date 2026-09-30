@@ -25,7 +25,7 @@ for (const [key, url] of Object.entries(pages)) {
         ctas: ctas.length,
         ctasToBook: ctas.filter(a => a.getAttribute('href') === '#book').length,
         ctaText: [...new Set(ctas.map(a => a.textContent.trim()))],
-        heroCtaTop: heroCta ? heroCta.getBoundingClientRect().bottom : null,
+        heroCtaTop: heroCta && heroCta.offsetParent ? heroCta.getBoundingClientRect().bottom : null,
         cardTop: card ? card.getBoundingClientRect().top + window.scrollY : null,
         vanity: /567-LIFE/.test(text),
         digits: (text.match(/1-800-567-5433/g) || []).length,
@@ -41,7 +41,7 @@ for (const [key, url] of Object.entries(pages)) {
     if (!r.optin) fail('opt-in line missing in booking card');
     if (r.ctas !== r.ctasToBook) fail(`${r.ctas - r.ctasToBook} primary CTAs do not point to #book`);
     if (r.ctaText.some(t => t !== 'Book my call')) fail('CTA text not "Book my call": ' + JSON.stringify(r.ctaText));
-    if (r.heroCtaTop === null || r.heroCtaTop > (w === 375 ? 812 : 900)) fail('hero CTA not above the fold (' + r.heroCtaTop + ')');
+    if (!((r.heroCtaTop !== null && r.heroCtaTop <= (w === 375 ? 812 : 900)) || (r.cardTop !== null && r.cardTop < (w === 375 ? 812 : 900)))) fail('neither hero CTA nor booking card above the fold (cta ' + r.heroCtaTop + ', card ' + r.cardTop + ')');
     if (w === 375 && r.cardTop > 812 * 1.6) fail('booking card further than ~2 screens down on mobile (' + Math.round(r.cardTop) + 'px)');
     if (r.vanity) fail('567-LIFE still present');
     if (r.digits < 3) fail('phone digits appear only ' + r.digits + ' times');
@@ -69,7 +69,8 @@ for (const v of ['', 'caregiver-stress', 'caregiver-support', 'nonsense']) {
   console.log(`variant "${v}": ${JSON.stringify(h1s)}`);
   if (h1s.length !== 1) fail('variant h1 count ' + h1s.length);
 }
-// thanks page
+// thanks page: conversions fire only after a booking flag set by the landing page
+await page.evaluate(() => sessionStorage.setItem('tl_booked', 'senior'));
 await page.goto('http://localhost:4173/thanks/?p=senior', { waitUntil: 'networkidle' });
 const conv = await page.evaluate(() => window.dataLayer.filter(e => e.event === 'tl_conversion').map(e => e.kind));
 console.log('thanks conversions:', JSON.stringify(conv));

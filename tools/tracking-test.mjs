@@ -23,7 +23,7 @@ for (const key of pages) {
     if (url.includes('MeetingsEmbedCode.js')) return route.fulfill({ contentType: 'text/javascript', body: `document.querySelectorAll('.meetings-iframe-container').forEach(function(c){ var f = document.createElement('iframe'); f.src = 'about:blank'; f.setAttribute('data-embed-src', c.getAttribute('data-src')); f.style.height='640px'; c.appendChild(f); });` });
     return route.continue();
   });
-  await page.goto(`http://localhost:4173/${key}/?utm_source=google&utm_medium=cpc&utm_campaign=${key}&utm_content=test&gclid=GCLID123&fbclid=FB123`, { waitUntil: 'networkidle' });
+  await page.goto(`http://localhost:4173/${key}/?utm_source=google&utm_medium=cpc&utm_campaign=${key}&utm_content=test&utm_term=smoke+test&gclid=GCLID123&fbclid=FB123`, { waitUntil: 'networkidle' });
   console.log(key);
   const has = (s) => requests.some(u => u.includes(s));
   if (!has('js.hs-scripts.com/424242.js')) fail('HubSpot tracking code not requested');
@@ -32,6 +32,9 @@ for (const key of pages) {
   if (!has('googletagmanager.com/gtag/js?id=AW-777')) fail('Google tag not requested with Ads id');
   const embedSrc = await page.evaluate(() => { const f = document.querySelector('.booking-card iframe'); return f && f.getAttribute('data-embed-src'); });
   if (!embedSrc || !embedSrc.startsWith('https://meetings.hubspot.com/total-life/care-call') || !embedSrc.includes('embed=true')) fail('embed src wrong: ' + embedSrc);
+  if (!embedSrc || !embedSrc.includes('utm_campaign=' + key) || !embedSrc.includes('utm_term=')) fail('UTMs not appended to meetings link: ' + embedSrc);
+  const iHs = requests.findIndex(u => u.includes('js.hs-scripts.com')), iEmbed = requests.findIndex(u => u.includes('MeetingsEmbedCode.js'));
+  if (!(iHs > -1 && iEmbed > iHs)) fail('HubSpot tracking code must load before the meetings embed (order hs=' + iHs + ' embed=' + iEmbed + ')');
   const placeholderGone = await page.evaluate(() => !document.querySelector('[data-calendar-placeholder]'));
   if (!placeholderGone) fail('calendar placeholder still visible with meetingsLink set');
   const attr = await page.evaluate(() => JSON.parse(sessionStorage.getItem('tl_attr') || '{}'));
@@ -47,8 +50,6 @@ for (const key of pages) {
   const before = calls.fbq.length;
   await page.evaluate(() => window.dispatchEvent(new MessageEvent('message', { origin: 'https://meetings.hubspot.com', data: { meetingBookSucceeded: true, meetingsPayload: { bookingResponse: {} } } })));
   await page.waitForURL(/\/thanks\/\?p=/, { timeout: 5000 }).catch(() => fail('no redirect to /thanks/ after booking message'));
-  const bookedOnPage = calls.fbq.slice(before).some(a => a[0] === 'track' && a[1] === 'Schedule');
-  if (!bookedOnPage) fail('Schedule not fired on booking message');
   const dl = await page.evaluate(() => (window.dataLayer || []).filter(e => e && e.event).map(e => e.event + (e.kind ? ':' + e.kind : '')));
   // thanks page: Lead + Schedule (Meta), conversion AW-777/LEADLBL + AW-777/BOOKLBL (Google), once each
   await page.waitForLoadState('networkidle');
@@ -58,9 +59,17 @@ for (const key of pages) {
   const gLead = calls.gtag.filter(a => a[0] === 'event' && a[1] === 'conversion' && a[2].includes('LEADLBL')).length;
   const gBook = calls.gtag.filter(a => a[0] === 'event' && a[1] === 'conversion' && a[2].includes('BOOKLBL')).length;
   if (leadCount !== 1) fail('Meta Lead fired ' + leadCount + ' times (want 1)');
-  if (schedCount !== 1) fail('Meta Schedule fired ' + schedCount + ' times (want 1; booking page + thanks must dedupe)');
+  if (schedCount !== 1) fail('Meta Schedule fired ' + schedCount + ' times (want 1, on /thanks/)');
   if (gLead !== 1) fail('Google lead conversion fired ' + gLead + ' times');
   if (gBook !== 1) fail('Google booked conversion fired ' + gBook + ' times');
+  await page.reload({ waitUntil: 'networkidle' });
+  if (calls.fbq.filter(a => a[0] === 'track' && a[1] === 'Lead').length !== 1) fail('Lead re-fired on /thanks/ reload');
+  const fresh = await browser.newContext({ viewport: { width: 1280, height: 900 } }); const p2 = await fresh.newPage(); const fbq2 = [];
+  await p2.exposeFunction('__rec', (kind, args) => { if (kind === 'fbq') fbq2.push(args); });
+  await p2.route('**/*', async (route) => { const u = route.request().url(); if (u.includes('/assets/js/config.js')) return route.fulfill({ contentType: 'text/javascript', body: CFG }); if (u.includes('connect.facebook.net')) return route.fulfill({ contentType: 'text/javascript', body: `var q=(window.fbq&&window.fbq.queue)||[];window.fbq=function(){window.__rec('fbq',[].slice.call(arguments).map(String));};window.fbq.loaded=true;window.fbq.queue=[];q.forEach(function(a){window.__rec('fbq',[].slice.call(a).map(String));});` }); if (u.includes('googletagmanager.com') || u.includes('js.hs-scripts.com')) return route.fulfill({ contentType: 'text/javascript', body: '' }); return route.continue(); });
+  await p2.goto('http://localhost:4173/thanks/?p=senior', { waitUntil: 'networkidle' });
+  if (fbq2.some(a => a[0] === 'track' && (a[1] === 'Lead' || a[1] === 'Schedule'))) fail('direct visit to /thanks/ fired a conversion without a booking');
+  await fresh.close();
   const attrOnThanks = await page.evaluate(() => JSON.parse(sessionStorage.getItem('tl_attr') || '{}'));
   if (attrOnThanks.utm_campaign !== key) fail('attribution lost on thanks page');
   const errors = await page.evaluate(() => window.__errs || []);

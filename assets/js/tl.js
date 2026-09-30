@@ -169,30 +169,46 @@
 
   // ---- HubSpot booking widget --------------------------------------------------
   // <div class="booking-card" id="book" data-booking> with [data-meetings] and [data-calendar-placeholder].
-  // When TL_CONFIG.hubspot.meetingsLink is set, the round-robin scheduler is embedded; when HubSpot reports a
-  // booking (postMessage meetingBookSucceeded) the booked conversion fires and the visitor goes to /thanks/.
+  // The HubSpot tracking code (track.js) sets the hubspotutk cookie; MeetingsEmbedCode.js copies it into the
+  // iframe URL (parentHubspotUtk) so the booked contact keeps its Original source. We wait for that cookie before
+  // loading the embed, and also append the visit's UTMs to the meetings link as a cookie-independent second path.
+  // On HubSpot's meetingBookSucceeded message we mark the booking in sessionStorage and go to /thanks/, where the
+  // conversions fire (once) with the page fully loaded.
   (function booking() {
     var card = document.querySelector('[data-booking]'); if (!card) return;
     var cfg = window.TL_CONFIG || {}; var hs = cfg.hubspot || {};
     var slot = card.querySelector('[data-meetings]'); var ph = card.querySelector('[data-calendar-placeholder]');
     var page = document.body.dataset.page || '';
-    if (hs.meetingsLink && slot) {
-      var url = new URL(hs.meetingsLink); url.searchParams.set('embed', 'true');
+    function embed() {
+      var url;
+      try { url = new URL(String(hs.meetingsLink).trim()); } catch (e) { console.error('[tl] hubspot.meetingsLink is not a valid URL:', hs.meetingsLink); return; }
+      url.searchParams.set('embed', 'true');
+      var attr = {}; try { attr = JSON.parse(sessionStorage.getItem('tl_attr') || '{}') || {}; } catch (e) {}
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (attr[k]) url.searchParams.set(k, attr[k]); });
       slot.setAttribute('data-src', url.toString());
       if (ph) ph.remove();
       var s = document.createElement('script'); s.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js'; s.async = true;
       document.body.appendChild(s);
       card.classList.add('has-widget');
+    }
+    if (hs.meetingsLink && slot) {
+      if (!hs.portalId) embed();
+      else {
+        var tries = 0;
+        (function waitForUtk() {
+          if (/(^|;\s*)hubspotutk=/.test(document.cookie) || tries++ > 20) embed(); else setTimeout(waitForUtk, 100);
+        })();
+      }
     } else if (slot) { slot.remove(); }
     window.addEventListener('message', function (e) {
       var host = ''; try { host = new URL(e.origin).hostname; } catch (err) { return; }
-      if (!/(^|\.)hubspot\.com$/.test(host) && !/(^|\.)hsforms\.com$/.test(host)) return;
+      if (!/(^|\.)hubspot\.com$/.test(host)) return;
       var d = e.data; if (!d || typeof d !== 'object') return;
-      if (d.meetingBookSucceeded || d.type === 'hsMeetingBookSucceeded') {
+      if (d.meetingBookSucceeded) {
+        try { sessionStorage.setItem('tl_booked', page || '1'); } catch (err) {}
         window.tlTrack('care_call_booked', { page: page });
-        if (window.tlConvert) window.tlConvert('booked');
         var to = (card.getAttribute('data-thanks') || cfg.thanksPath || '../thanks/') + '?p=' + encodeURIComponent(page);
-        setTimeout(function () { window.location.assign(to); }, 1200);
+        window.location.assign(to);
       }
     });
   })();

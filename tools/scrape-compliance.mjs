@@ -36,6 +36,8 @@ for (const [slug, url] of Object.entries(pages)) {
       const a = src.indexOf('<!-- POLICY-START -->') + '<!-- POLICY-START -->'.length; const b = src.indexOf('<!-- POLICY-END -->');
       writeFileSync(file, src.slice(0, a) + `\n        <p class="meta">Copied ${new Date().toISOString().slice(0,10)} from ${url}</p>\n        ` + html + '\n        ' + src.slice(b));
       console.log('wrote privacy/index.html');
+      for (const f of ['senior','caregiver','depression','grief','thanks','privacy']) { const fp = `${f}/index.html`; const t = readFileSync(fp, 'utf8').replace(/<a href="https:\/\/totallife\.com\/privacy\/" rel="noopener" data-privacy-link>/g, '<a href="../privacy/" data-privacy-link>'); writeFileSync(fp, t); }
+      console.log('footer Privacy Policy links now point to /privacy/');
     }
     writeFileSync(`docs/compliance/${slug}.txt`, `${url}\nFetched ${new Date().toISOString()}\n\n${text}`);
     const hits = [...new Set((text.match(/Total Life[^.\n]{0,40}(Inc\.?|LLC|Corporation)|[\w.+-]+@[\w-]+\.[\w.]+|\b\d{1,5} [A-Z][\w .]+,? [A-Z]{2} \d{5}\b|Notice of Privacy Practices[^\n]{0,80}|Do Not Sell[^\n]{0,60}|Last (updated|revised)[^\n]{0,40}/gi) || []))];

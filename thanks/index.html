@@ -21,7 +21,7 @@
 
 <header class="header">
   <div class="wrap">
-    <a class="logo" href="./" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
+    <a class="logo" href="../senior/" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
     <a class="phone" href="tel:+18005675433" data-track="header_phone">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
       <span><small>Call us</small><b>1-800-567-5433</b></span>
@@ -38,8 +38,8 @@
         <h1 id="thanks-h">Thank you. We'll call you at the time you <span class="accent">chose.</span></h1>
         <p class="lede">A confirmation with the date and time is on its way to your email.</p>
         <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>A reminder arrives before the call</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>To change the time, use the link in your confirmation email or call us</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>Your confirmation email has the date, time and a link to change it</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>To change the time, use that link or call us</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>No computer is needed for the call, or for therapy afterward</span></li>
         </ul>
         <p class="aside-note">We are here <span data-hours>9 am to 9 pm Eastern, seven days a week</span>.</p>
@@ -66,8 +66,8 @@
 <footer class="footer">
   <div class="wrap">
     <div>
-      <a class="logo" href="./" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
-      <p style="margin-top:1rem;max-width:26em">Medicare-covered talk therapy for older adults, from home.</p>
+      <a class="logo" href="../senior/" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
+      <p style="margin-top:1rem;max-width:26em">Talk therapy for older adults, from home. Covered by Medicare.</p>
       <p style="margin-top:.75rem"><a href="tel:+18005675433" data-track="footer_phone"><b>1-800-567-5433</b></a></p>
     </div>
     <div>
@@ -88,10 +88,10 @@
       </ul>
     </div>
     <div class="legal">
-      <p>Total Life is an enrolled Medicare provider and works with many insurance plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
+      <p>Total Life is an enrolled Medicare provider and accepts Medicare and most supplemental plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
       <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. This page describes a service. It is not medical advice or a diagnosis. Results vary from person to person.</p>
       <p class="crisis">If you or someone you love is in crisis, call or text 988.</p>
-      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="../privacy/">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
+      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener" data-privacy-link>Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
     </div>
   </div>
 </footer>
@@ -106,10 +106,12 @@
   var hours = document.querySelector('[data-hours]'); if (hours && cfg.careHours) hours.textContent = cfg.careHours;
   function fire() {
     if (!window.tlConvert) return;
-    // Reaching this page means a booking was completed in the HubSpot widget (redirect on meetingBookSucceeded,
-    // or HubSpot's own post-booking redirect). Both conversions fire once per session.
+    // Conversions fire only when a booking was completed in this tab (flag set by tl.js on HubSpot's
+    // meetingBookSucceeded message) or when HubSpot's own post-booking redirect brought the visitor here (?b=hs).
+    var booked = null; try { booked = sessionStorage.getItem('tl_booked'); } catch (e) {}
+    if (!booked && qs.get('b') !== 'hs') { if (window.tlTrack) window.tlTrack('thanks_view_unbooked', { page: 'thanks' }); return; }
     window.tlConvert('lead'); window.tlConvert('booked');
-    if (window.tlTrack) window.tlTrack('thanks_view', { page: 'thanks', from: qs.get('p') || '' });
+    if (window.tlTrack) window.tlTrack('thanks_view', { page: 'thanks', from: qs.get('p') || booked || '' });
   }
   if (window.tlConvert) fire(); else window.addEventListener('DOMContentLoaded', fire);
 })();

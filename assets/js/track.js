@@ -75,7 +75,6 @@
     } else if (kind === 'booked') {
       if (window.fbq) window.fbq('track', 'Schedule');
       if (g.adsId && g.bookedLabel) gtag('event', 'conversion', { send_to: g.adsId + '/' + g.bookedLabel });
-      if (g.ga4Id) gtag('event', 'care_call_booked');
     }
     window.dataLayer.push({ event: 'tl_conversion', kind: kind });
     if (window.location.hostname === 'localhost') console.debug('[tlConvert]', kind);

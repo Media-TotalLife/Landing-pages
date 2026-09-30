@@ -69,27 +69,24 @@
 .proof .quote blockquote { font-size: clamp(1.375rem, 2.2vw, 1.75rem); }
 .therapists { margin-top: clamp(3.5rem, 7vw, 6rem); }
 .therapists .sec-head { margin-bottom: 2rem; }
-.carrier-bar { margin-top: clamp(3rem, 6vw, 5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
-.carrier-bar h3 { text-align: center; font-size: 1.125rem; letter-spacing: .04em; margin-bottom: 1.5rem; color: var(--teal); }
-.carrier-bar .carriers { list-style: none; margin: 0; padding: 0; }
 
 /* FAQ */
 .faq-wrap { max-width: 800px; margin-inline: auto; }
 .faq-wrap .sec-head { margin-bottom: 1.5rem; }
 
 /* Final CTA */
-.final .hero-actions { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
-.final .reassure { justify-content: center; }
-.final .reassure a { color: var(--teal); font-weight: 700; text-decoration: none; }
 /* Hero holds the booking card (copy left, calendar right; stacked on mobile) */
-.hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); align-items: start; }
-.hero .hero-art { max-width: none; width: 100%; margin: 0; }
 .hero .hero-note { margin-top: 1.5rem; color: var(--navy); font-size: var(--text); max-width: 42ch; }
-@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .hero .hero-art { max-width: none; } }
 .quote-row { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; margin-top: clamp(3rem, 6vw, 5rem); }
 .quote-row .quote { margin: 0; text-align: left; } .quote-row .quote figcaption { justify-content: flex-start; }
 .member-photo .portrait { aspect-ratio: 4 / 5; }
+.member-photo { position: relative; } .member-photo .illustrative { position: absolute; left: .9rem; top: .9rem; z-index: 2; margin: 0; background: rgba(255,250,246,.9); color: var(--muted); font-size: var(--text-sm); padding: .35rem .7rem; border-radius: var(--pill); }
 @media (max-width: 760px) { .quote-row { grid-template-columns: 1fr; } .member-photo { max-width: 420px; } }
+/* Hero grid: headline, then the booking card, then lede/CTA/note on phones; two columns on desktop */
+.hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); grid-template-rows: auto 1fr; grid-template-areas: "head card" "more card"; align-items: start; row-gap: 0; }
+.hero .hero-more { padding-top: 1.25rem; }
+.hero .hero-head { grid-area: head; } .hero .hero-more { grid-area: more; } .hero .hero-art { grid-area: card; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; grid-template-rows: auto auto auto; grid-template-areas: "head" "card" "more"; row-gap: 1.5rem; } .hero .hero-more { margin-top: 0; padding-top: 0; } .hero .hero-more .lede { margin-top: 0; } .hero .hero-more .hero-actions .btn { display: none; } .hero .hero-more .hero-actions { grid-template-columns: auto 1fr; grid-template-areas: "stamp reassure"; } }
 </style>
 </head>
 <body data-page="senior">
@@ -114,7 +111,7 @@
   <!-- HERO -->
   <section class="section hero" aria-labelledby="hero-h">
     <div class="wrap">
-      <div class="hero-copy">
+      <div class="hero-head">
         <div data-v="default">
           <p class="eyebrow">Therapy for adults 65+</p>
           <h1 id="hero-h">Talk therapy for adults 65+, from <span class="accent">home.</span></h1>
@@ -130,6 +127,8 @@
           <h1 id="hero-h-support">Talk therapy for caregivers <span class="accent">65+.</span></h1>
           <p class="lede">Talk therapy for older adults who look after a loved one, from home, by phone or video. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
         </div>
+      </div>
+      <div class="hero-more">
         <div class="hero-actions">
           <a class="btn btn--primary btn--lg" href="#book" data-hero-cta data-track="hero_cta">Book my call</a>
           <div class="stamp" role="img" aria-label="Covered by Medicare">Covered<br>by<br>Medicare</div>
@@ -138,7 +137,7 @@
             <span>Or call <a href="tel:+18005675433" data-track="hero_phone">1-800-567-5433</a></span>
           </p>
         </div>
-        <p class="hero-note">Covered by Medicare and many insurance plans. A short call with our care team, 9 am to 9 pm Eastern, seven days a week. No obligation.</p>
+        <p class="hero-note">Covered by Medicare and most supplemental insurance plans. A short call with our care team, 9 am to 9 pm Eastern, seven days a week. No obligation.</p>
       </div>
       <div class="hero-art">
         <div class="booking-card" id="book" data-booking data-thanks="../thanks/">
@@ -207,18 +206,18 @@
   </section>
 
   <!-- PROOF -->
-  <section class="section section--cream proof" aria-label="Member outcomes and accepted plans">
+  <section class="section section--cream proof" aria-label="Member outcomes and plans we work with">
     <div class="wrap">
       <div class="stat-band" data-reveal="fade">
-        <div class="stat"><b>200<small>+</small></b><span>licensed providers across 49 states</span></div>
+        <div class="stat"><b>200<small>+</small></b><span>licensed providers</span></div>
+        <div class="stat"><b>49</b><span>states served</span></div>
         <div class="stat"><b>92<small>%</small></b><span>of members stay with their assigned therapist</span></div>
-        <div class="stat"><b>3</b><span>sessions to feel hope, on average</span></div>
       </div>
       <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
 
       <div class="quote-row">
-      <div class="member-photo"><div class="portrait" data-asset="senior-hero.jpg" data-video="senior-hero.mp4" data-poster="senior-hero-poster.jpg" data-placeholder="[PORTRAIT: real Total Life member, 65–75, at home in natural window light, candid, looking slightly off camera]" role="img" aria-label="A Total Life member at home">
-          <span class="chip"><i></i>Total Life member</span>
+      <div class="member-photo"><p class="illustrative">Illustrative image</p><div class="portrait" data-asset="senior-hero.jpg" data-video="senior-hero.mp4" data-poster="senior-hero-poster.jpg" data-placeholder="[PORTRAIT: real Total Life member, 65–75, at home in natural window light, candid, looking slightly off camera]" role="img" aria-label="Illustrative image of an older adult at home">
+          
         </div></div>
       <figure class="quote">
         <blockquote>“As a senior, it was difficult to find resources that cater to my experience. Total Life does. I feel like I am in good hands and can trust that my therapist will help me work through any challenges I may be facing.”</blockquote>
@@ -228,18 +227,7 @@
 
       
 
-      <div class="carrier-bar">
-        <h3>Medicare and insurance plans we work with</h3>
-        <ul class="carriers" aria-label="Accepted plans">
-          <li>Medicare</li>
-          <li>Mutual of Omaha</li>
-          <li>Humana</li>
-          <li>HCSC</li>
-          <li>BCBS</li>
-          <li>AARP</li>
-          <li>UHC</li>
-        </ul>
-      </div>
+      
     </div>
   </section>
 
@@ -275,7 +263,7 @@
           <summary>Is what I say private?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
             <p>What members share with a therapist is protected by privacy law.</p>
-            <p>We never sell your information.</p>
+            <p>We use your details only to arrange the call.</p>
           </div>
         </details>
         <details>
@@ -289,22 +277,7 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="section section--sand final center" aria-labelledby="final-h">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <p class="eyebrow">Ready when you are</p>
-        <h2 id="final-h">Pick a time for your <span class="accent">call.</span></h2>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn--primary btn--lg" href="#book" data-track="final_cta">Book my call</a>
-      </div>
-      <p class="reassure">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
-        <span>Or call <a href="tel:+18005675433" data-track="final_phone">1-800-567-5433</a></span>
-      </p>
-    </div>
-  </section>
+  
 
 </main>
 
@@ -339,10 +312,10 @@
       </ul>
     </div>
     <div class="legal">
-      <p>Total Life is an enrolled Medicare provider and works with many insurance plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
+      <p>Total Life is an enrolled Medicare provider and accepts Medicare and most supplemental plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
       <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. This page describes a service. It is not medical advice or a diagnosis. Results vary from person to person.</p>
       <p class="crisis">If you or someone you love is in crisis, call or text 988.</p>
-      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="../privacy/">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
+      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener" data-privacy-link>Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
     </div>
   </div>
 </footer>

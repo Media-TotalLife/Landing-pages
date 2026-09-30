@@ -65,8 +65,6 @@
 @media (min-width: 641px) and (max-width: 900px) {
   .therapists .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 }
-.carrier-bar { margin-top: clamp(3rem, 6vw, 5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
-.carrier-bar h3 { text-align: center; font-size: 1.125rem; letter-spacing: .04em; margin-bottom: 1.5rem; color: var(--teal); }
 
 /* FAQ */
 .faq-wrap { max-width: 800px; margin-inline: auto; }
@@ -74,14 +72,13 @@
 .faq .answer p, .sec-head .intro { text-wrap: pretty; }
 
 /* Final CTA */
-.final .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem; }
-.final .reassure { justify-content: center; }
-.final .reassure a { color: var(--teal); font-weight: 700; text-decoration: none; }
 /* Hero holds the booking card (copy left, calendar right; stacked on mobile) */
-.hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); align-items: start; }
-.hero .hero-art { max-width: none; width: 100%; margin: 0; }
 .hero .hero-note { margin-top: 1.5rem; color: var(--navy); font-size: var(--text); max-width: 42ch; }
-@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .hero .hero-art { max-width: none; } }
+/* Hero grid: headline, then the booking card, then lede/CTA/note on phones; two columns on desktop */
+.hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); grid-template-rows: auto 1fr; grid-template-areas: "head card" "more card"; align-items: start; row-gap: 0; }
+.hero .hero-more { padding-top: 1.25rem; }
+.hero .hero-head { grid-area: head; } .hero .hero-more { grid-area: more; } .hero .hero-art { grid-area: card; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; grid-template-rows: auto auto auto; grid-template-areas: "head" "card" "more"; row-gap: 1.5rem; } .hero .hero-more { margin-top: 0; padding-top: 0; } .hero .hero-more .lede { margin-top: 0; } .hero .hero-more .hero-actions .btn { display: none; } .hero .hero-more .hero-actions { grid-template-columns: auto 1fr; grid-template-areas: "stamp reassure"; } }
 </style>
 </head>
 <body data-page="grief">
@@ -106,9 +103,11 @@
   <!-- HERO -->
   <section class="section hero" aria-labelledby="hero-h">
     <div class="wrap">
-      <div class="hero-copy">
+      <div class="hero-head">
         <p class="eyebrow">Grief counseling for adults 65+</p>
         <h1 id="hero-h">Grief counseling, covered by <span class="accent">Medicare.</span></h1>
+      </div>
+      <div class="hero-more">
         <p class="lede">Grief counseling with a therapist who specializes in older adults, from home, by phone or video. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
         <div class="hero-actions">
           <a class="btn btn--primary btn--lg" href="#book" data-hero-cta data-track="hero_cta">Book my call</a>
@@ -118,7 +117,7 @@
             <span>Or call <a href="tel:+18005675433" data-track="hero_phone">1-800-567-5433</a></span>
           </p>
         </div>
-        <p class="hero-note">Covered by Medicare and many insurance plans. A short call with our care team, 9 am to 9 pm Eastern, seven days a week. No obligation.</p>
+        <p class="hero-note">Covered by Medicare and most supplemental insurance plans. A short call with our care team, 9 am to 9 pm Eastern, seven days a week. No obligation.</p>
       </div>
       <div class="hero-art">
         <div class="booking-card" id="book" data-booking data-thanks="../thanks/">
@@ -155,7 +154,7 @@
     <div class="stamp-bg" aria-hidden="true"><img src="../assets/img/flower.png" alt="" loading="lazy"></div>
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <h2 id="help-h">What grief counseling <span class="accent">covers.</span></h2>
+        <h2 id="help-h">What grief counseling <span class="accent">helps</span> with.</h2>
       </div>
       <ul class="help-grid">
         <li class="card help-card">
@@ -183,12 +182,12 @@
   </section>
 
   <!-- PROOF -->
-  <section class="section section--cream proof" aria-label="Member outcomes and accepted plans">
+  <section class="section section--cream proof" aria-label="Member outcomes and plans we work with">
     <div class="wrap">
       <div class="stat-band" data-reveal="fade">
-        <div class="stat"><b>3<small>×</small></b><span>more likely to feel hopeful after three sessions</span></div>
+        <div class="stat"><b>200<small>+</small></b><span>licensed providers</span></div>
+        <div class="stat"><b>49</b><span>states served</span></div>
         <div class="stat"><b>92<small>%</small></b><span>of members stay with their assigned therapist</span></div>
-        <div class="stat"><b>200<small>+</small></b><span>licensed providers across 49 states</span></div>
       </div>
       <p class="source center">Internal outcomes data · Q3 2024 · N=2,847</p>
 
@@ -199,18 +198,7 @@
 
       
 
-      <div class="carrier-bar">
-        <h3>Medicare and insurance plans we work with</h3>
-        <ul class="carriers" aria-label="Accepted plans">
-          <li>Medicare</li>
-          <li>Mutual of Omaha</li>
-          <li>Humana</li>
-          <li>HCSC</li>
-          <li>BCBS</li>
-          <li>AARP</li>
-          <li>UHC</li>
-        </ul>
-      </div>
+      
     </div>
   </section>
 
@@ -224,7 +212,7 @@
         <details>
           <summary>Is grief counseling covered by Medicare?<span class="plus" aria-hidden="true">+</span></summary>
           <div class="answer">
-            <p>Yes, grief counseling is talk therapy, behavioral health is covered by Medicare, and Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
+            <p>Grief counseling is talk therapy with a licensed therapist. Behavioral health is covered by Medicare, and Total Life is an enrolled Medicare provider. Most members are covered up to 100% with Medicare + supplemental insurance.</p>
           </div>
         </details>
         <details>
@@ -255,22 +243,7 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="section section--sand final center" aria-labelledby="final-h">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <p class="eyebrow">Ready when you are</p>
-        <h2 id="final-h">Pick a time for your <span class="accent">call.</span></h2>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn--primary btn--lg" href="#book" data-track="final_cta">Book my call</a>
-      </div>
-      <p class="reassure">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
-        <span>Or call <a href="tel:+18005675433" data-track="final_phone">1-800-567-5433</a></span>
-      </p>
-    </div>
-  </section>
+  
 
 </main>
 
@@ -285,7 +258,7 @@
   <div class="wrap">
     <div>
       <a class="logo" href="./" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
-      <p style="margin-top:1rem;max-width:26em">Medicare-covered talk therapy for older adults, from home.</p>
+      <p style="margin-top:1rem;max-width:26em">Talk therapy for older adults, from home. Covered by Medicare.</p>
       <p style="margin-top:.75rem"><a href="tel:+18005675433" data-track="footer_phone"><b>1-800-567-5433</b></a></p>
     </div>
     <div>
@@ -305,10 +278,10 @@
       </ul>
     </div>
     <div class="legal">
-      <p>Total Life is an enrolled Medicare provider and works with many insurance plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
+      <p>Total Life is an enrolled Medicare provider and accepts Medicare and most supplemental plans. Most members are covered up to 100% with Medicare + supplemental insurance. With Original Medicare alone most members pay a share.</p>
       <p>Outcome figures: internal outcomes data, Q3 2024, N=2,847. This page describes a service. It is not medical advice or a diagnosis. Results vary from person to person.</p>
       <p class="crisis">If you or someone you love is in crisis, call or text 988.</p>
-      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="../privacy/">Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
+      <p style="margin-top:1rem">© 2026 Total Life Inc. · <a href="https://totallife.com/privacy/" rel="noopener" data-privacy-link>Privacy Policy</a> · <a href="https://totallife.com/termsandconditions/" rel="noopener">Terms and Conditions</a> · <a href="https://totallife.com/consent-to-telehealth-and-therapy/" rel="noopener">Consent to Telehealth</a> · <span>[HIPAA NOTICE OF PRIVACY PRACTICES]</span></p>
     </div>
   </div>
 </footer>
