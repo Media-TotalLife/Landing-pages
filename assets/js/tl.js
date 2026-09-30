@@ -2,7 +2,7 @@
    - HubSpot booking widget embed with booked-event redirect to /thanks/.
    - FAQ: native <details>, enhanced with single-open behaviour.
    - Reveal: gentle opt-in fade for [data-reveal]; off under reduced motion.
-   - Sticky mobile CTA: appears after the hero CTA scrolls out of view.
+   - Sticky mobile CTA: appears after the hero CTA scrolls out of view; hidden while the booking card is on screen.
    - Tracking: every [data-track] click and the booking event call window.tlTrack(name, data).
 */
 (function () {
@@ -98,27 +98,6 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  // ---- Stat count-up (reduced-motion safe) ---------------------------------
-  function countUp(el) {
-    var node = el.firstChild; if (!node || node.nodeType !== 3) return;
-    var m = /^(\d+(?:\.\d+)?)(.*)$/.exec(node.nodeValue.trim()); if (!m) return;
-    var target = parseFloat(m[1]), suffix = m[2];
-    var start = null, dur = 1100;
-    function tick(t) {
-      if (!start) start = t; var p = Math.min(1, (t - start) / dur); p = 1 - Math.pow(1 - p, 3);
-      node.nodeValue = String(Math.round(target * p)) + suffix;
-      if (p < 1) requestAnimationFrame(tick); else node.nodeValue = m[1] + suffix;
-    }
-    node.nodeValue = '0' + suffix; requestAnimationFrame(tick);
-  }
-  var stats = document.querySelectorAll('.stat b');
-  if (stats.length && !reduced && 'IntersectionObserver' in window) {
-    var cio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); cio.unobserve(en.target); } });
-    }, { threshold: 0.4 });
-    stats.forEach(function (s) { cio.observe(s); });
-  }
-
   // ---- FAQ single-open ----------------------------------------------------
   document.querySelectorAll('.faq').forEach(function (faq) {
     faq.addEventListener('toggle', function (e) {
@@ -127,29 +106,25 @@
   });
 
   // ---- Sticky mobile CTA ---------------------------------------------------
+  // Keyed to the booking card itself (the hero button is hidden on phones, where the card sits directly
+  // under the headline): the bar shows once the card has scrolled off the top, and hides whenever a quarter
+  // or more of the card is on screen, so there are never two calls to action in view at once.
   var sticky = document.querySelector('.sticky-cta');
-  var heroCta = document.querySelector('[data-hero-cta]');
-  if (sticky && heroCta && 'IntersectionObserver' in window) {
+  var bookCard = document.querySelector('.booking-card');
+  if (sticky && bookCard && 'IntersectionObserver' in window) {
     document.body.classList.add('has-sticky');
     sticky.setAttribute('inert', '');
-    var sio = new IntersectionObserver(function (entries) {
-      var cardVisible = false;
-      var card = document.querySelector('.booking-card');
-      if (card) { var r = card.getBoundingClientRect(); var vis = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0); cardVisible = vis > Math.min(r.height, window.innerHeight) * 0.25; }
-      sticky.classList.toggle('is-visible', !entries[0].isIntersecting && !cardVisible);
-      sticky.toggleAttribute('inert', !sticky.classList.contains('is-visible'));
-    }, { threshold: 0 });
-    sio.observe(heroCta);
-    // hide while the form itself is on screen so we never show two CTAs at once
-    var formCard = document.querySelector('.booking-card');
-    if (formCard) {
-      var fio = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) sticky.classList.remove('is-visible');
-        else { var hr = heroCta.getBoundingClientRect(); if (hr.bottom < 0) sticky.classList.add('is-visible'); }
-        sticky.toggleAttribute('inert', !sticky.classList.contains('is-visible'));
-      }, { threshold: 0.25 });
-      fio.observe(formCard);
-    }
+    var updateSticky = function () {
+      var r = bookCard.getBoundingClientRect();
+      var seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+      var onScreen = seen > Math.min(r.height, window.innerHeight) * 0.25;
+      var show = !onScreen && r.bottom < window.innerHeight * 0.5;
+      sticky.classList.toggle('is-visible', show);
+      sticky.toggleAttribute('inert', !show);
+    };
+    var sio = new IntersectionObserver(updateSticky, { threshold: [0, 0.25, 0.5, 1] });
+    sio.observe(bookCard);
+    window.addEventListener('resize', updateSticky);
   }
 
   // Message-match variant: ?v=name shows [data-v="name"] blocks and hides their [data-v="default"] siblings.
@@ -179,17 +154,38 @@
     var cfg = window.TL_CONFIG || {}; var hs = cfg.hubspot || {};
     var slot = card.querySelector('[data-meetings]'); var ph = card.querySelector('[data-calendar-placeholder]');
     var page = document.body.dataset.page || '';
+    var status = ph && ph.querySelector('.cal-status');
+    var month = ph && ph.querySelector('[data-month]');
+    if (month) { try { month.textContent = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' }); } catch (e) {} }
+    function widgetReady() {
+      if (ph) ph.remove();
+      card.classList.remove('is-loading'); card.classList.add('has-widget');
+    }
+    function widgetFailed() {
+      if (!ph || !ph.parentNode) return;
+      ph.classList.add('is-failed');
+      if (status) status.textContent = 'The calendar did not load. Call us and we will book the time with you.';
+      card.classList.remove('is-loading');
+    }
     function embed() {
       var url;
-      try { url = new URL(String(hs.meetingsLink).trim()); } catch (e) { console.error('[tl] hubspot.meetingsLink is not a valid URL:', hs.meetingsLink); return; }
+      try { url = new URL(String(hs.meetingsLink).trim()); } catch (e) { console.error('[tl] hubspot.meetingsLink is not a valid URL:', hs.meetingsLink); widgetFailed(); return; }
       url.searchParams.set('embed', 'true');
       var attr = {}; try { attr = JSON.parse(sessionStorage.getItem('tl_attr') || '{}') || {}; } catch (e) {}
       ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (attr[k]) url.searchParams.set(k, attr[k]); });
       slot.setAttribute('data-src', url.toString());
-      if (ph) ph.remove();
+      // The placeholder stays as the loading state (calendar outline + "Loading available times") until
+      // HubSpot's script injects its iframe, so the card never collapses or shows an empty box.
+      card.classList.add('is-loading');
+      if (status) status.textContent = 'Loading available times\u2026';
+      var done = false;
+      function check() { if (!done && slot.querySelector('iframe')) { done = true; widgetReady(); } return done; }
+      if ('MutationObserver' in window) { var mo = new MutationObserver(function () { if (check()) mo.disconnect(); }); mo.observe(slot, { childList: true, subtree: true }); }
       var s = document.createElement('script'); s.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js'; s.async = true;
+      s.addEventListener('load', function () { check(); });
+      s.addEventListener('error', function () { done = true; widgetFailed(); });
       document.body.appendChild(s);
-      card.classList.add('has-widget');
+      setTimeout(function () { if (!check()) { done = true; widgetFailed(); } }, 15000);
     }
     if (hs.meetingsLink && slot) {
       if (!hs.portalId) embed();
@@ -199,7 +195,10 @@
           if (/(^|;\s*)hubspotutk=/.test(document.cookie) || tries++ > 20) embed(); else setTimeout(waitForUtk, 100);
         })();
       }
-    } else if (slot) { slot.remove(); }
+    } else if (slot) {
+      slot.remove();
+      if (ph) { ph.classList.add('is-unconfigured'); if (status) status.textContent = 'The calendar is not connected yet.'; }
+    }
     window.addEventListener('message', function (e) {
       var host = ''; try { host = new URL(e.origin).hostname; } catch (err) { return; }
       if (!/(^|\.)hubspot\.com$/.test(host)) return;
