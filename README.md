@@ -88,3 +88,28 @@ All copy was written against Part V of the brand book: no "free therapy", no urg
 ("Most members are covered up to 100% with Medicare + supplemental insurance"), "Total Life is an enrolled Medicare
 provider", sources on every number, 988 crisis line in every footer. 
 Final sign-off from Total Life legal/compliance is still required before publication.
+
+## Replicating totallife.com (capture → compare loop)
+
+The cloud build environment cannot reach `totallife.com` (egress policy), so the reference capture runs on a machine
+that can, and the captured folder is committed so the replica can be built and diffed against it anywhere.
+
+```bash
+npm i                                   # once (Playwright, pngjs, pixelmatch)
+npx playwright install chromium         # once, on your own machine
+npm run capture                         # crawls totallife.com (home + sitemap links, max 40 pages) into reference/
+npm run capture -- --only /,/therapy/   # or just the pages you want
+git add reference && git commit -m "Reference capture of totallife.com" && git push
+```
+
+`reference/` holds, per page: the server HTML, the rendered DOM, every asset the page loaded (`reference/assets/`),
+full-page, above-the-fold and half-screen scroll-step screenshots at 1440 / 1024 / 390 px, a computed-style snapshot
+of every element, a per-scroll-position record of anything that moves (`motion-<width>.json`) and the animation
+libraries the page uses (`libs.json`). Then, with `npm start` running:
+
+```bash
+npm run compare                         # pixel-diffs each local page against reference/, writes screens/diff/
+npm run compare -- --only home --threshold 0.2
+```
+
+Exit code 1 while any page mismatches more than the threshold; `screens/diff/<page>-<width>.png` shows where.
