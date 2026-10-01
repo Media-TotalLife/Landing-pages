@@ -223,7 +223,7 @@ h3 { font-weight: 700; font-size: clamp(1.375rem, 2vw, 1.625rem); line-height: 1
 .wrap { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
 .section { padding-block: var(--section); position: relative; }
 .section--tight { padding-block: clamp(2.5rem, 5vw, 4rem); }
-.section--sand { background: var(--sand); }
+.section--sand { background: var(--cream); }
 .grid { display: grid; gap: clamp(1.25rem, 2.5vw, 2rem); }
 .grid--3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .grid--4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
@@ -431,7 +431,7 @@ body.card-away .header-cta { visibility: visible; }
 .cal-status { margin: 0 0 .75rem; color: var(--teal); font-weight: 600; font-size: var(--text); text-align: left; }
 .cal-fallback { margin: 0; text-align: left; display: grid; gap: .5rem; }
 .cal-fallback span { color: var(--muted); font-size: var(--text-sm); }
-.btn--call { background: var(--sand); color: var(--teal); min-height: 56px; width: 100%; padding: .5rem 1rem; font-size: var(--text-lg); font-weight: 700; gap: .6rem; }
+.btn--call { background: var(--cream); border: 1px solid var(--line-strong); color: var(--teal); min-height: 56px; width: 100%; padding: .5rem 1rem; font-size: var(--text-lg); font-weight: 700; gap: .6rem; }
 a.btn--call[href^="tel:"] { white-space: normal; } /* may wrap to "Call / 1-800-567-5433" at large system fonts; outranks the global tel nowrap */
 .btn--call svg { width: 22px; height: 22px; flex: none; }
 .cal-skel { pointer-events: none; user-select: none; margin-top: 1rem; }
