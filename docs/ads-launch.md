@@ -53,9 +53,9 @@ words (Google allows 30 characters); the Meta headline is the live `<h1>` word f
 
 | Theme | `utm_campaign` | Lands on | Hero eyebrow | Hero headline (`<h1>`) |
 |---|---|---|---|---|
-| **Caregiver stress** | `caregiver` | `/caregiver/` | For caregivers 65 and over | Caregiver stress therapy, covered by Medicare. |
-| **Depression** | `depression` | `/depression/` | For adults 65 and over | Depression therapy, covered by Medicare. |
-| **Grief and loss** | `grief` | `/grief/` | For adults 65 and over | Grief counseling, covered by Medicare. |
+| **Caregiver stress** | `caregiver` | `/caregiver/` | For caregivers 65 and over | Caregiver stress therapy, covered by insurance. |
+| **Depression** | `depression` | `/depression/` | For adults 65 and over | Depression therapy, covered by insurance. |
+| **Grief and loss** | `grief` | `/grief/` | For adults 65 and over | Grief counseling, covered by insurance. |
 
 **One theme, one campaign, one page.** The caregiver theme is caregiver stress therapy for adults 65+ who look
 after a spouse, a parent or another loved one (totallife.com/caregiver-stress). The caregiver is the member and the
@@ -268,10 +268,10 @@ patients or real customers. CTA button on every ad: **Book Now**.
 
 ### `TL — caregiver` (→ `/caregiver/`)
 `utm_content=caregiver-stress`
-- Primary text: `Caregiver stress therapy, covered by Medicare. Total Life
+- Primary text: `Caregiver stress therapy, covered by insurance. Total Life
   offers talk therapy for adults 65+ who look after a spouse, a parent or another loved one, with therapists who
   specialize in older adults, from home, by phone or video. Book a call. A real person from our care team calls you, 9 am to 9 pm ET, 7 days a week.`
-- Headline: `Caregiver stress therapy, covered by Medicare.` (the live h1, word for word) · Description: `Caregiver stress therapy for adults 65+`
+- Headline: `Caregiver stress therapy, covered by insurance.` (the live h1, word for word) · Description: `Caregiver stress therapy for adults 65+`
 - Creative: the caregiver scene still when installed; until then the existing home still.
 
 ### `TL — depression` (→ `/depression/`)
@@ -281,14 +281,14 @@ patients or real customers. CTA button on every ad: **Book Now**.
   (Not "low mood, loss of interest, poor sleep and worry are common in later life, and talk therapy helps": to an
   audience targeted at 65+ that lists the reader's symptoms and promises an outcome, which is what Meta's Personal
   Attributes and Personal Health rules reject.)
-- Headline: `Depression therapy, covered by Medicare.` (the live h1, word for word) · Description: `Depression therapy for adults 65+`
+- Headline: `Depression therapy, covered by insurance.` (the live h1, word for word) · Description: `Depression therapy for adults 65+`
 
 ### `TL — grief` (→ `/grief/`)
 `utm_content=grief`
 - Primary text: `Total Life offers grief counseling for adults 65+ after the loss of a spouse, a friend, a sibling
   or a pet, with therapists who specialize in older adults, from home, by phone or video. Grief counseling is
   covered by Medicare. Book a call. A real person from our care team calls you, 9 am to 9 pm ET, 7 days a week.`
-- Headline: `Grief counseling, covered by Medicare.` (the live h1, word for word) · Description: `Grief counseling for adults 65+`
+- Headline: `Grief counseling, covered by insurance.` (the live h1, word for word) · Description: `Grief counseling for adults 65+`
 
 Ad copy and the matching hero were written together so review of one covers the other.
 

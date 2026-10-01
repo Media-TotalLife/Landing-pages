@@ -380,8 +380,12 @@ body.card-away .header-cta { visibility: visible; }
 .quote figcaption b { color: var(--navy); }
 
 /* Carrier bar */
-.carriers { display: flex; flex-wrap: wrap; gap: .75rem 2rem; align-items: center; justify-content: center; }
-.carriers span, .carriers li { font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.125rem; letter-spacing: -.01em; opacity: 1; }
+.carriers-row { margin-top: 1.25rem; }
+.carriers-lead { margin: 0 0 .5rem; color: var(--muted); font-size: var(--text-sm); }
+.carriers { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; }
+.carriers li { font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.125rem; letter-spacing: -.01em; white-space: nowrap; }
+.carriers li img, .carriers li svg { display: block; height: 26px; width: auto; }
+@media (max-width: 640px) { .carriers { gap: .375rem 1rem; } .carriers li { font-size: 1.0625rem; } }
 
 /* Check list */
 .checks li { display: grid; grid-template-columns: 28px 1fr; gap: .75rem; align-items: start; }
