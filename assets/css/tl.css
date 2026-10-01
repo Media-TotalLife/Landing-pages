@@ -381,14 +381,21 @@ body.card-away .header-cta { visibility: visible; }
 
 /* Carrier bar */
 .carriers-row { margin-top: 1.25rem; }
-.carriers-lead { margin: 0 0 .5rem; color: var(--muted); font-size: var(--text-sm); }
-.carriers { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; }
-.carriers li { font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.125rem; letter-spacing: -.01em; white-space: nowrap; }
-.carriers li img, .carriers li svg { display: block; height: 30px; width: auto; }
+.carriers-lead { margin: 0 0 .625rem; color: var(--muted); font-size: var(--text-sm); }
+.carriers-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.carriers-track { display: flex; width: max-content; animation: carriers-scroll 32s linear infinite; }
+.carriers-marquee:hover .carriers-track { animation-play-state: paused; }
+.carriers { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 0; }
+.carriers li { display: flex; align-items: center; height: 40px; padding: 0 1.375rem; font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.125rem; white-space: nowrap; }
+.carriers li img { display: block; height: 30px; width: auto; }
 .carriers li[data-logo="medicare"] img { height: 26px; }
 .carriers li[data-logo="humana"] img { height: 22px; }
+.carriers li[data-logo="aetna"] img { height: 22px; }
 .carriers li[data-logo="bcbs"] img { height: 34px; }
-@media (max-width: 640px) { .carriers { gap: .5rem .875rem; } .carriers li { font-size: 1.0625rem; } .carriers li img { height: 24px; } .carriers li[data-logo="medicare"] img { height: 22px; } .carriers li[data-logo="bcbs"] img { height: 28px; } }
+.carriers li[data-logo="cigna"] img { height: 32px; }
+@keyframes carriers-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 640px) { .carriers li { padding: 0 1rem; height: 34px; } .carriers li img { height: 24px; } .carriers li[data-logo="medicare"] img, .carriers li[data-logo="humana"] img, .carriers li[data-logo="aetna"] img { height: 20px; } .carriers li[data-logo="bcbs"] img { height: 28px; } .carriers li[data-logo="cigna"] img { height: 26px; } }
+@media (prefers-reduced-motion: reduce) { .carriers-track { animation: none; width: auto; } .carriers-track .carriers[aria-hidden] { display: none; } .carriers { flex-wrap: wrap; row-gap: .5rem; } .carriers-marquee { -webkit-mask-image: none; mask-image: none; } }
 
 /* Check list */
 .checks li { display: grid; grid-template-columns: 28px 1fr; gap: .75rem; align-items: start; }
