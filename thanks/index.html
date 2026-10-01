@@ -10,14 +10,6 @@
 <link rel="preload" href="../assets/fonts/InterTight-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/tl.css">
-<style>
-.thanks .phone-big { display: inline-flex; align-items: center; min-height: 48px; gap: .6rem; margin-top: .75rem; font-family: var(--font-display); font-weight: 700; color: var(--teal); font-size: 1.5rem; text-decoration: none; white-space: nowrap; }
-.thanks .crisis-note { margin-top: 2rem; color: var(--muted); font-size: var(--text); }
-.thanks .crisis-note a { color: var(--teal); font-weight: 700; }
-.thanks .thanks-side { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); }
-.thanks .thanks-photo { aspect-ratio: 4 / 5; max-width: 400px; }
-@media (max-width: 900px) { .thanks .thanks-side { grid-template-columns: 1fr; } .thanks .thanks-photo { max-width: 320px; order: 2; } }
-</style>
 </head>
 <body data-page="thanks">
 <a class="skip" href="#main">Skip to main content</a>
@@ -25,9 +17,9 @@
 <header class="header">
   <div class="wrap">
     <a class="logo" href="../caregiver/" aria-label="Total Life home"><img src="../assets/img/logo.png" alt="Total Life"></a>
-    <a class="phone" href="tel:+18005675433" data-track="header_phone">
+    <a class="phone" href="tel:+18005675433" data-track="header_phone" aria-label="Call 1-800-567-5433">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
-      <span><small>Call us</small><b>1-800-567-5433</b></span>
+      <span><b>1-800-567-5433</b></span>
     </a>
   </div>
 </header>
@@ -36,33 +28,31 @@
   <section class="section thanks" aria-labelledby="thanks-h">
     <div class="wrap">
       <div class="thanks-copy">
-        <div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-        <p class="eyebrow">Your call is booked</p>
-        <h1 id="thanks-h">Thank you. We will call you at the time you <span class="accent">chose.</span></h1>
-        <p class="lede">A confirmation with the date and time is on its way to your email. Nothing to prepare.</p>
-        <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>The email has a link to change the time. You can also call us to change it.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>No computer is needed for the call, or for therapy afterward.</span></li>
-        </ul>
+        <p class="eyebrow">Thank you</p>
+        <h1 id="thanks-h">Your call is booked. We will call you at the time you <span class="accent">chose.</span></h1>
+        <p class="lede">A member of the Total Life care team will call you then. The date and time are on their way to your email.</p>
         <p class="aside-note">We are here <span data-hours>9 am to 9 pm Eastern, seven days a week</span>.</p>
         <a class="phone-big" href="tel:+18005675433" data-track="thanks_phone">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg>
           1-800-567-5433
         </a>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>Call 1-800-567-5433 to change the time.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5.5-6"/></svg><span>No computer is needed for the call, or for therapy afterward.</span></li>
+        </ul>
         <p class="crisis-note">Total Life is not an emergency service. If you or someone you love is in immediate danger, call 911, or call or text <a href="tel:988">988</a> to reach the Suicide and Crisis Lifeline.</p>
       </div>
 
       <div class="thanks-side">
-      <div class="portrait thanks-photo" data-asset="senior-hero.jpg" data-video="senior-hero.mp4" data-poster="senior-hero-poster.jpg" data-placeholder="[PHOTO 4:5: senior-hero.jpg, installed: an older woman seated by a window at home in soft daylight, calm.]" role="img" aria-label="An older woman seated by a window at home"></div>
       <section class="next" aria-labelledby="next-h">
         <h2 id="next-h">What happens on the call</h2>
         <ol>
-          <li><span>We call you at the time you chose.</span></li>
           <li><span>We check coverage together. Most members are covered up to 100% with Medicare + supplemental insurance.</span></li>
           <li><span>We answer your questions.</span></li>
-          <li><span>If you want to go ahead, we find you a therapist who works with older adults. Sessions are by phone or video, from home.</span></li>
+          <li><span>If you want to go ahead, we find you a licensed therapist who works with older adults. Sessions are by phone or video, from home.</span></li>
         </ol>
       </section>
+      <div class="portrait thanks-photo" data-asset="senior-hero.jpg" data-video="senior-hero.mp4" data-poster="senior-hero-poster.jpg" data-placeholder="[PHOTO 4:5: senior-hero.jpg, installed: an older woman seated by a window at home in soft daylight, calm.]" data-sizes="(max-width: 900px) 100vw, 360px" aria-hidden="true"></div>
       </div>
     </div>
   </section>

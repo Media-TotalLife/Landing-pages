@@ -40,7 +40,7 @@ for (const [key, url] of Object.entries(pages)) {
     if (!r.meetingsSlotRemoved) fail('[data-meetings] should be removed when unconfigured');
     if (!r.optin) fail('opt-in line missing in booking card');
     if (r.ctas !== r.ctasToBook) fail(`${r.ctas - r.ctasToBook} primary CTAs do not point to #book`);
-    if (r.ctaText.some(t => t !== 'Book my call')) fail('CTA text not "Book my call": ' + JSON.stringify(r.ctaText));
+    if (r.ctaText.some(t => t !== 'Book a call')) fail('CTA text not "Book a call": ' + JSON.stringify(r.ctaText));
     if (!((r.heroCtaTop !== null && r.heroCtaTop <= (w === 375 ? 812 : 900)) || (r.cardTop !== null && r.cardTop < (w === 375 ? 812 : 900)))) fail('neither hero CTA nor booking card above the fold (cta ' + r.heroCtaTop + ', card ' + r.cardTop + ')');
     if (w === 375 && r.cardTop > 812 * 1.6) fail('booking card further than ~2 screens down on mobile (' + Math.round(r.cardTop) + 'px)');
     if (r.vanity) fail('567-LIFE still present');

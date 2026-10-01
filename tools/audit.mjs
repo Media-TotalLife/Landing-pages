@@ -1,5 +1,32 @@
 // DOM audit: headings, labels, alt, tap targets, body font size, primary CTA per viewport, placeholders count, banned phrases.
+// usage: node tools/audit.mjs            (server on :4173)
+//        node tools/audit.mjs --launch   launch gate: exits 1 while a placeholder or an unconfigured calendar is public
 import { chromium } from 'playwright';
+if (process.argv.includes('--launch')) {
+  const browser = await chromium.launch();
+  const reasons = [];
+  for (const key of ['caregiver', 'depression', 'grief']) {
+    const page = await (await browser.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+    await page.goto(`http://localhost:4173/${key}/`, { waitUntil: 'networkidle' });
+    const r = await page.evaluate(() => {
+      const card = document.querySelector('.booking-card');
+      const legal = document.querySelector('.footer .legal');
+      return {
+        cardPlaceholder: !!card && /\[[A-Z][A-Z0-9 ·:,'’&\-–]+\]/.test(card.innerText),
+        unconfigured: !!document.querySelector('[data-calendar-placeholder].is-unconfigured'),
+        noLink: !(window.TL_CONFIG && window.TL_CONFIG.hubspot && window.TL_CONFIG.hubspot.meetingsLink),
+        legalPlaceholder: !!legal && /\[HIPAA NOTICE|\[CONSUMER HEALTH/.test(legal.textContent),
+      };
+    });
+    if (r.cardPlaceholder) reasons.push(`${key}: bracketed placeholder text in the booking card`);
+    if (r.unconfigured) reasons.push(`${key}: calendar placeholder is-unconfigured (no HubSpot meetings link)`);
+    if (r.noLink) reasons.push(`${key}: TL_CONFIG.hubspot.meetingsLink is empty`);
+    if (r.legalPlaceholder) reasons.push(`${key}: footer legal block still has [HIPAA NOTICE / [CONSUMER HEALTH placeholder`);
+  }
+  await browser.close();
+  if (reasons.length) { console.log('LAUNCH GATE: FAIL'); reasons.forEach(m => console.log('  ' + m)); process.exit(1); }
+  console.log('LAUNCH GATE: PASS'); process.exit(0);
+}
 const banned = [/567-LIFE/i, /psychiatr/i, /medication/i, /free (coverage )?check/i, /journey|empower|unlock|seamless|holistic|thrive|transform|embrace/i, /free therapy/i, /free session/i, /limited spots/i, /act now/i, /guaranteed/i, /will cure/i, /elderly/i, /no cost(?! .*supplemental)/i, /medicare-approved discount/i, /#fff\b|#ffffff/i];
 const browser = await chromium.launch();
 for (const key of ['caregiver', 'depression', 'grief', 'thanks']) {
@@ -19,7 +46,6 @@ for (const key of ['caregiver', 'depression', 'grief', 'thanks']) {
     out.placeholders = (document.body.innerText.match(/\[[A-Z][A-Z0-9 ·:,'’&\-–]+\]/g) || []).length;
     out.trackIds = document.querySelectorAll('[data-track]').length;
     out.telLinks = document.querySelectorAll('a[href^="tel:"]').length;
-    out.stampAboveFold = (() => { const s = document.querySelector('.stamp'); return s ? s.getBoundingClientRect().bottom <= 812 : false; })();
     out.bodyText = document.body.innerText;
     return out;
   });

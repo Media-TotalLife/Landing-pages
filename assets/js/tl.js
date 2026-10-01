@@ -1,8 +1,7 @@
 /* Total Life — shared landing page behaviour (no dependencies)
    - HubSpot booking widget embed with booked-event redirect to /thanks/.
-   - FAQ: native <details>, enhanced with single-open behaviour.
    - Reveal: gentle opt-in fade for [data-reveal]; off under reduced motion.
-   - Sticky mobile CTA: appears after the hero CTA scrolls out of view; hidden while the booking card is on screen.
+   - Sticky mobile CTA and desktop header CTA: appear once the booking card has scrolled away; hidden while the card or the final button is on screen.
    - Tracking: every [data-track] click and the booking event call window.tlTrack(name, data).
 */
 (function () {
@@ -26,19 +25,29 @@
   // assets/img/people/index.json are attached (run `npm run assets` after adding files),
   // so nothing 404s before the assets exist and the placeholder stays visible.
   (function attachAssets() {
-    var frames = document.querySelectorAll('.portrait[data-asset]');
-    if (!frames.length) return;
+    var frames = document.querySelectorAll('.portrait[data-asset]'); if (!frames.length) return;
     var base = document.querySelector('script[src*="tl.js"]').getAttribute('src').replace(/js\/tl\.js.*$/, 'img/people/');
     fetch(base + 'index.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
       var have = {}; (list || []).forEach(function (f) { have[f] = true; });
-      frames.forEach(function (frame, i) {
-        var still = frame.getAttribute('data-asset');
-        if (!have[still]) return;
-        var img = document.createElement('img');
-        img.alt = ''; img.decoding = 'async'; img.loading = i === 0 ? 'eager' : 'lazy';
-        img.src = base + still;
+      var firstDone = false;
+      // Frames that are display:none (hero photo and scene on phones, FAQ photo on tablets) are skipped, so the
+      // hidden slots never download; the matchMedia re-run below attaches them if the viewport grows.
+      function attach(frame) {
+        if (frame.querySelector('img') || !frame.getClientRects().length) return;
+        var still = frame.getAttribute('data-asset'); if (!have[still]) return;
+        var img = document.createElement('img'); img.alt = ''; img.decoding = 'async';
+        if (!firstDone) { img.loading = 'eager'; img.setAttribute('fetchpriority', 'high'); firstDone = true; } else { img.loading = 'lazy'; }
+        // Responsive variants (<stem>-480/800/1200.jpg) when index.json lists them; srcset and sizes are set before src
+        // so no engine starts a master fetch first. Missing variants fall back to the master unchanged.
+        var stem = still.replace(/\.jpg$/, '');
+        var cands = [480, 800, 1200].filter(function (w) { return have[stem + '-' + w + '.jpg']; });
+        if (cands.length) {
+          img.srcset = cands.map(function (w) { return base + stem + '-' + w + '.jpg ' + w + 'w'; }).join(', ') + ', ' + base + still + ' 1600w';
+          img.sizes = frame.getAttribute('data-sizes') || '(max-width: 900px) 100vw, 460px';
+        }
         img.addEventListener('load', function () { frame.classList.add('has-photo'); });
         img.addEventListener('error', function () { img.remove(); });
+        img.src = base + still;
         frame.insertBefore(img, frame.firstChild);
         var clip = frame.getAttribute('data-video');
         if (clip && have[clip] && !reduced && !window.matchMedia('(max-width: 640px) and (prefers-reduced-data: reduce)').matches) {
@@ -54,6 +63,11 @@
           v.addEventListener('error', function () { v.remove(); });
           frame.insertBefore(v, img.nextSibling);
         }
+      }
+      frames.forEach(attach);
+      ['(min-width: 641px)', '(min-width: 901px)'].forEach(function (q) {
+        var mq = window.matchMedia(q); var run = function () { frames.forEach(attach); };
+        if (mq.addEventListener) mq.addEventListener('change', run); else mq.addListener(run);
       });
     }).catch(function () {});
   })();
@@ -98,19 +112,13 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  // ---- FAQ single-open ----------------------------------------------------
-  document.querySelectorAll('.faq').forEach(function (faq) {
-    faq.addEventListener('toggle', function (e) {
-      if (e.target.open) faq.querySelectorAll('details[open]').forEach(function (d) { if (d !== e.target) d.open = false; });
-    }, true);
-  });
-
   // ---- Sticky mobile CTA ---------------------------------------------------
   // Keyed to the booking card itself (the hero button is hidden on phones, where the card sits directly
   // under the headline): the bar shows once the card has scrolled off the top, and hides whenever a quarter
   // or more of the card is on screen, so there are never two calls to action in view at once.
   var sticky = document.querySelector('.sticky-cta');
   var bookCard = document.querySelector('.booking-card');
+  var finalBtn = document.querySelector('.final-actions .btn--primary');
   if (sticky && bookCard && 'IntersectionObserver' in window) {
     document.body.classList.add('has-sticky');
     sticky.setAttribute('inert', '');
@@ -118,12 +126,16 @@
       var r = bookCard.getBoundingClientRect();
       var seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
       var onScreen = seen > Math.min(r.height, window.innerHeight) * 0.25;
-      var show = !onScreen && r.bottom < window.innerHeight * 0.5;
+      var fr = finalBtn ? finalBtn.getBoundingClientRect() : null; var finalOn = !!fr && fr.bottom > 0 && fr.top < window.innerHeight;
+      var show = !onScreen && !finalOn && r.bottom < window.innerHeight * 0.5;
       sticky.classList.toggle('is-visible', show);
       sticky.toggleAttribute('inert', !show);
+      document.body.classList.toggle('card-away', show);
+      var hc = document.querySelector('.header-cta'); if (hc) { hc.setAttribute('aria-hidden', show ? 'false' : 'true'); hc.tabIndex = show ? 0 : -1; }
     };
     var sio = new IntersectionObserver(updateSticky, { threshold: [0, 0.25, 0.5, 1] });
     sio.observe(bookCard);
+    if (finalBtn) sio.observe(finalBtn);
     window.addEventListener('resize', updateSticky);
   }
 
@@ -150,6 +162,7 @@
   // On HubSpot's meetingBookSucceeded message we mark the booking in sessionStorage and go to /thanks/, where the
   // conversions fire (once) with the page fully loaded.
   (function booking() {
+    if (/[?&]dev=1(&|$)/.test(location.search)) document.documentElement.setAttribute('data-dev', '');
     var card = document.querySelector('[data-booking]'); if (!card) return;
     var cfg = window.TL_CONFIG || {}; var hs = cfg.hubspot || {};
     var slot = card.querySelector('[data-meetings]'); var ph = card.querySelector('[data-calendar-placeholder]');
@@ -158,13 +171,13 @@
     var month = ph && ph.querySelector('[data-month]');
     if (month) { try { month.textContent = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' }); } catch (e) {} }
     function widgetReady() {
-      if (ph) ph.remove();
+      if (ph) { ph.classList.remove('is-failed'); ph.classList.add('is-live'); if (status) status.textContent = 'Available times are shown below.'; }
       card.classList.remove('is-loading'); card.classList.add('has-widget');
     }
     function widgetFailed() {
-      if (!ph || !ph.parentNode) return;
+      if (!ph) return;
       ph.classList.add('is-failed');
-      if (status) status.textContent = 'The calendar did not load. Call us and we will book the time with you.';
+      if (status) status.textContent = 'The calendar did not load.';
       card.classList.remove('is-loading');
     }
     function embed() {
@@ -172,7 +185,7 @@
       try { url = new URL(String(hs.meetingsLink).trim()); } catch (e) { console.error('[tl] hubspot.meetingsLink is not a valid URL:', hs.meetingsLink); widgetFailed(); return; }
       url.searchParams.set('embed', 'true');
       var attr = {}; try { attr = JSON.parse(sessionStorage.getItem('tl_attr') || '{}') || {}; } catch (e) {}
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (attr[k]) url.searchParams.set(k, attr[k]); });
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'].forEach(function (k) { if (attr[k]) url.searchParams.set(k, attr[k]); });
       slot.setAttribute('data-src', url.toString());
       // The placeholder stays as the loading state (calendar outline + "Loading available times") until
       // HubSpot's script injects its iframe, so the card never collapses or shows an empty box.
@@ -185,7 +198,8 @@
       s.addEventListener('load', function () { check(); });
       s.addEventListener('error', function () { done = true; widgetFailed(); });
       document.body.appendChild(s);
-      setTimeout(function () { if (!check()) { done = true; widgetFailed(); } }, 15000);
+      // Recoverable: done stays false and the MutationObserver stays attached, so a late iframe still calls widgetReady.
+      setTimeout(function () { if (!check()) widgetFailed(); }, 15000);
     }
     if (hs.meetingsLink && slot) {
       if (!hs.portalId) embed();
@@ -197,7 +211,7 @@
       }
     } else if (slot) {
       slot.remove();
-      if (ph) { ph.classList.add('is-unconfigured'); if (status) status.textContent = 'The calendar is not connected yet.'; }
+      if (ph) { ph.classList.add('is-unconfigured'); if (status) status.textContent = 'Book by phone.'; }
     }
     window.addEventListener('message', function (e) {
       var host = ''; try { host = new URL(e.origin).hostname; } catch (err) { return; }
@@ -216,7 +230,7 @@
   document.querySelectorAll('a[href="#book"]').forEach(function (a) {
     a.addEventListener('click', function () {
       var target = document.getElementById('book'); if (!target) return;
-      var h = target.querySelector('.cal-head b'); if (!h) return;
+      var h = target.querySelector('.cal-head .cal-h'); if (!h) return;
       h.setAttribute('tabindex', '-1');
       setTimeout(function () { h.focus({ preventScroll: true }); }, reduced ? 0 : 600);
     });

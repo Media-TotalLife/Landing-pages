@@ -64,7 +64,7 @@ match their register, then exceed their polish.
 ```
 
 ## Quality bar
-- Every CTA and form has a `data-track="…"` id (e.g. `hero_cta`, `sticky_cta`, `final_cta`, `header_phone`).
+- Every CTA and form has a `data-track="…"` id (e.g. `header_cta`, `sticky_cta`, `final_cta`, `header_phone`).
 - Responsive 1920 → 375 with no horizontal overflow. Hero stacks under 900px (copy first, portrait second). Test mentally at 375: h1 ~40px, CTA full-width.
 - Semantic landmarks, one h1, headings in order, alt text on the logo, aria-labels on icon links, `<label for>` on every input, `aria-live="polite"` on the form card.
 - Reading level: senior pages 6th–8th grade (sentences under 20 words). Caregiver 8th–10th.

@@ -35,8 +35,8 @@ for (const key of pages) {
   if (!embedSrc || !embedSrc.includes('utm_campaign=' + key) || !embedSrc.includes('utm_term=')) fail('UTMs not appended to meetings link: ' + embedSrc);
   const iHs = requests.findIndex(u => u.includes('js.hs-scripts.com')), iEmbed = requests.findIndex(u => u.includes('MeetingsEmbedCode.js'));
   if (!(iHs > -1 && iEmbed > iHs)) fail('HubSpot tracking code must load before the meetings embed (order hs=' + iHs + ' embed=' + iEmbed + ')');
-  const placeholderGone = await page.evaluate(() => !document.querySelector('[data-calendar-placeholder]'));
-  if (!placeholderGone) fail('calendar placeholder still visible with meetingsLink set');
+  const live = await page.evaluate(() => { const ph = document.querySelector('[data-calendar-placeholder]'); return !!ph && ph.classList.contains('is-live') && !!document.querySelector('.booking-card iframe'); });
+  if (!live) fail('calendar placeholder did not switch to is-live with meetingsLink set');
   const attr = await page.evaluate(() => JSON.parse(sessionStorage.getItem('tl_attr') || '{}'));
   for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'gclid', 'fbclid', 'landing_page']) if (!attr[k]) fail('attribution missing ' + k);
   if (!calls.fbq.some(a => a[0] === 'init' && a[1] === '999000111')) fail('fbq init not called');

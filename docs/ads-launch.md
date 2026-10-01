@@ -1,17 +1,64 @@
 # Ads launch — three themes, one Google Search campaign and one Meta campaign each
 
+## Pre-flight (must all pass before any campaign is enabled)
+
+Both ad platforms treat visible bracketed text or a non-functional booking element as a destination under
+construction, which disapproves the whole ad group. Ads stay off until every item below passes.
+
+1. `assets/js/config.js` has the real `hubspot.meetingsLink` and `hubspot.portalId`.
+2. `node tools/audit.mjs --launch` prints `LAUNCH GATE: PASS` for caregiver, depression and grief (no bracketed
+   placeholder in the booking card, calendar configured and connected, no `[HIPAA NOTICE` / `[CONSUMER HEALTH`
+   placeholder in the footer).
+3. `node tools/states.mjs` and `node tools/tracking-test.mjs` pass.
+4. The HubSpot booking form asks only first name, last name, email, phone, date of birth and state
+   (`docs/hubspot-setup.md` §8), and no reason-for-visit, symptom, medication or diagnosis question. The card's
+   form-fields sentence must match the live form the same day it changes.
+5. The live confirmation email has been read. The sentence "The confirmation email also has a link to change it."
+   (FAQ, last answer) and "The email has a link to change the time." (/thanks/, first check) are restored only if
+   that link exists.
+
+Ask the client for the meetings link (or a HubSpot sandbox link) before the next design review, so the verdict is on
+the live widget, not the skeleton.
+
+## Events
+
+Every `data-track` id on the pages, and where it lives. `Care call booked` is the **only primary** conversion.
+Define one **secondary** conversion `phone_click` in GA4 / Google Ads = any click on `a[href^="tel:+18005675433"]`
+(card_phone, final_phone, sticky_phone, header_phone, footer_phone, thanks_phone). Use a Google forwarding number
+on the call asset so phone leads are keyword-attributable. Record a baseline of these events and the current
+booking rate before the redesign ships, so the phone-button changes do not read as a conversion drop.
+
+| Event | Where |
+|---|---|
+| `header_phone` | header phone link (all pages) |
+| `header_cta` | desktop header "Book a call", appears when the booking card is off screen |
+| `card_phone` | booking card phone button (quiet link once the live calendar is in) |
+| `final_cta` | final section "Book a call" |
+| `final_phone` | final section phone button |
+| `sticky_cta` | mobile sticky bar "Book a call" |
+| `sticky_phone` | mobile sticky bar phone |
+| `footer_phone` | footer phone link |
+| `thanks_phone` | /thanks/ phone link |
+| `care_call_booked` | tl.js, on HubSpot's `meetingBookSucceeded` message |
+| `thanks_view` / `thanks_view_unbooked` | /thanks/ inline script |
+| `tl_conversion` kind `lead` / `booked` | track.js `tlConvert`, fired once on /thanks/ |
+
+`hero_cta` and `hero_phone` no longer exist (the hero has one call to action: the booking card). `gclid` is stored in
+sessionStorage `tl_attr` by track.js and appended to the meetings link with the UTMs, so offline booked-call
+imports can match.
+
 Three landing pages, each with one event: book a call in the embedded HubSpot widget. Every ad lands on the page
 whose hero headline the ad repeats. The Google headline is the live `<h1>` or a shortened version that keeps its
 words (Google allows 30 characters); the Meta headline is the live `<h1>` word for word.
 
 | Theme | `utm_campaign` | Lands on | Hero eyebrow | Hero headline (`<h1>`) |
 |---|---|---|---|---|
-| **Caregiver stress** | `caregiver` | `/caregiver/` | Caregiver stress therapy for adults 65+ | Caring for someone is a full-time job. Therapy for the carer is covered by Medicare. |
-| **Depression** | `depression` | `/depression/` | Depression therapy for adults 65+ | Therapy for depression in later life, covered by Medicare. |
-| **Grief and loss** | `grief` | `/grief/` | Grief counseling for adults 65+ | Grief counseling, covered by Medicare. |
+| **Caregiver stress** | `caregiver` | `/caregiver/` | For caregivers 65 and over | Caregiver stress therapy, covered by Medicare. |
+| **Depression** | `depression` | `/depression/` | For adults 65 and over | Depression therapy, covered by Medicare. |
+| **Grief and loss** | `grief` | `/grief/` | For adults 65 and over | Grief counseling, covered by Medicare. |
 
 **One theme, one campaign, one page.** The caregiver theme is caregiver stress therapy for adults 65+ who look
-after a spouse, a parent or another loved one (totallife.com/caregiver-stress). The carer is the member and the
+after a spouse, a parent or another loved one (totallife.com/caregiver-stress). The caregiver is the member and the
 person who books. Nothing in this plan targets adult children looking for therapy for a parent.
 
 There is no general senior page in this test (`/senior/` was removed on 30 Sept 2026). No ad may point at
@@ -87,7 +134,7 @@ Everything is switched on from `assets/js/config.js`. Empty value = that tag is 
    Put them in `config.js` as `google.adsId` and `google.bookedLabel`. **Leave `google.leadLabel` empty.**
 3. **Enhanced conversions stay off** (`track.js` sets `allow_enhanced_conversions: false`). Google's healthcare
    policy does not allow hashed personal data for a therapy inquiry, and the page has no form to read it from.
-4. Optional GA4: create a property, put its `G-` ID in `google.ga4Id`. CTA clicks (`hero_cta` etc.),
+4. Optional GA4: create a property, put its `G-` ID in `google.ga4Id`. CTA clicks (`header_cta`, `card_phone`, `final_cta`, `final_phone`, `sticky_cta`, `sticky_phone`, `header_phone`, `footer_phone`),
    `care_call_booked` and `thanks_view` are sent as events, with page name only.
 
 ### Meta
@@ -130,12 +177,11 @@ source drill-down 1 and `utm_term` (the keyword) drill-down 2, so keep `utm_term
 
 Common assets on every RSA: Callouts `Enrolled Medicare Provider` · `Phone or Video` · `Real People, Not Bots`.
 Sitelinks: How it works · Questions · Book a call → `#book`. Call asset: 1-800-567-5433,
-schedule 9 am to 9 pm ET. The sitelink anchors differ per page: caregiver and grief use `#how-it-works` and
-`#questions`; depression uses `#how` and `#faq` (a wrong anchor scrolls to the top, which reads as a dead link).
+schedule 9 am to 9 pm ET. All three pages use `#how-it-works` and `#questions` as sitelink anchors (a wrong anchor scrolls to the top,
+which reads as a dead link).
 Common headlines, added to every ad after the pinned ones: `Covered by Medicare` ·
 `Book a Call With Our Care Team` · `By Phone or Video, From Home` · `Real Person, 9am–9pm ET` ·
-`Specialists in Adults 65+` · `Enrolled Medicare Provider`. Common descriptions: `Book a 15-minute call. A real
-person from our care team calls you, 9 am to 9 pm ET.` · `Most members are covered up to 100% with Medicare +
+`Specialists in Adults 65+` · `Enrolled Medicare Provider`. Common descriptions: `Book a call. A real person from our care team calls you, 9 am to 9 pm ET, 7 days a week.` (88 characters) · `Most members are covered up to 100% with Medicare +
 supplemental insurance.`
 
 ### Campaign `TL — caregiver` (→ `/caregiver/`)
@@ -143,7 +189,7 @@ supplemental insurance.`
 One ad group, `caregiver-stress`. Final URL:
 `https://DOMAIN/caregiver/?utm_source=google&utm_medium=cpc&utm_campaign=caregiver&utm_content=caregiver-stress&utm_term={keyword}`
 
-The searcher is the carer. Keywords (phrase match): `caregiver stress`, `caregiver stress therapy`, `caregiver
+The searcher is the caregiver. Keywords (phrase match): `caregiver stress`, `caregiver stress therapy`, `caregiver
 burnout help`, `therapy for caregivers`, `counseling for caregivers`, `caregiver support therapy`, `caregiver
 counseling medicare`, `caring for spouse with dementia stress`, `caregiver depression`, `support for family
 caregivers`.
@@ -152,8 +198,8 @@ adult-child queries this theme must not buy: `elderly parent`, `aging parent`, `
 `for my father`.
 
 Responsive search ad
-- Headline pinned to position 1: `Therapy for the Carer` (the h1's second sentence; the full sentence is over
-  30 characters). Position 2: `Covered by Medicare`. Also `Caregiver Stress Therapy, 65+` (the eyebrow) and
+- Headline pinned to position 1: `Caregiver Stress Therapy` (the h1's opening words; the full h1 is over
+  30 characters). Position 2: `Covered by Medicare` (together they are the h1). Also `Caregiver Stress Therapy, 65+` (the eyebrow) and
   `Support for Family Caregivers`. Nothing that asserts a struggle ("hard work", "exhausted"). Then the common
   headlines.
 - Theme description: `Talk therapy for adults 65+ who look after a spouse, a parent or a loved one. From home.`
@@ -170,8 +216,8 @@ depression older adults`, `medicare covered depression treatment`, `talk therapy
 Negatives: shared list plus `antidepressants`, `SSRI`, `prescription`, `test`, `quiz`.
 
 Responsive search ad
-- Headline pinned to position 1: `Therapy for Depression` (the h1's opening words; the full h1 is over 30
-  characters). Position 2: `Covered by Medicare`. Also `Depression Therapy, Adults 65+` (the eyebrow). Then the
+- Headline pinned to position 1: `Depression Therapy` (the h1's opening words; the full h1 is over 30
+  characters). Position 2: `Covered by Medicare` (together they are the h1). Also `Depression Therapy, Adults 65+` (the eyebrow). Then the
   common headlines.
 - Theme description: `Depression therapy for adults 65+ with therapists who specialize in older adults.` Then the
   common descriptions.
@@ -222,29 +268,27 @@ patients or real customers. CTA button on every ad: **Book Now**.
 
 ### `TL — caregiver` (→ `/caregiver/`)
 `utm_content=caregiver-stress`
-- Primary text: `Caring for someone is a full-time job. Therapy for the carer is covered by Medicare. Total Life
+- Primary text: `Caregiver stress therapy, covered by Medicare. Total Life
   offers talk therapy for adults 65+ who look after a spouse, a parent or another loved one, with therapists who
-  specialize in older adults, from home, by phone or video. Book a 15-minute call with our care team.`
-- Headline: `Therapy for the carer is covered by Medicare.` (the h1's second sentence; the first sentence opens
-  the primary text so the full h1 is on the ad) · Description: `Caregiver stress therapy for adults 65+`
+  specialize in older adults, from home, by phone or video. Book a call. A real person from our care team calls you, 9 am to 9 pm ET, 7 days a week.`
+- Headline: `Caregiver stress therapy, covered by Medicare.` (the live h1, word for word) · Description: `Caregiver stress therapy for adults 65+`
 - Creative: the caregiver scene still when installed; until then the existing home still.
 
 ### `TL — depression` (→ `/depression/`)
 `utm_content=depression`
 - Primary text: `Total Life offers talk therapy for depression in later life: for adults 65+, with licensed
-  therapists who specialize in older adults, from home, by phone or video. Covered by Medicare. Book a 15-minute call
-  and a real person from our care team calls at the time you choose.`
+  therapists who specialize in older adults, from home, by phone or video. Covered by Medicare. Book a call. A real person from our care team calls you, 9 am to 9 pm ET, 7 days a week.`
   (Not "low mood, loss of interest, poor sleep and worry are common in later life, and talk therapy helps": to an
   audience targeted at 65+ that lists the reader's symptoms and promises an outcome, which is what Meta's Personal
   Attributes and Personal Health rules reject.)
-- Headline: `Therapy for depression in later life, covered by Medicare.` · Description: `Depression therapy for adults 65+`
+- Headline: `Depression therapy, covered by Medicare.` (the live h1, word for word) · Description: `Depression therapy for adults 65+`
 
 ### `TL — grief` (→ `/grief/`)
 `utm_content=grief`
 - Primary text: `Total Life offers grief counseling for adults 65+ after the loss of a spouse, a friend, a sibling
   or a pet, with therapists who specialize in older adults, from home, by phone or video. Grief counseling is
-  covered by Medicare. Book a 15-minute call and a real person calls at the time you choose.`
-- Headline: `Grief counseling, covered by Medicare.` · Description: `Grief counseling for adults 65+`
+  covered by Medicare. Book a call. A real person from our care team calls you, 9 am to 9 pm ET, 7 days a week.`
+- Headline: `Grief counseling, covered by Medicare.` (the live h1, word for word) · Description: `Grief counseling for adults 65+`
 
 Ad copy and the matching hero were written together so review of one covers the other.
 

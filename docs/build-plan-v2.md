@@ -26,7 +26,7 @@ for older adults, 18px+ body, 56px targets, high contrast, no carousels or motio
 2. **Hero** (headline left, booking card right; on phones headline, then card, then lede and note), followed by a
    full-width 16:9 scene photograph. **Theme block** carries a 4:5 portrait beside its cards.
    Original hero note: eyebrow (audience + Medicare), headline (theme, one coral word, Meta-compliant), one lede (2 sentences
-   max), primary CTA "Book my call" scrolling to the widget, Covered by Medicare stamp, reassurance line with phone,
+   max), primary CTA "Book a call" scrolling to the widget, Covered by Medicare stamp, reassurance line with phone,
    portrait frame (real member imagery, or placeholder).
 3. **Booking card in the hero** (`#book`, target of every CTA): the hero's right column is the HubSpot widget with
    the opt-in and privacy lines under it; the left column carries eyebrow, headline, lede, CTA, stamp, phone and
@@ -39,9 +39,9 @@ for older adults, 18px+ body, 56px targets, high contrast, no carousels or motio
    their assigned therapist, with the source line). No testimonials of any kind, no therapist strip, no carrier
    logos: Total Life has not supplied them and fabricated proof is disqualifying.
 7. **FAQ**: five questions max, theme-specific where it matters (coverage, phone-only, privacy, what happens next).
-8. **Final CTA**: headline, "Book my call", phone.
+8. **Final CTA**: headline, "Book a call", phone.
 9. **Footer**: compliance block.
-10. **Sticky mobile bar**: "Book my call" + phone icon, hidden while the booking card is on screen.
+10. **Sticky mobile bar**: "Book a call" + phone icon, hidden while the booking card is on screen.
 
 Cut from the current pages: the multi-step form, the self-check survey and its "not a test" copy, the caregiver
 "signs" grid, the founder card on the caregiver page (see 4), any psychiatry or medication mention, the "what
@@ -89,7 +89,7 @@ Brar, Founder & CEO. The founder portrait stays a placeholder until a real photo
   ```
   `tl.js` fills `[data-meetings]` from `TL_CONFIG.hubspot.meetingsLink` (`?embed=true`), removes the placeholder,
   listens for HubSpot's `meetingBookSucceeded` message, fires `tlConvert('booked')` and redirects to `/thanks/`.
-- All CTAs: `href="#book"`, `data-track` id, text "Book my call".
+- All CTAs: `href="#book"`, `data-track` id, text "Book a call".
 - `config.js`: `hubspot.portalId` (tracking code), `hubspot.meetingsLink`, `meta.pixelId`, `google.*`.
 - Attribution: `track.js` stores utm_*, gclid, fbclid, `v` in sessionStorage; the HubSpot tracking cookie ties the
   booking to the visit source. Meetings links have no hidden fields; Jason's tagging covers keyword mapping.
